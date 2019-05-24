@@ -26,12 +26,13 @@ Bathrooms.init ({
     },
     caption: {
         type: Sequelize.STRING,
-        notNull: true,
+        allowNull: true,
         len: [1, 200]
     },
     likecount: {
         type: Sequelize.INTEGER,
-        isNumeric: true, 
+        isNumeric: true,
+        defaultValue: 0, 
         notNull: true
     }
 },{

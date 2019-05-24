@@ -7,6 +7,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 require('./model')
+require('./routes')(app)
 
 require('./config').sync()
 .then(_ =>app.listen(3000))
