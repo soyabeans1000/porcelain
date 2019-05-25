@@ -1,7 +1,7 @@
 const { Bathrooms, Comments, Users } = require('../model')
 
 module.exports = app => {
-    // find all bathrooms in the city,state base on your location
+    // find all bathrooms in the city,state base on your location (will have to change bathroom schema for location)
     app.get('/bathrooms/:city/:state', (req, res) => {
         Bathrooms.findAll({where: {city: req.params.city, state: req.params.state}})
         .then(bathroom => res.json(bathroom))
@@ -11,7 +11,13 @@ module.exports = app => {
     app.get('/bathrooms/:id', (req, res) => {
         Bathrooms.findOne({
             where: {id: req.params.id}, 
-            include: [{model: Comments, include: [Users]}]
+            include: [{
+                model: Comments, 
+                include: [{
+                    model: Users, 
+                    attributes: ['username']
+                }]
+            }]
         })
         .then(bathroom => res.json(bathroom))
         .catch(e => console.log(e))

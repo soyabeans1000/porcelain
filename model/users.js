@@ -7,7 +7,7 @@ Users.init ({
     username: {
         type: Sequelize.STRING,
         notNull: true,
-        len: [4, 12]
+        len: [1, 50]
     },
     email: {
         type: Sequelize.STRING,
@@ -17,7 +17,7 @@ Users.init ({
     password: {
         type: Sequelize.STRING,
         notNull: true,
-        len: [4, 12],
+        len: [5, 20],
         notIn: [['password', '123456789']]
     },
     adminstatus: {

@@ -11,7 +11,7 @@ Requests.init ({
     gender: {
         type: Sequelize.STRING,
         notNull: true,
-        len: [4, 100]
+        len: [1, 100]
     },
     stalls: {
         type: Sequelize.INTEGER,

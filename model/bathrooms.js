@@ -4,15 +4,34 @@ const connection = require('../config')
 class Bathrooms extends Sequelize.Model {}
 
 Bathrooms.init ({
-    location: {
+    // location: {
+    //     type: Sequelize.STRING,
+    //     notNull: true,
+    //     len: [1, 100]
+    // },
+    street: {
         type: Sequelize.STRING,
         notNull: true,
-        len: [1, 100]
+        isAlphanumeric: true
+    },
+    city: {
+        type: Sequelize.STRING,
+        notNull: true,
+        isAlpha: true
+    },
+    state: {
+        type: Sequelize.STRING,
+        notNull: true,
+        isAlpha: true
+    },
+    zipcode: {
+        type: Sequelize.INTEGER,
+        notNull: true
     },
     gender: {
         type: Sequelize.STRING,
         notNull: true,
-        len: [4, 8]
+        len: [1, 100]
     },
     stalls: {
         type: Sequelize.INTEGER,
