@@ -4,8 +4,28 @@ const connection = require('../config')
 class Requests extends Sequelize.Model {}
 
 Requests.init ({
-    location: {
+// location: {
+    //     type: Sequelize.STRING,
+    //     notNull: true,
+    //     len: [1, 100]
+    // },
+    street: {
         type: Sequelize.STRING,
+        notNull: true,
+        isAlphanumeric: true
+    },
+    city: {
+        type: Sequelize.STRING,
+        notNull: true,
+        isAlpha: true
+    },
+    state: {
+        type: Sequelize.STRING,
+        notNull: true,
+        isAlpha: true
+    },
+    zipcode: {
+        type: Sequelize.INTEGER,
         notNull: true
     },
     gender: {
@@ -27,12 +47,6 @@ Requests.init ({
         type: Sequelize.STRING,
         allowNull: true,
         len: [1, 200]
-    },
-    likecount: {
-        type: Sequelize.INTEGER,
-        isNumeric: true,
-        defaultValue: 0, 
-        notNull: true
     }
 },{
     sequelize: connection, 
