@@ -1,36 +1,33 @@
 {
   "name": "porcelain",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'porcelain/*'\" \"npm run porcelain\"",
+    "porcelain": "cd porcelain && npm run start",
+    "install": "cd porcelain; npm i",
+    "build": "cd porcelain && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjanders6/porcelain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjanders6/porcelain/issues"
+  },
+  "homepage": "https://github.com/mjanders6/porcelain#readme",
   "dependencies": {
-    "bootstrap": "^4.3.1",
+    "concurrently": "^4.1.0",
+    "dotenv": "^8.0.0",
     "express": "^4.17.0",
     "mysql2": "^1.6.5",
-    "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.8",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
     "sequelize": "^5.8.6"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
