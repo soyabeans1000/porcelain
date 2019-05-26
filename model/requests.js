@@ -4,11 +4,6 @@ const connection = require('../config')
 class Requests extends Sequelize.Model {}
 
 Requests.init ({
-// location: {
-    //     type: Sequelize.STRING,
-    //     notNull: true,
-    //     len: [1, 100]
-    // },
     street: {
         type: Sequelize.STRING,
         notNull: true,
@@ -47,6 +42,10 @@ Requests.init ({
         type: Sequelize.STRING,
         allowNull: true,
         len: [1, 200]
+    },
+    image: {
+        type: Sequelize.STRING,
+        notNull: true
     }
 },{
     sequelize: connection, 

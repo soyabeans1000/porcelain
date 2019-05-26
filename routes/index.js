@@ -4,4 +4,5 @@ module.exports = (app) => {
     require('./userroutes')(app)
     require('./likeroutes')(app)
     require('./requestroutes')(app)
+    require('./imageroutes')(app)
 }
