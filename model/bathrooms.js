@@ -4,11 +4,6 @@ const connection = require('../config')
 class Bathrooms extends Sequelize.Model {}
 
 Bathrooms.init ({
-    // location: {
-    //     type: Sequelize.STRING,
-    //     notNull: true,
-    //     len: [1, 100]
-    // },
     street: {
         type: Sequelize.STRING,
         notNull: true,
@@ -47,6 +42,10 @@ Bathrooms.init ({
         type: Sequelize.STRING,
         allowNull: true,
         len: [1, 200]
+    },
+    image: {
+        type: Sequelize.STRING,
+        notNull: true
     },
     likecount: {
         type: Sequelize.INTEGER,
