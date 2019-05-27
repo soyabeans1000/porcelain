@@ -1,10 +1,15 @@
-import React from 'react'
-import { Nav } from 'react-bootstrap'
+import React, { Component } from 'react'
 // Need to create a add icon
-function AddBR() {
-    return (
-        <Nav.Link href="#AddBR">Add BR</Nav.Link>
-    )
+
+class AddBR extends Component {
+    render() {
+        return (
+            <div>
+                <h1>Add a bathroom</h1>
+
+            </div>
+        )
+    }
 }
 
 export default AddBR;
