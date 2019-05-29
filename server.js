@@ -10,5 +10,5 @@ require('./model')
 require('./routes')(app)
 
 require('./config').sync()
-.then(_ =>app.listen(process.env.PORT || 3001))
+.then(_ =>app.listen( 3001))
 .catch(e => console.log(e))
