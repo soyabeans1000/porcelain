@@ -5,7 +5,7 @@ import Image from '../../utils/image.js'
 import Dispbathroom from '../dispbathroom'
 import User from '../../utils/user.js'
 import Request from '../../utils/request.js'
-// Need to create a add icon
+import axios from 'axios'
 
 class AddBR extends Component {
     state = {
@@ -23,7 +23,7 @@ class AddBR extends Component {
         bathroom: []
     }
     componentWillMount() {
-        // hard coding userId into local storage for testing, will need to change once login is finish
+        // hard coded userId into local storage for testing, will need to change once login is finish
         localStorage.setItem('userId', 1)
         let id = localStorage.getItem('userId')
         User.getOne(id)
@@ -38,6 +38,31 @@ class AddBR extends Component {
         } else {
             this.setState({ [event.target.id]: event.target.value })
         }
+    }
+    handleLocation = event => {
+        event.preventDefault()
+        const getLocation = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert( "Geolocation is not supported by this browser.")
+            }
+        }
+        
+        const showPosition = (position) => {
+            axios.get(`https://www.mapquestapi.com/geocoding/v1/reverse?key=zlMKNlqjyFv79AvMHSCLunzQE5O7u7Ak&location=${position.coords.latitude},${position.coords.longitude}`)
+                .then(({data: {results}}) => {
+                    let locations = results[0].locations[0]
+                    this.setState({
+                        street: locations.street,
+                        city: locations.adminArea5,
+                        state: locations.adminArea3,
+                        zipcode: locations.postalCode
+                    })
+                })
+                .catch(e => console.error(e))
+        }
+        getLocation()
     }
     handleFormSubmit = event => {
         event.preventDefault()
@@ -82,7 +107,6 @@ class AddBR extends Component {
                 image: this.state.image
             })
             this.setState({bathroom})
-            console.log(this.state)
         })
         .catch(e => console.log(e))
     }
@@ -94,6 +118,7 @@ class AddBR extends Component {
             <h1>Add a bathroom</h1>
             <Form handleInputChange={this.handleInputChange} 
                 handleFormSubmit={this.handleFormSubmit} 
+                handleLocation={this.handleLocation}
                 street={state.street}
                 city={state.city}
                 state={state.state}

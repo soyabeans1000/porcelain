@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Form = ({handleFormSubmit, handleInputChange, street, city, state, zipcode, gender, stalls, level, caption, image}) => 
+const Form = ({handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, caption, image}) => 
     <form>
         <p>   
             <label htmlFor="street">Street</label>
             <input id="street" type="text" value={street} onChange={handleInputChange} />
+            <button onClick={handleLocation}>location</button>
         </p>
         <p>   
             <label htmlFor="city">City</label>
