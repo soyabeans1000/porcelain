@@ -3,10 +3,13 @@ import Form from '../form'
 import Bathrooms from '../../utils/bathroom.js'
 import Image from '../../utils/image.js'
 import Dispbathroom from '../dispbathroom'
+import User from '../../utils/user.js'
+import Request from '../../utils/request.js'
 // Need to create a add icon
 
 class AddBR extends Component {
     state = {
+        userstatus: null,
         street: '',
         city: '',
         state: '',
@@ -20,7 +23,14 @@ class AddBR extends Component {
         bathroom: []
     }
     componentWillMount() {
+        // hard coding userId into local storage for testing, will need to change once login is finish
         localStorage.setItem('userId', 1)
+        let id = localStorage.getItem('userId')
+        User.getOne(id)
+        .then(({data}) => {
+            this.setState({userstatus: data})
+        })
+        .catch(e => console.log(e))
     }
     handleInputChange = event => {
         if (event.target.id === "image") {
@@ -42,7 +52,7 @@ class AddBR extends Component {
         .then(({data}) => {
             image = data.imageUrl
             this.setState({image: image})
-            Bathrooms.postOne({
+            let newbathroom = {
                 street: this.state.street,
                 city: this.state.city,
                 state: this.state.state,
@@ -53,7 +63,12 @@ class AddBR extends Component {
                 caption: this.state.caption, 
                 image: this.state.image,
                 userId: localStorage.getItem('userId')
-            })
+            }
+            if (this.state.userstatus === true) {
+                Bathrooms.postOne(newbathroom)
+            } else {
+                Request.postOne(newbathroom)
+            }
             let bathroom = this.state.bathroom
             bathroom.push({
                 street: this.state.street,

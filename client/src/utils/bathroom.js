@@ -16,10 +16,7 @@ const Bathrooms = {
         })
         .catch(e => console.log(e))
     },
-    postOne(bathroom) {
-        axios.post('/bathrooms', bathroom)
-        .catch(e => console.log(e))
-    },
+    postOne: bathroom => axios.post('/bathrooms', bathroom),
     putOne(id) {
         axios.put(`/bathrooms/increase/${id}`)
         .then(_ => {
