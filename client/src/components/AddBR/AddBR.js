@@ -70,6 +70,7 @@ class AddBR extends Component {
         if (state.file === null || state.street === '' || state.city === '' || state.state === '' || state.zipcode === '' || state.gender === '' || state.stalls === '' || state.level === '' || state.caption === ''){
             alert('Please fill out form')
         } else {
+        this.setState({bathroom:[]})
         const fd = new FormData()
         let image = ''
         fd.append('image', this.state.file[0])
@@ -107,6 +108,19 @@ class AddBR extends Component {
                 image: this.state.image
             })
             this.setState({bathroom})
+            this.setState({
+                street: '',
+                city: '',
+                state: '',
+                zipcode: '',
+                gender: '',
+                stalls: '',
+                level:  '',
+                caption: '', 
+                file: null,
+                image: ''
+            })
+            console.log(this.setState.file)
         })
         .catch(e => console.log(e))
     }
@@ -114,22 +128,22 @@ class AddBR extends Component {
     render() {
         let state = this.state
         return (
-        <>
-            <h1>Add a bathroom</h1>
-            <Form handleInputChange={this.handleInputChange} 
-                handleFormSubmit={this.handleFormSubmit} 
-                handleLocation={this.handleLocation}
-                street={state.street}
-                city={state.city}
-                state={state.state}
-                zipcode={state.zipcode}
-                gender={state.gender}
-                stalls={state.stalls}
-                level={state.level}
-                caption={state.caption}
-            />
-            <Dispbathroom bathroom={state.bathroom} />
-        </>
+            <>
+                <h1>Add a bathroom</h1>
+                <Form handleInputChange={this.handleInputChange} 
+                    handleFormSubmit={this.handleFormSubmit} 
+                    handleLocation={this.handleLocation}
+                    street={state.street}
+                    city={state.city}
+                    state={state.state}
+                    zipcode={state.zipcode}
+                    gender={state.gender}
+                    stalls={state.stalls}
+                    level={state.level}
+                    caption={state.caption}
+                />
+                <Dispbathroom bathroom={state.bathroom} />
+            </>
         )
     }
 }
