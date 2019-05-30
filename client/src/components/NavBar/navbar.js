@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Navbar, Nav, Container, Row } from 'react-bootstrap'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 
-import AddBR from '../AddBR/AddBR'
+import AddBR from '../AddBR'
 import BRAroundMe from '../BRAroundMe/BRAroundMe'
 import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
