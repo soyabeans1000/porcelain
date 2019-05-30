@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Form = ({handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, caption, image}) => 
+const Form = ({handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, caption}) => 
     <form>
         <p>   
             <label htmlFor="street">Street</label>

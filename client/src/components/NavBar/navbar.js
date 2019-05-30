@@ -1,11 +1,12 @@
+
 import React, { Component } from 'react'
 import { Navbar, Nav, Container, Row } from 'react-bootstrap'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 
-import AddBR from '../AddBR'
+import AddBR from '../../pages/AddBR/AddBR'
 import BRAroundMe from '../BRAroundMe/BRAroundMe'
 import Home from '../Home/Home'
-import Profile from '../Profile/Profile'
+import Profile from '../../pages/Profile'
 
 
 class NavBar extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Form from '../form'
-import Bathrooms from '../../utils/bathroom.js'
+import Form from '../../components/form'
+import Bathrooms from '../../utils/bathroom'
 import Image from '../../utils/image.js'
-import Dispbathroom from '../dispbathroom'
+import Dispbathroom from '../../components/dispbathroom'
 import User from '../../utils/user.js'
 import Request from '../../utils/request.js'
 import axios from 'axios'
@@ -24,7 +24,7 @@ class AddBR extends Component {
     }
     componentWillMount() {
         // hard coded userId into local storage for testing, will need to change once login is finish
-        localStorage.setItem('userId', 1)
+        localStorage.setItem('userId', 3)
         let id = localStorage.getItem('userId')
         User.getOne(id)
         .then(({data}) => {
@@ -66,6 +66,7 @@ class AddBR extends Component {
     }
     handleFormSubmit = event => {
         event.preventDefault()
+        console.log(this.state.userstatus.adminstatus)
         let state = this.state
         if (state.file === null || state.street === '' || state.city === '' || state.state === '' || state.zipcode === '' || state.gender === '' || state.stalls === '' || state.level === '' || state.caption === ''){
             alert('Please fill out form')
@@ -90,7 +91,7 @@ class AddBR extends Component {
                 image: this.state.image,
                 userId: localStorage.getItem('userId')
             }
-            if (this.state.userstatus === true) {
+            if (this.state.userstatus.adminstatus === true) {
                 Bathrooms.postOne(newbathroom)
             } else {
                 Request.postOne(newbathroom)
@@ -120,7 +121,6 @@ class AddBR extends Component {
                 file: null,
                 image: ''
             })
-            console.log(this.setState.file)
         })
         .catch(e => console.log(e))
     }
