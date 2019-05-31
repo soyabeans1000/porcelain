@@ -6,6 +6,7 @@ import Dispbathroom from '../../components/dispbathroom'
 import User from '../../utils/user.js'
 import Request from '../../utils/request.js'
 import axios from 'axios'
+import './addBR.css';
 
 class AddBR extends Component {
     state = {
@@ -17,14 +18,16 @@ class AddBR extends Component {
         gender: '',
         stalls: '',
         level:  '',
+        cleanliness: '',
         caption: '', 
         file: null,
         image: '',
+        rating: '',
         bathroom: []
     }
     componentWillMount() {
         // hard coded userId into local storage for testing, will need to change once login is finish
-        localStorage.setItem('userId', 3)
+        localStorage.setItem('userId', 1)
         let id = localStorage.getItem('userId')
         User.getOne(id)
         .then(({data}) => {
@@ -87,8 +90,10 @@ class AddBR extends Component {
                 gender: this.state.gender,
                 stalls: parseInt(this.state.stalls),
                 level:  parseInt(this.state.level),
+                cleanliness: this.state.cleanliness,
                 caption: this.state.caption, 
                 image: this.state.image,
+                rating: this.state.rating,
                 userId: localStorage.getItem('userId')
             }
             if (this.state.userstatus.adminstatus === true) {
@@ -105,8 +110,10 @@ class AddBR extends Component {
                 gender: this.state.gender,
                 stalls: parseInt(this.state.stalls),
                 level:  parseInt(this.state.level),
+                cleanliness: this.state.cleanliness,
                 caption: this.state.caption, 
-                image: this.state.image
+                image: this.state.image,
+                rating: this.state.rating
             })
             this.setState({bathroom})
             this.setState({
@@ -117,7 +124,9 @@ class AddBR extends Component {
                 gender: '',
                 stalls: '',
                 level:  '',
+                cleanliness: '',
                 caption: '', 
+                rating:'',
                 file: null,
                 image: ''
             })
@@ -140,7 +149,9 @@ class AddBR extends Component {
                     gender={state.gender}
                     stalls={state.stalls}
                     level={state.level}
+                    cleanliness={state.level}
                     caption={state.caption}
+                    rating={state.rating}
                 />
                 <Dispbathroom bathroom={state.bathroom} />
             </>
