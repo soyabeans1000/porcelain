@@ -1,18 +1,18 @@
 import React from 'react'
 
-const Form = ({handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, caption}) => 
+const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, rating, caption }) =>
     <form>
-        <p>   
-            <label htmlFor="street">Street</label>
+        <p>
+            <label htmlFor="street">Street </label>
             <input id="street" type="text" value={street} onChange={handleInputChange} />
             <button onClick={handleLocation}>location</button>
         </p>
-        <p>   
-            <label htmlFor="city">City</label>
+        <p>
+            <label htmlFor="city">City </label>
             <input id="city" type="text" value={city} onChange={handleInputChange} />
         </p>
-        <p>   
-            <label htmlFor="state">State</label>
+        <p>
+            <label htmlFor="state">State </label>
             <select id="state" name="states" value={state} onChange={handleInputChange} >
                 <option value="" disabled selected>Select an Option</option>
                 <option value="AL">AL</option>
@@ -67,32 +67,45 @@ const Form = ({handleFormSubmit, handleInputChange, handleLocation, street, city
                 <option value="WY">WY</option>
             </select>
         </p>
-        <p>   
-            <label htmlFor="zipcode">Zipcode</label>
+        <p>
+            <label htmlFor="zipcode">Zipcode </label>
             <input id="zipcode" type="text" value={zipcode} onChange={handleInputChange} />
         </p>
-        <p>   
-            <label htmlFor="gender">Gender</label>
+        <p>
+            <label htmlFor="gender">Bathroom Type </label>
             <select id="gender" name="genders" value={gender} onChange={handleInputChange}>
                 <option value="" disabled selected>Select an Option</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="unisex">Unisex</option>
+                <option value="Family">Family</option>
+                <option value="Other">Other</option>
             </select>
         </p>
-        <p>   
-            <label htmlFor="stalls">Number of stalls</label>
+        <p>
+            <label htmlFor="stalls">Number of Stalls </label>
             <input id="stalls" type="number" value={stalls} onChange={handleInputChange} />
         </p>
-        <p>   
-            <label htmlFor="level">Level</label>
+        <p>
+            <label htmlFor="level">Floor/Level </label>
             <input id="level" type="number" value={level} onChange={handleInputChange} />
         </p>
-        <p>   
-            <label htmlFor="caption">Caption</label>
+        <p>
+            <label htmlFor="cleanliness">Cleanliness </label>
+            <select id="cleanliness" name="cleanliness" value={cleanliness} onChange={handleInputChange} >
+                <option value="" disabled selected>Select an Option</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <p>
+            <label htmlFor="caption">Caption </label>
             <input id="caption" type="text" value={caption} onChange={handleInputChange} />
         </p>
-        <p>   
+        <p>
             <label htmlFor="image">Image</label>
             <input id="image" type="file" onChange={handleInputChange} />
         </p>

@@ -17,6 +17,7 @@ class AddBR extends Component {
         gender: '',
         stalls: '',
         level:  '',
+        cleanliness: '',
         caption: '', 
         file: null,
         image: '',
@@ -24,7 +25,7 @@ class AddBR extends Component {
     }
     componentWillMount() {
         // hard coded userId into local storage for testing, will need to change once login is finish
-        localStorage.setItem('userId', 3)
+        localStorage.setItem('userId', 1)
         let id = localStorage.getItem('userId')
         User.getOne(id)
         .then(({data}) => {
@@ -87,6 +88,7 @@ class AddBR extends Component {
                 gender: this.state.gender,
                 stalls: parseInt(this.state.stalls),
                 level:  parseInt(this.state.level),
+                cleanliness: this.state.cleanliness,
                 caption: this.state.caption, 
                 image: this.state.image,
                 userId: localStorage.getItem('userId')
@@ -105,8 +107,9 @@ class AddBR extends Component {
                 gender: this.state.gender,
                 stalls: parseInt(this.state.stalls),
                 level:  parseInt(this.state.level),
+                cleanliness: this.state.cleanliness,
                 caption: this.state.caption, 
-                image: this.state.image
+                image: this.state.image,
             })
             this.setState({bathroom})
             this.setState({
@@ -117,6 +120,7 @@ class AddBR extends Component {
                 gender: '',
                 stalls: '',
                 level:  '',
+                cleanliness: '',
                 caption: '', 
                 file: null,
                 image: ''
@@ -140,6 +144,7 @@ class AddBR extends Component {
                     gender={state.gender}
                     stalls={state.stalls}
                     level={state.level}
+                    cleanliness={state.level}
                     caption={state.caption}
                 />
                 <Dispbathroom bathroom={state.bathroom} />
