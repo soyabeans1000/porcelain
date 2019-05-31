@@ -22,7 +22,6 @@ class AddBR extends Component {
         caption: '', 
         file: null,
         image: '',
-        rating: '',
         bathroom: []
     }
     componentWillMount() {
@@ -93,7 +92,6 @@ class AddBR extends Component {
                 cleanliness: this.state.cleanliness,
                 caption: this.state.caption, 
                 image: this.state.image,
-                rating: this.state.rating,
                 userId: localStorage.getItem('userId')
             }
             if (this.state.userstatus.adminstatus === true) {
@@ -113,7 +111,6 @@ class AddBR extends Component {
                 cleanliness: this.state.cleanliness,
                 caption: this.state.caption, 
                 image: this.state.image,
-                rating: this.state.rating
             })
             this.setState({bathroom})
             this.setState({
@@ -126,7 +123,6 @@ class AddBR extends Component {
                 level:  '',
                 cleanliness: '',
                 caption: '', 
-                rating:'',
                 file: null,
                 image: ''
             })
@@ -151,7 +147,6 @@ class AddBR extends Component {
                     level={state.level}
                     cleanliness={state.level}
                     caption={state.caption}
-                    rating={state.rating}
                 />
                 <Dispbathroom bathroom={state.bathroom} />
             </>

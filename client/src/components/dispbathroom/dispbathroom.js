@@ -7,7 +7,6 @@ const Dispbathroom = ({bathroom}) =>
             <div>
                 <h3>{street}, {city}, {state} {zipcode}</h3>
                 <img src={image} />
-                <span>{rating}</span>
                 <span>{gender}</span>
                 <span>{stalls}</span>
                 <span>{cleanliness}</span>
