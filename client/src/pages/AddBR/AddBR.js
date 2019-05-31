@@ -6,7 +6,6 @@ import Dispbathroom from '../../components/dispbathroom'
 import User from '../../utils/user.js'
 import Request from '../../utils/request.js'
 import axios from 'axios'
-import './addBR.css';
 
 class AddBR extends Component {
     state = {
