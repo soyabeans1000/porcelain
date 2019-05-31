@@ -133,8 +133,10 @@ class AddBR extends Component {
         let state = this.state
         return (
             <>
-                <h1>Add a bathroom</h1>
-                <Form handleInputChange={this.handleInputChange} 
+                <h1>Add a Bathroom</h1> 
+                <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
+                <div class = 'container' id = 'addForm'>
+                <Form handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit} 
                     handleLocation={this.handleLocation}
                     street={state.street}
@@ -145,8 +147,9 @@ class AddBR extends Component {
                     stalls={state.stalls}
                     level={state.level}
                     cleanliness={state.level}
-                    caption={state.caption}
+                    caption={state.caption} 
                 />
+                </div>
                 <Dispbathroom bathroom={state.bathroom} />
             </>
         )

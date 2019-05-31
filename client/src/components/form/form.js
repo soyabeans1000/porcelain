@@ -1,17 +1,24 @@
 import React from 'react'
+import '../../pages/AddBR/AddBR.css'
 
-const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, rating, caption }) =>
-    <form>
-        <p>
+const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, caption }) =>
+    <form action="/action_page.php">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Cantarell:400i&display=swap');
+        </style>
+        
+        <div class='row'>
             <label htmlFor="street">Street </label>
             <input id="street" type="text" value={street} onChange={handleInputChange} />
             <button onClick={handleLocation}>location</button>
-        </p>
-        <p>
+        </div>
+
+        <div class='row'>
             <label htmlFor="city">City </label>
             <input id="city" type="text" value={city} onChange={handleInputChange} />
-        </p>
-        <p>
+        </div>
+
+        <div class='row'>
             <label htmlFor="state">State </label>
             <select id="state" name="states" value={state} onChange={handleInputChange} >
                 <option value="" disabled selected>Select an Option</option>
@@ -66,12 +73,14 @@ const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, cit
                 <option value="WI">WI</option>
                 <option value="WY">WY</option>
             </select>
-        </p>
-        <p>
+        </div>
+
+        <div class='row'>
             <label htmlFor="zipcode">Zipcode </label>
             <input id="zipcode" type="text" value={zipcode} onChange={handleInputChange} />
-        </p>
-        <p>
+        </div>
+
+        <div class='row'>
             <label htmlFor="gender">Bathroom Type </label>
             <select id="gender" name="genders" value={gender} onChange={handleInputChange}>
                 <option value="" disabled selected>Select an Option</option>
@@ -81,16 +90,19 @@ const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, cit
                 <option value="Family">Family</option>
                 <option value="Other">Other</option>
             </select>
-        </p>
-        <p>
+        </div>
+
+        <div class='row' p>
             <label htmlFor="stalls">Number of Stalls </label>
             <input id="stalls" type="number" value={stalls} onChange={handleInputChange} />
-        </p>
-        <p>
+        </div>
+
+        <div class='row'>
             <label htmlFor="level">Floor/Level </label>
             <input id="level" type="number" value={level} onChange={handleInputChange} />
-        </p>
-        <p>
+        </div>
+
+        <div class='row'>
             <label htmlFor="cleanliness">Cleanliness </label>
             <select id="cleanliness" name="cleanliness" value={cleanliness} onChange={handleInputChange} >
                 <option value="" disabled selected>Select an Option</option>
@@ -100,16 +112,16 @@ const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, cit
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-        </p>
-        <p>
+        </div>
+        <div class='row'>
             <label htmlFor="caption">Caption </label>
             <input id="caption" type="text" value={caption} onChange={handleInputChange} />
-        </p>
-        <p>
-            <label htmlFor="image">Image</label>
+        </div>
+        <div class='row'>
+            <label htmlFor="image">Image </label>
             <input id="image" type="file" onChange={handleInputChange} />
-        </p>
-        <button onClick={handleFormSubmit}>Add</button>
+        </div>
+        <button onClick={handleFormSubmit}> Add </button>
     </form>
 
 export default Form
