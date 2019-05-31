@@ -24,11 +24,10 @@ class AddBR extends Component {
         bathroom: []
     }
     componentWillMount() {
-        // hard coded userId into local storage for testing, will need to change once login is finish
-        localStorage.setItem('userId', 1)
         let id = localStorage.getItem('userId')
         User.getOne(id)
         .then(({data}) => {
+            console.log(data)
             this.setState({userstatus: data})
         })
         .catch(e => console.log(e))

@@ -23,12 +23,16 @@ class Login extends Component {
             userEmail: '',
             userPassword: '',
             isAdmin: false,
-            showLoginModal: false,
-            loggedIn: 'Log In'
+            showLoginModal: true,
+            loggedIn: this.props.updateLoginStatus,
+            validation: ''
         };
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.toggleShowModal = this.toggleShowModal.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
+    }
+    componentWillReceiveProps(){
+     this.setState({modal: true})
     }
     componentDidMount(){
      this.setState({modal: true})
@@ -37,17 +41,22 @@ class Login extends Component {
     // LOGIN FUNCTIONS
     handleLogin = event => {
         event.preventDefault()
-        // console.log('login button clicked')
         let loginObj = {
             email: this.state.userEmail,
             password: this.state.userPassword
         }
-        console.log(loginObj)
         //make axios call to api-- 
         User.findOne(loginObj)
-        //create function to check if theyre in database, if yes, give access to add comments
-        //if no, invalid information, try again. 
-        //jwt for user- local storage
+        .then(({data}) => {
+            if (data === 'Invalid credentials') {
+                this.setState({validation: data})
+            } else {
+                localStorage.setItem('userId',data)
+                this.props.updateLoginStatus(true)
+            }
+        })
+        .catch(e => console.log(e))
+
     }
 
     // give value to input thru state change.
@@ -58,27 +67,32 @@ class Login extends Component {
     // SIGN UP OPTIONS
 
     handleSignInput = ({ target: { name, value } }) => {
-        // console.log(name)
         this.setState({ [name]: value })
     }
 
     handleSignUp = e => {
         e.preventDefault()
-        // let signUpObj = {
-        //     userName: this.state.name,
-        //     userEmail: this.state.email,
-        //     userPassword: this.state.password,
-        // }
-        // this.setState({ user: signUpObj })
-        // console.log(signUpObj)
-
+        let email = this.state.userEmail
+        console.log(email)
+        // need to check if email already exist before posting user but routes break 
+        // need to make sure form is filled out and must be email address
+        // User.findAnother(email)
+        // .then(({data}) => {
+        //     console.log(data)
+        //     .catch(e => console.log(e))
+        // })
         let signUpObj = {
-            name: this.state.userName,
+            username: this.state.userName,
             email: this.state.userEmail,
             password: this.state.userPassword
         }
         console.log(signUpObj)
-
+        User.postOne(signUpObj)
+        .catch(e => console.log(e))
+        this.setState({
+            showLoginModal: !this.state.showLoginModal,
+            validation: ''
+        })
         //once the user is successfully signed up call a function that is from the Home component to update the status of isLoggedIn
         //ex this.props.updateLoginStatus()
     }
@@ -95,13 +109,15 @@ class Login extends Component {
     //this function toggles whether the modal is shown or not
     toggleShowModal() {
         this.setState({
-            modal: !this.state.modal
+            modal: !this.state.modal,
+            showLoginModal: true
         });
     }
     //this function updates the state for whether to show the login modal or not
     toggleForm() {
         this.setState({
-            showLoginModal: !this.state.showLoginModal
+            showLoginModal: !this.state.showLoginModal,
+            validation: ''
         })
     }
     //initial log in button handler
@@ -128,6 +144,7 @@ class Login extends Component {
                                 <Label htmlFor="userPassword">Password</Label>
                                 <Input type="password" name="userPassword" id="userPassword" className="loginInput" placeholder="Its Encrypted, No Worries" onChange={this.handleLoginInput} />
                             </FormGroup>
+                            {this.state.validation}
                         </Form>
                         <br />
                         <small>Not a member?</small>
@@ -139,30 +156,43 @@ class Login extends Component {
             } else {
                 //show sign up form
                 return (
-                    <Form>
-                        <FormGroup>
-                            <Label htmlFor='userName'>Name</Label>
-                            <Input type="text" name="userName" id="userName" onChange={this.handleSignInput} placeholder="Name" />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label htmlFor="userEmail">Email</Label>
-                            <Input type="email" name="userEmail" id="userEmail" onChange={this.handleSignInput} placeholder="@" />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label htmlFor="userPassword">Password</Label>
-                            <Input type="password" name="userPassword" id="userPassword" onChange={this.handleSignInput} placeholder="Its Encrypted, No Worries" />
-                        </FormGroup>
-                    </Form>
+                    <div>
+                        <Form>
+                            <FormGroup>
+                                <Label htmlFor='userName'>Name</Label>
+                                <Input type="text" name="userName" id="userName" onChange={this.handleSignInput} placeholder="Name" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="userEmail">Email</Label>
+                                <Input type="email" name="userEmail" id="userEmail" onChange={this.handleSignInput} placeholder="@" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="userPassword">Password</Label>
+                                <Input type="password" name="userPassword" id="userPassword" onChange={this.handleSignInput} placeholder="Its Encrypted, No Worries" />
+                            </FormGroup>
+                        </Form>
+                        <br />
+                        <small>Have an acount?</small>
+                        <br />
+                        <Button outline color="success" onClick={this.toggleForm}>Log In</Button>
+                    </div>
                 )
             }
         }
 
     }
+    // modalshowing = _ => {
+    //     this.setState({
+    //         modal: true
+    //     })
+    //     console.log(this.state.modal)
+    // }
+
 
     render() {
         return (
             <div>
-                <Modal isOpen={this.state.modal} toggle={this.toggleShowModal} className={this.props.className}>
+                <Modal isOpen={this.state.modal} className={this.props.className}>
                     <ModalHeader toggle={this.toggleShowModal}>{this.state.showLoginModal ? "Log In" : "Sign Up"}</ModalHeader>
                     <ModalBody>
                         {this.showTheModal()}

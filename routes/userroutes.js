@@ -2,13 +2,13 @@ const { Users } = require('../model')
 
 module.exports = app => {
     // get login user id
-    app.get('/user/:username/:password', (req, res) => {
+    app.get('/user/:email/:password', (req, res) => {
         Users.findOne({where: {
-            username: req.params.username, 
+            email: req.params.email, 
             password: req.params.password
         }})
         .then(user => res.json(user.id))
-        .catch(e => console.log(e))
+        .catch(e => res.json('Invalid credentials'))
     })
     // get user adminstatus
     app.get('/user/:id', (req, res) => {
@@ -25,4 +25,8 @@ module.exports = app => {
         .then(_ => res.sendStatus(200))
         .catch(e => console.log(e))
     })
+    // app.get('/user/email/:email', (req, res) => {
+    //     Users.findOne({where: {email: req.params.email}})
+    //     .then(user => res.json(user))
+    // })
 }
