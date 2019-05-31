@@ -3,11 +3,11 @@ body {
 }
   
 Form {
-  max-width: 500px;
+  max-width: 700px;
 	padding: 10px 20px;
 	background: #7bcfeb;
 	margin: 10px auto;
-	padding: 20px;
+	padding: 50px;
 	border-radius: 8px;
   font-family: 'Cantarell', sans-serif;
   border: black, dotted, 5px;
