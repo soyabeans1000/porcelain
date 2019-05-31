@@ -1,11 +1,11 @@
 import React from 'react'
 import { Navbar } from 'react-bootstrap'
 import {Button} from 'reactstrap'
-const HeaderBar = () => (
+const HeaderBar = (props) => (
     <>
     <Navbar bg="light" expand="lg" fixed="top">
         <Navbar.Brand href="#home">Porcelain</Navbar.Brand>
-       {this.props.loggedIn ? <Button outline color="secondary" onClick={this.props.handleLogoutClick}>Log Out</Button> : <Button outline color="secondary" onClick={this.props.handleLoginClick}>Log In</Button> } 
+       {props.loggedIn ? <Button outline color="secondary" onClick={console.log('click')}>Log Out</Button> : <Button outline color="secondary" onClick={console.log('click')}>Log In</Button> } 
     </Navbar>
     
     </>

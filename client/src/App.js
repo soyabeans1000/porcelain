@@ -38,7 +38,7 @@ class App extends Component {
         <HeaderBar loggedIn={this.state.isLoggedIn}/>
         {/* React Reoutes for components. This is coming from the navbar */}
          <Switch>
-                    <Route exact path="/" component={ () => {<Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} />} />
+                    <Route exact path="/" component={ () => <Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
                     <Route path="/AroundMe" component={BRAroundMe} />
                     <Route path="/AddBR" component={AddBR} />
                     <Route path="/Profile" component={Profile} />
