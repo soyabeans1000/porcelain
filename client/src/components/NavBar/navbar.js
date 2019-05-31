@@ -1,27 +1,13 @@
 
 import React, { Component } from 'react'
 import { Navbar, Nav, Container, Row } from 'react-bootstrap'
-import { Switch, Route, Link, Redirect } from 'react-router-dom'
-
-import AddBR from '../../pages/AddBR/AddBR'
-import BRAroundMe from '../BRAroundMe/BRAroundMe'
-import Home from '../Home/Home'
-import Profile from '../../pages/Profile'
+import { Link } from 'react-router-dom'
 
 
 class NavBar extends Component {
     render() {
         return (
             <div className="App-intro">
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/AroundMe" component={BRAroundMe} />
-                    <Route path="/AddBR" component={AddBR} />
-                    <Route path="/Profile" component={Profile} />
-                    <Redirect to="/" />
-
-                </Switch>
-
                 <Navbar bg="light" expand="lg" fixed="bottom">
                     {/* <Navbar.Brand href="#home">{props.name}</Navbar.Brand> */}
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
