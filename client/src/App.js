@@ -4,10 +4,10 @@ import './App.css'
 
 import NavBar from './components/NavBar/navbar'
 import HeaderBar from './components/Header/header'
-import AddBR from './components/AddBR/AddBR'
+import AddBR from './pages/AddBR'
 import BRAroundMe from './components/BRAroundMe/BRAroundMe'
 import Home from './components/Home/Home'
-import Profile from './components/Profile/Profile'
+import Profile from './pages/Profile'
 
 const App = _ => 
   <div className="App">

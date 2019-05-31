@@ -13,7 +13,10 @@ module.exports = app => {
     // get user adminstatus
     app.get('/user/:id', (req, res) => {
         Users.findOne({where: {id: req.params.id}})
-        .then(user => res.json(user.adminstatus))
+        .then(user => res.json({
+            username: user.username, 
+            adminstatus: user.adminstatus
+        }))
         .catch(e => console.log(e))
     })
     // create user
