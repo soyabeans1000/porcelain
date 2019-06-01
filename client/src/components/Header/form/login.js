@@ -1,18 +1,13 @@
 
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-// import LoginForm from '../Forms/loginForm.js'
-// import SignupForm from '../Forms/signUp.js'
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-// import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import User from '../../../utils/user'
+import * as EmailValidator from 'email-validator';
+
 import HeaderBar from '../header'
 //parent component
 //keeps track of state, defines functionality to be passed into child component
-//handle state change function
-//click events on button,, function. handlesubmit handle login. 
-// let loggedIn = false;
-// let user = 'user';
 
 class Login extends Component {
     constructor(props) {
@@ -93,52 +88,39 @@ class Login extends Component {
             alert('need username')
             return false
         }
-
-        if (this.state.userEmail < 5 || !this.state.userEmail.includes('@') || !this.state.userEmail.includes('.')) {
-            //placeholder change and border style
-            alert('need valid email address')
-            return false
-        }
-
+        
         if (this.state.userPassword == '') {
             //placeholder change and border style
             alert('need password')
             return false
         }
-
-        let email = this.state.userEmail
-        console.log(email)
-        // need to check if email already exist before posting user but routes break 
-        // need to make sure form is filled out and must be email address
-        // User.findAnother(email)
-        // .then(({data}) => {
-        //     console.log(data)
-        //     .catch(e => console.log(e))
-        // })
-        let signUpObj = {
-            username: this.state.userName,
-            email: this.state.userEmail,
-            password: this.state.userPassword
+        let validate = EmailValidator.validate(`${this.state.userEmail}`)
+        if (validate === true) {
+            let email = this.state.userEmail
+            User.findAnother(email)
+            .then(({data}) => {
+                if (data === 'OK') {
+                    let signUpObj = {
+                        username: this.state.userName,
+                        email: this.state.userEmail,
+                        password: this.state.userPassword
+                    }
+                    console.log(signUpObj)
+                    User.postOne(signUpObj)
+                    .catch(e => console.log(e))
+                    this.setState({
+                        showLoginModal: !this.state.showLoginModal,
+                        validation: ''
+                    })
+                } else {
+                    alert('Email already exist')
+                }
+            })
+            .catch(e => console.log(e))
+        } else {
+            alert('Please enter a valid email')
         }
-        console.log(signUpObj)
-        User.postOne(signUpObj)
-        .catch(e => console.log(e))
-        this.setState({
-            showLoginModal: !this.state.showLoginModal,
-            validation: ''
-        })
-        //once the user is successfully signed up call a function that is from the Home component to update the status of isLoggedIn
-        //ex this.props.updateLoginStatus()
     }
-
-
-
-
-    // toggle() {
-    //     this.setState(prevState => ({
-    //         modal: !prevState.modal
-    //     }));
-    // }
 
     //this function toggles whether the modal is shown or not
     toggleShowModal() {
@@ -215,13 +197,6 @@ class Login extends Component {
         }
 
     }
-    // modalshowing = _ => {
-    //     this.setState({
-    //         modal: true
-    //     })
-    //     console.log(this.state.modal)
-    // }
-
 
     render() {
         return (

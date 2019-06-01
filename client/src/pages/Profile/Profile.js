@@ -18,6 +18,7 @@ class Profile extends Component {
         let userId = localStorage.getItem('userId')
         User.getOne(userId)
         .then(({data: {username, adminstatus}}) => {
+            console.log(username)
             this.setState({
                 adminstatus: adminstatus,
                 username: username
