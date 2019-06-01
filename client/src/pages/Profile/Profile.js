@@ -4,7 +4,6 @@ import SubMenu from '../../components/Profile_Menu/sub-menu.js'
 // Need to create a add icon
 
 class Profile extends Component {
-
     render() {
         return (
             <div>
