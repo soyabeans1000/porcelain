@@ -45,7 +45,6 @@ render() {
                                     <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
                                     <CardBody>
                                         <CardTitle>{item.location}</CardTitle>
-                                       
                                     </CardBody>
                                 </Card>
                             </div>
