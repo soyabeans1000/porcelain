@@ -10,56 +10,41 @@ class ProfileLikes extends React.Component {
   
 
   state = {
-    posts: [],
     likedbr: [],
     adminstatus: false,
     username: ''
 }
+
+
 componentWillMount() {
-    let userId = localStorage.getItem('userId')
-    User.getOne(userId)
-        .then(({ data: { username, adminstatus } }) => {
-            this.setState({
-                adminstatus: adminstatus,
-                username: username
-            })
-        })
-        .catch(e => console.log(e))
-    let bathrooms = []
-    let newarr
-    Comments.getAll(userId)
-        .then(({ data }) => {
-            let bathroomid = []
-            data.forEach(({ bathroom }) => {
-                bathroomid.push(bathroom.id)
-                newarr = bathroomid.filter((id, index) => {
-                    return bathroomid.indexOf(id) >= index
+
+        let userId = localStorage.getItem('userId')
+
+        Likes.getAll(userId)
+        .then(({data}) => {
+            let likedbr = []
+            data.forEach(({bathroom}) => {
+                likedbr.push({
+                    location: `${bathroom.street} ${bathroom.city}, ${bathroom.state} ${bathroom.zipcode}`,
+                    image: bathroom.image
                 })
-            });
-            newarr.forEach(num => {
-                let username
-                let commentstr
-                Bathroom.getOne(num)
-                    .then(({ data }) => {
-                        data.comments.forEach(comment => {
-                            if (comment.userId === parseInt(userId)) {
-                                username = comment.user.username
-                                commentstr = comment.comments
-                            }
-                        })
-                        bathrooms.push({
-                            location: `${data.street} ${data.city}, ${data.state} ${data.zipcode}`,
-                            image: data.image,
-                            username: username,
-                            comment: commentstr,
-                            bathroomId: data.id
-                        })
-                        this.setState({ posts: bathrooms })
-                    })
             })
+            this.setState({likedbr: likedbr})
+            console.log(this.state)
         })
-        .catch(e => console.log(e))
-}
+        .catch(e =>console.log(e))
+
+      }
+
+
+
+
+
+
+
+
+
+  
 
 render() {
     return (
@@ -67,7 +52,7 @@ render() {
             <Container>
                 <Row>
                     <Col>
-                        {this.state.posts.map(item => (
+                        {this.state.likedbr.map(item => (
                             <div>
                                 <Card className="bathroomCard">
                                     <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
@@ -84,26 +69,8 @@ render() {
         </div>
 
     )
-
-}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 export default ProfileLikes
