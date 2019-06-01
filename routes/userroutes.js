@@ -15,12 +15,25 @@ return jwt.sign({
 
 module.exports = app => {
     // get login user id
-    app.get('/user/:email/:password', (req, res) => {
-        Users.findOne({where: {
-            email: req.params.email, 
-            password: req.params.password
-        }})
-        .then(user => res.json(user.id))
+    // app.get('/user/:email/:password', (req, res) => {
+    //     Users.findOne({where: {
+    //         email: req.params.email, 
+    //         password: req.params.password
+    //     }})
+    //     .then(user => res.json(user.id))
+    //     .catch(e => res.json('Invalid credentials'))
+    // })
+
+    //post login user
+    app.post('/login', (req, res) => {
+        Users.findOne({
+            where:{
+                email: req.body.email, 
+                password: req.body.password
+            }
+        })
+       
+        .then(response =>  res.json({success: true, token: generateJWT(response)}))
         .catch(e => res.json('Invalid credentials'))
     })
     // get user adminstatus

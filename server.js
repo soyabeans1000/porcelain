@@ -4,12 +4,12 @@ const app = express()
 const jwt = require('express-jwt');
 require('dotenv').config()
 
-app.use(jwt({ secret: process.env.SECRETKEY}).unless({path: ['/login', '/user', '/user/*']}));
+
 
 app.use(express.static(join(__dirname, 'client', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
+app.use(jwt({ secret: process.env.SECRETKEY}).unless({path: ['/login', '/user', /\/user\/(\d*)/g]}));
 require('./model')
 require('./routes')(app)
 

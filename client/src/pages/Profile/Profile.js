@@ -14,8 +14,11 @@ class Profile extends Component {
         adminstatus: false,
         username:''
     }
-    componentWillMount () {
-        let userId = localStorage.getItem('userId')
+    componentDidMount () {
+        let token = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1]))
+        // console.log(parseInt(token[6]))
+        let userId = token.id
+        console.log(userId)
         User.getOne(userId)
         .then(({data: {username, adminstatus}}) => {
             this.setState({
@@ -61,7 +64,7 @@ class Profile extends Component {
         .catch(e => console.log(e))
     }
     handleLikeButton = _ => {
-        Likes.getAll(localStorage.getItem('userId'))
+        Likes.getAll(localStorage.getItem('token'))
         .then(({data}) => {
             let likedbr = []
             data.forEach(({bathroom}) => {
