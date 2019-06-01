@@ -24,6 +24,7 @@ class Profile extends Component {
             })
         })
         .catch(e => console.log(e))
+        console.log(this.state)
         let bathrooms = []
         let newarr
         Comments.getAll(userId)

@@ -1,8 +1,8 @@
 const { Comments, Bathrooms } = require('../model')
 
 module.exports = app => {
-    app.get('/comment', (req, res) => {
-        Comments.findAll()
+    app.get('/comment/:bathroomId', (req, res) => {
+        Comments.findAll({where: {bathroomId: req.params.bathroomId}})
         .then(comment => res.json(comment))
         .catch(e => console.log(e))
     })

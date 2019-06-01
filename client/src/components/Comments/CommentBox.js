@@ -10,9 +10,7 @@ class CommentBox extends Component {
 
     this.state = {
       showComments: false,
-      comments: [
-
-      ]
+      comments: []
     };
   }
 
