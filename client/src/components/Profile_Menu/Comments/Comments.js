@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import User from '../../../utils/user.js'
 import Comments from '../../../utils/comment'
 import Bathroom from '../../../utils/bathroom'
-import Commentedpost from '../../commentedpost'
+import Likes from '../../../utils/likes'
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button, Container, Row, Col } from 'reactstrap';
+    
+import '../../../pages/Profile/styles.css'
 
-
-class ProfileComments extends React.Component {
+class ProfileComments extends Component {
+  
   state = {
     posts: [],
     likedbr: [],
@@ -57,21 +61,53 @@ componentWillMount () {
     })
     .catch(e => console.log(e))
 }
-
+handleLikeButton = _ => {
+    Likes.getAll(localStorage.getItem('userId'))
+    .then(({data}) => {
+        let likedbr = []
+        data.forEach(({bathroom}) => {
+            likedbr.push({
+                location: `${bathroom.street} ${bathroom.city}, ${bathroom.state} ${bathroom.zipcode}`,
+                image: bathroom.image
+            })
+        })
+        this.setState({likedbr: likedbr})
+        console.log(this.state)
+    })
+    .catch(e =>console.log(e))
+}
 
 render() {
-  return (
-      <div>
-          <h1 className="username">{this.state.username}</h1>
-           <Commentedpost posts={this.state.posts} />
-      </div>
-  )
-}
+    return (
+        <div>
+           <Container>
 
-}
+<Row>
+<Col>
+            
+           
+        {this.state.posts.map(item => (
+            <div>
+          <Card className="bathroomCard">
+          <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
+          <CardBody>
+            <CardTitle>{item.location}</CardTitle>
+            <CardSubtitle>{item.comment}</CardSubtitle>
+                  
+          </CardBody>
+        </Card>
+        
+        </div>
+        ))}
+    
+</Col>
+      </Row>
+
+</Container>
 
 
-export default ProfileComments
+
+</div>
 
 
 
@@ -84,7 +120,12 @@ export default ProfileComments
 
 
 
+    )}
 
+
+  }
+
+  export default ProfileComments
 
 
 
