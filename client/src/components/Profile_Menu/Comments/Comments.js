@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import User from '../../../../utils/user.js'
-import Comments from '../../../../utils/comment'
-import Bathroom from '../../../../utils/bathroom'
-import Commentedpost from '../../../../components/commentedpost'
+import User from '../../../utils/user.js'
+import Comments from '../../../utils/comment'
+import Bathroom from '../../../utils/bathroom'
+import Commentedpost from '../../commentedpost'
 
 
 class ProfileComments extends React.Component {
