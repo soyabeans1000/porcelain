@@ -66,6 +66,7 @@ class Login extends Component {
             if (data === 'Invalid credentials') {
                 this.setState({validation: data})
             } else {
+                //store token in local storage. when post submitted  inclued token in axios call header. 
                 localStorage.setItem('userId',data)
                 this.props.updateLoginStatus(true)
             }
