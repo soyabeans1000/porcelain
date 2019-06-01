@@ -24,7 +24,7 @@ class BRAroundMe extends Component {
         let bathroomId = null
         let likecount = 0
         let commentsarr = []
-        Bathrooms.getOne(24)
+        Bathrooms.getOne(1)
         .then(({data}) => {
             location = `${data.street} ${data.city}, ${data.state} ${data.zipcode}`
             image = data.image

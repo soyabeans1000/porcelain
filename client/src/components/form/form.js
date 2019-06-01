@@ -1,18 +1,25 @@
 import React from 'react'
+import '../../pages/AddBR/AddBR.css'
 
-const Form = ({handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, caption}) => 
-    <form>
-        <p>   
-            <label htmlFor="street">Street</label>
+const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, caption }) =>
+    <form action="/action_page.php">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Cantarell:400i&display=swap');
+        </style>
+        
+        <div class='row'>
+            <label htmlFor="street">Street </label>
             <input id="street" type="text" value={street} onChange={handleInputChange} />
             <button onClick={handleLocation}>location</button>
-        </p>
-        <p>   
-            <label htmlFor="city">City</label>
+        </div>
+
+        <div class='row'>
+            <label htmlFor="city">City </label>
             <input id="city" type="text" value={city} onChange={handleInputChange} />
-        </p>
-        <p>   
-            <label htmlFor="state">State</label>
+        </div>
+
+        <div class='row'>
+            <label htmlFor="state">State </label>
             <select id="state" name="states" value={state} onChange={handleInputChange} >
                 <option value="" disabled selected>Select an Option</option>
                 <option value="AL">AL</option>
@@ -66,37 +73,55 @@ const Form = ({handleFormSubmit, handleInputChange, handleLocation, street, city
                 <option value="WI">WI</option>
                 <option value="WY">WY</option>
             </select>
-        </p>
-        <p>   
-            <label htmlFor="zipcode">Zipcode</label>
+        </div>
+
+        <div class='row'>
+            <label htmlFor="zipcode">Zipcode </label>
             <input id="zipcode" type="text" value={zipcode} onChange={handleInputChange} />
-        </p>
-        <p>   
-            <label htmlFor="gender">Gender</label>
+        </div>
+
+        <div class='row'>
+            <label htmlFor="gender">Bathroom Type </label>
             <select id="gender" name="genders" value={gender} onChange={handleInputChange}>
                 <option value="" disabled selected>Select an Option</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="unisex">Unisex</option>
+                <option value="Family">Family</option>
+                <option value="Other">Other</option>
             </select>
-        </p>
-        <p>   
-            <label htmlFor="stalls">Number of stalls</label>
+        </div>
+
+        <div class='row' p>
+            <label htmlFor="stalls">Number of Stalls </label>
             <input id="stalls" type="number" value={stalls} onChange={handleInputChange} />
-        </p>
-        <p>   
-            <label htmlFor="level">Level</label>
+        </div>
+
+        <div class='row'>
+            <label htmlFor="level">Floor/Level </label>
             <input id="level" type="number" value={level} onChange={handleInputChange} />
-        </p>
-        <p>   
-            <label htmlFor="caption">Caption</label>
+        </div>
+
+        <div class='row'>
+            <label htmlFor="cleanliness">Cleanliness </label>
+            <select id="cleanliness" name="cleanliness" value={cleanliness} onChange={handleInputChange} >
+                <option value="" disabled selected>Select an Option</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class='row'>
+            <label htmlFor="caption">Caption </label>
             <input id="caption" type="text" value={caption} onChange={handleInputChange} />
-        </p>
-        <p>   
-            <label htmlFor="image">Image</label>
+        </div>
+        <div class='row'>
+            <label htmlFor="image">Image </label>
             <input id="image" type="file" onChange={handleInputChange} />
-        </p>
-        <button onClick={handleFormSubmit}>Add</button>
+        </div>
+        <button onClick={handleFormSubmit}> Add </button>
     </form>
 
 export default Form

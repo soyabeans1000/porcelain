@@ -17,17 +17,17 @@ class AddBR extends Component {
         gender: '',
         stalls: '',
         level:  '',
+        cleanliness: '',
         caption: '', 
         file: null,
         image: '',
         bathroom: []
     }
     componentWillMount() {
-        // hard coded userId into local storage for testing, will need to change once login is finish
-        localStorage.setItem('userId', 3)
         let id = localStorage.getItem('userId')
         User.getOne(id)
         .then(({data}) => {
+            console.log(data)
             this.setState({userstatus: data})
         })
         .catch(e => console.log(e))
@@ -87,6 +87,7 @@ class AddBR extends Component {
                 gender: this.state.gender,
                 stalls: parseInt(this.state.stalls),
                 level:  parseInt(this.state.level),
+                cleanliness: this.state.cleanliness,
                 caption: this.state.caption, 
                 image: this.state.image,
                 userId: localStorage.getItem('userId')
@@ -105,8 +106,9 @@ class AddBR extends Component {
                 gender: this.state.gender,
                 stalls: parseInt(this.state.stalls),
                 level:  parseInt(this.state.level),
+                cleanliness: this.state.cleanliness,
                 caption: this.state.caption, 
-                image: this.state.image
+                image: this.state.image,
             })
             this.setState({bathroom})
             this.setState({
@@ -117,6 +119,7 @@ class AddBR extends Component {
                 gender: '',
                 stalls: '',
                 level:  '',
+                cleanliness: '',
                 caption: '', 
                 file: null,
                 image: ''
@@ -129,8 +132,10 @@ class AddBR extends Component {
         let state = this.state
         return (
             <>
-                <h1>Add a bathroom</h1>
-                <Form handleInputChange={this.handleInputChange} 
+                <h1>Add a Bathroom</h1> 
+                <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
+                <div class = 'container' id = 'addForm'>
+                <Form handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit} 
                     handleLocation={this.handleLocation}
                     street={state.street}
@@ -140,8 +145,10 @@ class AddBR extends Component {
                     gender={state.gender}
                     stalls={state.stalls}
                     level={state.level}
-                    caption={state.caption}
+                    cleanliness={state.level}
+                    caption={state.caption} 
                 />
+                </div>
                 <Dispbathroom bathroom={state.bathroom} />
             </>
         )
