@@ -21,7 +21,7 @@ componentWillMount() {
             let likedbr = []
             data.forEach(({bathroom}) => {
                 likedbr.push({
-                    location: `${bathroom.city}, ${bathroom.state} ${bathroom.zipcode}`,
+                    location: ` ${bathroom.state} ${bathroom.zipcode}`,
                     image: bathroom.image
                 })
             })
