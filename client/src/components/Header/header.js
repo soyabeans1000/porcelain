@@ -8,7 +8,7 @@ const HeaderBar = (props) => (
         <Navbar.Brand href="#home">Porcelain</Navbar.Brand>
        {props.loggedIn ? <Button outline color="secondary" onClick={_=>{
            props.updateLoginStatus()
-           localStorage.removeItem('token')
+           localStorage.removeItem('userId')
            }}>Log Out</Button> : null } 
     </Navbar>
     
