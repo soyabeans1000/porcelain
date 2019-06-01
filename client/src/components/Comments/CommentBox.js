@@ -45,7 +45,12 @@ class CommentBox extends Component {
       author,
       body
     };
-    this.setState({ comments: this.state.comments.concat([comment]) });
+    let newobj = {
+        comments: this.state.comments.concat([comment])
+    }
+    this.setState({ 
+        comments: newobj
+    });
   }
 
   _handleClick() {

@@ -5,12 +5,10 @@ import Comments from '../../utils/comment.js'
 
 
 class CommentForm extends Component {
-  clear = () => { 
-    document.getElementById("clear").reset();
-  }
+
     render() {
       return (
-        <form className="comment-form" id="clear" onSubmit={this._handleSubmit.bind(this)}>
+        <form className="comment-form" onSubmit={this._handleSubmit.bind(this)}>
           <div className="comment-form-fields">
               {/* need to pull in username from sign-in */}
             {/* <input placeholder="Name" required ref={(input) => this._author = input}></input><br /> */}
