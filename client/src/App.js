@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   loggedin = () => {
-    if (localStorage.getItem('userId')) {
+    if (localStorage.getItem('token')) {
       return (
         <div>
         <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
