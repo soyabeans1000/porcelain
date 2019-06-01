@@ -24,11 +24,10 @@ class AddBR extends Component {
         bathroom: []
     }
     componentWillMount() {
-        // hard coded userId into local storage for testing, will need to change once login is finish
-        localStorage.setItem('userId', 1)
         let id = localStorage.getItem('userId')
         User.getOne(id)
         .then(({data}) => {
+            console.log(data)
             this.setState({userstatus: data})
         })
         .catch(e => console.log(e))
@@ -133,8 +132,10 @@ class AddBR extends Component {
         let state = this.state
         return (
             <>
-                <h1>Add a bathroom</h1>
-                <Form handleInputChange={this.handleInputChange} 
+                <h1>Add a Bathroom</h1> 
+                <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
+                <div class = 'container' id = 'addForm'>
+                <Form handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit} 
                     handleLocation={this.handleLocation}
                     street={state.street}
@@ -145,8 +146,9 @@ class AddBR extends Component {
                     stalls={state.stalls}
                     level={state.level}
                     cleanliness={state.level}
-                    caption={state.caption}
+                    caption={state.caption} 
                 />
+                </div>
                 <Dispbathroom bathroom={state.bathroom} />
             </>
         )
