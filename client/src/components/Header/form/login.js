@@ -31,11 +31,11 @@ class Login extends Component {
         this.toggleShowModal = this.toggleShowModal.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
     }
-    componentWillReceiveProps(){
-     this.setState({modal: true})
+    componentWillReceiveProps() {
+        this.setState({ modal: true })
     }
-    componentDidMount(){
-     this.setState({modal: true})
+    componentDidMount() {
+        this.setState({ modal: true })
     }
 
     // LOGIN FUNCTIONS
@@ -62,15 +62,17 @@ class Login extends Component {
         }
         //make axios call to api-- 
         User.findOne(loginObj)
-        .then(({data}) => {
-            if (data === 'Invalid credentials') {
-                this.setState({validation: data})
-            } else {
-                localStorage.setItem('userId',data)
-                this.props.updateLoginStatus(true)
-            }
-        })
-        .catch(e => console.log(e))
+            .then(({ data }) => {
+                if (data === 'Invalid credentials') {
+                    this.setState({ validation: data })
+                } else {
+                    //store token in local storage. when post submitted  inclued token in axios call header.
+                     console.log(data)
+                    localStorage.setItem('token', data.token)
+                    this.props.updateLoginStatus(true)
+                }
+            })
+            .catch(e => console.log(e))
 
     }
 
@@ -122,7 +124,11 @@ class Login extends Component {
         }
         console.log(signUpObj)
         User.postOne(signUpObj)
-        .catch(e => console.log(e))
+            .then(({ data }) => {
+                localStorage.setItem('token', data.token)
+                this.props.updateLoginStatus(true)
+            })
+            .catch(e => console.log(e))
         this.setState({
             showLoginModal: !this.state.showLoginModal,
             validation: ''

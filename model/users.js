@@ -7,12 +7,14 @@ Users.init ({
     username: {
         type: Sequelize.STRING,
         notNull: true,
-        len: [1, 50]
+        len: [1, 50],
+        
     },
     email: {
         type: Sequelize.STRING,
         isEmail: true,
-        notNull: true
+        notNull: true,
+        unique: true
     },
     password: {
         type: Sequelize.STRING,
