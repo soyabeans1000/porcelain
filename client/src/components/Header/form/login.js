@@ -41,6 +41,21 @@ class Login extends Component {
     // LOGIN FUNCTIONS
     handleLogin = event => {
         event.preventDefault()
+
+        if (this.state.userEmail === '') {
+            //change placeholder
+            //change style border to red
+            alert('stoopid')
+            return false
+        }
+
+        if (this.state.userPassword === '') {
+            //change placeholder
+            //change style border to red
+            alert('stoopidPassword')
+            return false
+        }
+
         let loginObj = {
             email: this.state.userEmail,
             password: this.state.userPassword
@@ -72,6 +87,25 @@ class Login extends Component {
 
     handleSignUp = e => {
         e.preventDefault()
+
+        if (this.state.userName == '') {
+            //placeholder change and border style
+            alert('need username')
+            return false
+        }
+
+        if (this.state.userEmail < 5 || !this.state.userEmail.includes('@') || !this.state.userEmail.includes('.')) {
+            //placeholder change and border style
+            alert('need valid email address')
+            return false
+        }
+
+        if (this.state.userPassword == '') {
+            //placeholder change and border style
+            alert('need password')
+            return false
+        }
+
         let email = this.state.userEmail
         console.log(email)
         // need to check if email already exist before posting user but routes break 
@@ -137,12 +171,12 @@ class Login extends Component {
                             {/* name */}
                             <FormGroup>
                                 <Label htmlFor='userEmail'>Email</Label>
-                                <Input type="email" name="userEmail" id="useremail" className="loginInput" placeholder="@" onChange={this.handleLoginInput} />
+                                <Input type="email" name="userEmail" id="useremail" className="loginInput" placeholder="Email" onChange={this.handleLoginInput} />
                             </FormGroup>
                             {/* password */}
                             <FormGroup>
                                 <Label htmlFor="userPassword">Password</Label>
-                                <Input type="password" name="userPassword" id="userPassword" className="loginInput" placeholder="Its Encrypted, No Worries" onChange={this.handleLoginInput} />
+                                <Input type="password" name="userPassword" id="userPassword" className="loginInput" placeholder="Password" onChange={this.handleLoginInput} />
                             </FormGroup>
                             {this.state.validation}
                         </Form>
@@ -164,11 +198,11 @@ class Login extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="userEmail">Email</Label>
-                                <Input type="email" name="userEmail" id="userEmail" onChange={this.handleSignInput} placeholder="@" />
+                                <Input type="email" name="userEmail" id="userEmail" onChange={this.handleSignInput} placeholder="Email" />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="userPassword">Password</Label>
-                                <Input type="password" name="userPassword" id="userPassword" onChange={this.handleSignInput} placeholder="Its Encrypted, No Worries" />
+                                <Input type="password" name="userPassword" id="userPassword" onChange={this.handleSignInput} placeholder="Password" />
                             </FormGroup>
                         </Form>
                         <br />
@@ -209,3 +243,6 @@ class Login extends Component {
 
 
 export default Login
+
+
+//this.state.showLoginModal ? this.handleLogin : this.handleSignUp}>{this.state.showLoginModal ? "Log In" : "Submit"
