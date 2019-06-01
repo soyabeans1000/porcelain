@@ -7,9 +7,7 @@ import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col }
 import '../../../pages/Profile/styles.css'
 
 class ProfileLikes extends React.Component {
-  
-
-  state = {
+   state = {
     likedbr: [],
     adminstatus: false,
     username: ''
@@ -17,34 +15,23 @@ class ProfileLikes extends React.Component {
 
 
 componentWillMount() {
-
         let userId = localStorage.getItem('userId')
-
         Likes.getAll(userId)
         .then(({data}) => {
             let likedbr = []
             data.forEach(({bathroom}) => {
                 likedbr.push({
-                    location: `${bathroom.street} ${bathroom.city}, ${bathroom.state} ${bathroom.zipcode}`,
+                    location: `${bathroom.city}, ${bathroom.state} ${bathroom.zipcode}`,
                     image: bathroom.image
                 })
             })
             this.setState({likedbr: likedbr})
-            console.log(this.state)
+            
         })
         .catch(e =>console.log(e))
 
       }
 
-
-
-
-
-
-
-
-
-  
 
 render() {
     return (
@@ -58,7 +45,7 @@ render() {
                                     <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
                                     <CardBody>
                                         <CardTitle>{item.location}</CardTitle>
-                                        <CardSubtitle>{item.comment}</CardSubtitle>
+                                       
                                     </CardBody>
                                 </Card>
                             </div>
