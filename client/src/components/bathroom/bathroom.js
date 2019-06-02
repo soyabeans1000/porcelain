@@ -15,6 +15,9 @@ const Bathroomform = ({bathroom, handleLikebutton, likecount}) =>
                     {likecount}
                 </div>
                 <div>
+                    <button>Comment</button>
+                </div>
+                <div>
                     {comments.map(({username, comment}) => (
                         <div>
                             <span>{username}: </span>
