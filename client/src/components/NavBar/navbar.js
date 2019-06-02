@@ -19,7 +19,6 @@ class NavBar extends Component {
                                     <Nav.Link> <Link to="/AroundMe">Around Me</Link> </Nav.Link>
                                     <Nav.Link> <Link to="/AddBR">Add Bathroom</Link> </Nav.Link>
                                     <Nav.Link> <Link to="/Profile">Profile</Link> </Nav.Link>
-
                                 </Row>
                             </Container>
                         </Nav>

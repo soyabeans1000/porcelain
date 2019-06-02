@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/mjanders6/porcelain#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "aws-sdk": "^2.463.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
@@ -37,5 +40,8 @@
     "mysql2": "^1.6.5",
     "react-router-dom": "^5.0.0",
     "sequelize": "^5.8.6"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.2"
   }
 }
