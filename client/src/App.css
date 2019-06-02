@@ -10,6 +10,10 @@ form {
   margin-bottom: 100px;
 }
 
+#CmtBtn {
+  margin-bottom: 175px;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;

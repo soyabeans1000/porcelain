@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Bathrooms from '../../utils/bathroom'
 import Likes from '../../utils/likes'
 import Bathroomform from '../../components/bathroom'
+import Comment from '../../utils/comment'
+
 // Need to create a add icon
 
 class BRAroundMe extends Component {
@@ -62,6 +64,11 @@ class BRAroundMe extends Component {
             }
         })
         .catch(e => console.log(e))
+
+    // handleCommentBtn = _ => {
+    //     // Comment.postOne(this.props.cmt, localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)
+    //     console.log(this.props.cmt)
+    // }
 
     }
     render() {
