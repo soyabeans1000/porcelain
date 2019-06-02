@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import AddBR from './pages/AddBR/AddBR'
-import BRAroundMe from './components/BRAroundMe/BRAroundMe'
+import BRAroundMe from './pages/BRaround'
 import Loginpage from './pages/login'
 import Home from './components/Home/Home.js'
 import Profile from './pages/Profile'

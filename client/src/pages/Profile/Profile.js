@@ -9,9 +9,7 @@ class Profile extends Component {
         return (
             <div>
                 <h1 className="username">User Name Goes here</h1>
-                <SubMenu />
-                {/* <ProfileLikes /> */}
-                
+                <SubMenu />                
             </div>
         )
     }

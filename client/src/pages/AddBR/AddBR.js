@@ -66,7 +66,6 @@ class AddBR extends Component {
     }
     handleFormSubmit = event => {
         event.preventDefault()
-        console.log(this.state.userstatus.adminstatus)
         let state = this.state
         if (state.file === null || state.street === '' || state.city === '' || state.state === '' || state.zipcode === '' || state.gender === '' || state.stalls === '' || state.level === '' || state.caption === ''){
             alert('Please fill out form')
