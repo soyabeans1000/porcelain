@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import SubMenu from '../../components/Profile_Menu/sub-menu.js'
-import ProfileLikes from '../../components/Profile_Menu/Likes'
 
 // Need to create a add icon
 

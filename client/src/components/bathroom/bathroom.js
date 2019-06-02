@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Bathroomform = ({bathroom, handleLikebutton, likecount}) => 
+const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, comments}) => 
     <div>
-        {bathroom.map(({location, image, gender, stalls, level, caption, comments}) => (
+        {bathroom.map(({location, image, gender, stalls, level, caption}) => (
             <div>
                 <h5>{location}</h5>
                 <img src={image} />
@@ -21,6 +21,18 @@ const Bathroomform = ({bathroom, handleLikebutton, likecount}) =>
                             <span>{comment}</span>
                         </div>
                     ))}
+                </div>
+                <div>
+                    <form className="comment-form" id="commentform">
+                        <div className="comment-form-fields">
+                                {/* need to pull in username from sign-in */}
+                                {/* <input placeholder="Name" required ref={(input) => this._author = input}></input><br /> */}
+                            <textarea placeholder="Comment" rows="2" id="newcomment" value={newcomment} onChange={handleInputChange}></textarea>
+                        </div>
+                        <div className="comment-form-actions">
+                            <button type="submit" onClick={handleSubmit}>Post</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         ))}
