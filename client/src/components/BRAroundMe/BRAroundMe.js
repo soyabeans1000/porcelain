@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Bathrooms from '../../utils/bathroom'
 import Likes from '../../utils/likes'
 import Comments from '../../utils/comment'
-import CommentBox from './Comments'
+// import CommentBox from './Comments'
 // Need to create a add icon
 
 class BRAroundMe extends Component {
@@ -85,16 +85,27 @@ class BRAroundMe extends Component {
         event.preventDefault();
         let author = this._author;
         let body = this._body;
-        this.props.addComment(body.value);
+        // this.props.addComment(body);
         let adComments = {
-          comments: body.value,
-          // bathroom: this.state.bathroom,
-          userId: localStorage.getItem('userId')
-      }
-      console.log(body.value)
-          Comments.postOne(adComments)
-      }
-      
+            comments: body.value,
+            // bathroom: this.state.bathroom,
+            userId: localStorage.getItem('userId')
+        }
+        console.log(body.value)
+
+        Comments.postOne(adComments)
+        const comment = {
+            author,
+            body
+        }
+        let newobj = {
+            comments: this.state.comments.concat([comment])
+        }
+        this.setState({
+            comments: newobj
+        })
+    }
+
     // componentDidUpdate () {
     //     console.log(this.state)
     // }
@@ -114,18 +125,18 @@ class BRAroundMe extends Component {
                         <button onClick={this.handleLikebutton}>like this</button>
                         {this.state.likecount}
                     </div>
-
-                    <form className="comment-form" onSubmit={this._handleSubmit.bind(this)}>
-                        <div className="comment-form-fields">
-                            {/* need to pull in username from sign-in */}
-                            {/* <input placeholder="Name" required ref={(input) => this._author = input}></input><br /> */}
-                            <textarea placeholder="Comment" rows="2" required ref={(textarea) => this._body = textarea}></textarea>
-                        </div>
-                        <div className="comment-form-actions">
-                            <button type="submit" onclick={this.clear}>Post</button>
-                        </div>
-                    </form>
-
+                    <div>
+                        <form className="comment-form" onSubmit={this._handleSubmit.bind(this)}>
+                            <div className="comment-form-fields">
+                                {/* need to pull in username from sign-in */}
+                                {/* <input placeholder="Name" required ref={(input) => this._author = input}></input><br /> */}
+                                <textarea placeholder="Comment" rows="2" required ref={(textarea) => this._body = textarea}></textarea>
+                            </div>
+                            <div className="comment-form-actions">
+                                <button type="submit">Post</button>
+                            </div>
+                        </form>
+                    </div>
 
 
                     <div>
@@ -137,7 +148,7 @@ class BRAroundMe extends Component {
                         ))}
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

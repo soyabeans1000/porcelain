@@ -63,10 +63,11 @@ class Login extends Component {
         //make axios call to api-- 
         User.findOne(loginObj)
         .then(({data}) => {
+            console.log(data)
             if (data === 'Invalid credentials') {
                 this.setState({validation: data})
             } else {
-                localStorage.setItem('userId',data)
+                localStorage.setItem({userId: data})
                 this.props.updateLoginStatus(true)
             }
         })
