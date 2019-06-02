@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Bathroomform = ({ bathroom, handleLikebutton, likecount, value, handleCommentBtn }) =>
+const Bathroomform = ({ bathroom, handleLikebutton, likecount, handleInputChange, handleCommentBtn, cmt }) =>
     <div>
-        {bathroom.map(({ location, image, gender, stalls, level, caption, comments, cmt }) => (
+        {bathroom.map(({ location, image, gender, stalls, level, caption, comments }) => (
             <div>
                 <h5>{location}</h5>
                 <img src={image} />
@@ -16,17 +16,17 @@ const Bathroomform = ({ bathroom, handleLikebutton, likecount, value, handleComm
                 </div>
                 <div>
                     <label htmlFor="comment">Bathroom Comment </label>
-                <div>
-                    {comments.map(({ username, comment }) => (
-                        <div>
-                            <span>{username}: </span>
-                            <span>{comment}</span>
-                        </div>
-                    ))}
+                    <div>
+                        {comments.map(({ username, comment }) => (
+                            <div>
+                                <span>{username}: </span>
+                                <span>{comment}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                    <input id="comment" type="text" value={cmt} />
-                    <button id="CmtBtn" onClick={handleCommentBtn} >Comment</button>
-                </div>
+                <input id="comment" type="text" defaultValue='Add a Comment' value={cmt} onChange={handleInputChange} />
+                <button id="CmtBtn" onClick={handleCommentBtn} >Comment</button>
             </div>
         ))}
     </div>

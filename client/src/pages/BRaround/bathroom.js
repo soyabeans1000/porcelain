@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Bathrooms from '../../utils/bathroom'
 import Likes from '../../utils/likes'
+import User from '../../utils/user.js'
 import Bathroomform from '../../components/bathroom'
 import Comment from '../../utils/comment'
 
@@ -8,8 +9,19 @@ import Comment from '../../utils/comment'
 
 class BRAroundMe extends Component {
     state = {
+        userstatus: null,
         likecount: null,
+        cmt:'',
         bathroom: []
+    }
+    componentWillMount() {
+        let id = localStorage.getItem('userId')
+        User.getOne(id)
+        .then(({data}) => {
+            console.log(data)
+            this.setState({userstatus: data})
+        })
+        .catch(e => console.log(e))
     }
     handleOnClick= _ => {
         this.setState({bathroom: []})
@@ -42,6 +54,7 @@ class BRAroundMe extends Component {
         })
         .catch(e => console.log(e))
     }
+
     handleLikebutton = _ => {
         Likes.getOne(localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)
         .then(({data}) => {
@@ -65,18 +78,34 @@ class BRAroundMe extends Component {
         })
         .catch(e => console.log(e))
 
-    // handleCommentBtn = _ => {
-    //     // Comment.postOne(this.props.cmt, localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)
-    //     console.log(this.props.cmt)
-    // }
+    }
 
+    handleInputChange = event => {
+            this.setState({ [event.target.id]: event.target.value })
+    }
+    
+    handleCommentBtn = event => {
+        event.preventDefault()
+        let state = this.state
+
+
+
+        // Comment.postOne(this.props.cmt, localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)
+        console.log(state)
     }
     render() {
+        let state = this.state
         return (
             <div>
                 <h1>Bathroom Around Me</h1>
                 <button onClick={this.handleOnClick}>get bathroom</button>
-                <Bathroomform bathroom={this.state.bathroom} likecount={this.state.likecount} handleLikebutton={this.handleLikebutton}/>
+                <Bathroomform 
+                handleInputChange={this.handleInputChange}
+                handleCommentBtn={this.handleCommentBtn} 
+                bathroom={this.state.bathroom} 
+                likecount={this.state.likecount} 
+                handleLikebutton={this.handleLikebutton}
+                cmt ={state.cmt}/>
             </div>
         )
     }
