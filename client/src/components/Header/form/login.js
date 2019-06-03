@@ -40,14 +40,14 @@ class Login extends Component {
         if (this.state.userEmail === '') {
             //change placeholder
             //change style border to red
-            alert('stoopid')
+            alert('Invalid email')
             return false
         }
 
         if (this.state.userPassword === '') {
             //change placeholder
             //change style border to red
-            alert('stoopidPassword')
+            alert('Invalid Password')
             return false
         }
 
@@ -85,13 +85,13 @@ class Login extends Component {
 
         if (this.state.userName == '') {
             //placeholder change and border style
-            alert('need username')
+            alert('Invalid Username')
             return false
         }
         
         if (this.state.userPassword == '') {
             //placeholder change and border style
-            alert('need password')
+            alert('Invalid Password')
             return false
         }
         let validate = EmailValidator.validate(`${this.state.userEmail}`)
