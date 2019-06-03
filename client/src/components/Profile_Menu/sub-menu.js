@@ -21,13 +21,13 @@ class ProfileSubMenu extends React.Component {
     if (this.state.likes) {
       return (
         <>
-          <Route exact path="/Likes" component={ProfileLikes} />
-          <Route exact path="/Comments" component={ProfileComments} />
+          <Route exact path="/Likes" component={_ => <ProfileLikes toggleredirect={this.props.toggleredirect} />} />
+          <Route exact path="/Comments" component={_ => <ProfileComments toggleredirect={this.props.toggleredirect} />} />
         </>
       )
     } else {
       return (
-        <ProfileLikes />
+        <ProfileLikes toggleredirect={this.props.toggleredirect}/>
       )
     }
   }

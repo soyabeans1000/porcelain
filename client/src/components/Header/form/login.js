@@ -31,6 +31,7 @@ class Login extends Component {
     }
     componentDidMount(){
      this.setState({modal: true})
+     console.log(this.state)
     }
 
     // LOGIN FUNCTIONS
