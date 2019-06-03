@@ -11,6 +11,11 @@ module.exports = app => {
         .catch(e => res.json('Invalid credentials'))
     })
     // get user adminstatus
+    app.get('/useremail/:email', (req, res) => {
+        Users.findOne({where: {email: req.params.email}})
+        .then(({email}) => res.json(email))
+        .catch(e => res.sendStatus(200))
+    })
     app.get('/user/:id', (req, res) => {
         Users.findOne({where: {id: req.params.id}})
         .then(user => res.json({
@@ -25,8 +30,4 @@ module.exports = app => {
         .then(_ => res.sendStatus(200))
         .catch(e => console.log(e))
     })
-    // app.get('/user/email/:email', (req, res) => {
-    //     Users.findOne({where: {email: req.params.email}})
-    //     .then(user => res.json(user))
-    // })
 }
