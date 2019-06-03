@@ -1,9 +1,10 @@
+
 import React, { Component } from 'react'
 import Bathrooms from '../../utils/bathroom'
 import Likes from '../../utils/likes'
-import User from '../../utils/user.js'
 import Bathroomform from '../../components/bathroom'
-import Comment from '../../utils/comment'
+import Comments from '../../utils/comment'
+import User from '../../utils/user'
 
 // Need to create a add icon
 
@@ -11,7 +12,7 @@ class BRAroundMe extends Component {
     state = {
         userstatus: null,
         likecount: null,
-        cmt:'',
+        addCount: '',
         bathroom: []
     }
     componentWillMount() {
@@ -86,12 +87,17 @@ class BRAroundMe extends Component {
     
     handleCommentBtn = event => {
         event.preventDefault()
-        let state = this.state
+        let addComments = {
+            comments: this.state.newcomment,
+            bathroomId: this.state.bathroom[0].bathroomId,
+            userId: localStorage.getItem('userId')
+        }
+        Comments.postOne(addComments)
 
 
 
         // Comment.postOne(this.props.cmt, localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)
-        console.log(state)
+        console.log(addComments)
     }
     render() {
         let state = this.state
@@ -105,7 +111,7 @@ class BRAroundMe extends Component {
                 bathroom={this.state.bathroom} 
                 likecount={this.state.likecount} 
                 handleLikebutton={this.handleLikebutton}
-                cmt ={state.cmt}/>
+                />
             </div>
         )
     }

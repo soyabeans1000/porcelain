@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Bathroomform = ({ bathroom, handleLikebutton, likecount, handleInputChange, handleCommentBtn, cmt }) =>
+const Bathroomform = ({ bathroom, handleLikebutton, likecount, handleInputChange, handleCommentBtn, newcomment }) =>
     <div>
         {bathroom.map(({ location, image, gender, stalls, level, caption, comments }) => (
             <div>
@@ -24,9 +24,9 @@ const Bathroomform = ({ bathroom, handleLikebutton, likecount, handleInputChange
                             </div>
                         ))}
                     </div>
+                    <textarea placeholder="Comment" rows="2" id="newcomment" value={newcomment} onChange={handleInputChange}></textarea>
+                    <button id="CmtBtn" onClick={handleCommentBtn} >Comment</button>
                 </div>
-                <input id="comment" type="text" defaultValue='Add a Comment' value={cmt} onChange={handleInputChange} />
-                <button id="CmtBtn" onClick={handleCommentBtn} >Comment</button>
             </div>
         ))}
     </div>
