@@ -144,7 +144,7 @@ class AddBR extends Component {
                     gender={state.gender}
                     stalls={state.stalls}
                     level={state.level}
-                    cleanliness={state.level}
+                    cleanliness={state.cleanliness}
                     caption={state.caption} 
                 />
                 </div>

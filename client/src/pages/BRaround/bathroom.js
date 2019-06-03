@@ -39,6 +39,7 @@ class BRAroundMe extends Component {
                 gender: data.gender,
                 stalls: data.stalls,
                 level: data.level,
+                cleanliness: data.cleanliness,
                 caption: data.caption,
                 bathroomId: data.id,
             })

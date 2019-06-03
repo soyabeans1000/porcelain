@@ -35,6 +35,7 @@ class ProfileComments extends Component {
                         return bathroomid.indexOf(id) >= index
                     })
                 });
+                console.log(newarr)
                 newarr.forEach(num => {
                     let username
                     let commentstr

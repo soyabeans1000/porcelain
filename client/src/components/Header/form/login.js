@@ -105,11 +105,13 @@ class Login extends Component {
                         email: this.state.userEmail,
                         password: this.state.userPassword
                     }
-                    console.log(signUpObj)
                     User.postOne(signUpObj)
+                    .then(({data})=> {
+                        localStorage.setItem('userId', data)
+                        this.props.updateLoginStatus(true)
+                    })
                     .catch(e => console.log(e))
                     this.setState({
-                        showLoginModal: !this.state.showLoginModal,
                         validation: ''
                     })
                 } else {
@@ -135,6 +137,7 @@ class Login extends Component {
             showLoginModal: !this.state.showLoginModal,
             validation: ''
         })
+        document.getElementById("loginform").reset()
     }
     //initial log in button handler
     handleLoginClick() {
@@ -149,7 +152,7 @@ class Login extends Component {
                 //Login Form
                 return (
                     <div>
-                        <Form>
+                        <Form id="loginform">
                             {/* name */}
                             <FormGroup>
                                 <Label htmlFor='userEmail'>Email</Label>
@@ -173,7 +176,7 @@ class Login extends Component {
                 //show sign up form
                 return (
                     <div>
-                        <Form>
+                        <Form id="loginform">
                             <FormGroup>
                                 <Label htmlFor='userName'>Name</Label>
                                 <Input type="text" name="userName" id="userName" onChange={this.handleSignInput} placeholder="Name" />

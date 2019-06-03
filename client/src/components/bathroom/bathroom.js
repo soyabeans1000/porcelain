@@ -2,13 +2,14 @@ import React from 'react'
 
 const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, comments}) => 
     <div>
-        {bathroom.map(({location, image, gender, stalls, level, caption}) => (
+        {bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
             <div>
                 <h5>{location}</h5>
                 <img src={image} />
                 <span>Gender: {gender}</span>
                 <span>Stall(s): {stalls}</span>
                 <span>On level: {level}</span>
+                <span>cleanliness: {cleanliness}</span>
                 <p>{caption}  </p> 
                 <div>
                     <button onClick={handleLikebutton}>like this</button>
