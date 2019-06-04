@@ -41,7 +41,7 @@ export class MapContainer extends Component {
 
   reverseGeocode() {
     setTimeout(() => {
-      Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLocation.lat}, ${this.state.userLocation.lng}&key=AIzaSyAD0n632-1O4l-S15VChpsKuIuZPdW9CZc`)
+      Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLocation.lat}, ${this.state.userLocation.lng}&key=${process.env.map_key}`)
         .then(res => res.data.results.map(i => {
           // console.log(i.address_components[2].short_name)
           console.log(i.address_components)
@@ -66,7 +66,7 @@ export class MapContainer extends Component {
         //   //console.log(this.state.id)
         // })
         this.state.dbArr.forEach(i => {
-          Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${i.street}+${i.city}+${i.state}&key=AIzaSyAD0n632-1O4l-S15VChpsKuIuZPdW9CZc`)
+          Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${i.street}+${i.city}+${i.state}&key=${process.env.map_key}`)
             .then(res => res.data.results.map(i => {
               this.setState({ geoArr: this.state.geoArr.concat(i.geometry) })
               console.log(this.state.geoArr)
@@ -144,5 +144,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyAD0n632-1O4l-S15VChpsKuIuZPdW9CZc" //process.env.map_key
+  apiKey: process.env.map_key
 })(MapContainer);
