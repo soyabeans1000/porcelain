@@ -17,8 +17,8 @@ module.exports = app => {
                 password: req.body.password
             }
         })
-        .then(r => res.json(r.id))
-        .catch(e => res.json('Invalid credentials'))
+        .then(r => res.json(r))
+        .catch(e => console.log(e))
     })
     app.get('/useremail/:email', (req, res) => {
         Users.findOne({where: {email: req.params.email}})
@@ -37,7 +37,7 @@ module.exports = app => {
     // create user
     app.post('/user', (req, res) =>{
         Users.create(req.body)
-        .then(r => res.json(r.id))
+        .then(r => res.json(r))
         .catch(e => console.log(e))
     })
 }

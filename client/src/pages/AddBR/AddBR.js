@@ -110,6 +110,7 @@ class AddBR extends Component {
                 image: this.state.image,
             })
             this.setState({bathroom})
+            document.getElementById("addbrform").reset()
             this.setState({
                 street: '',
                 city: '',

@@ -9,6 +9,7 @@ const HeaderBar = (props) => (
        {props.loggedIn ? <Button outline color="secondary" onClick={_=>{
            props.updateLoginStatus()
            localStorage.removeItem('userId')
+           localStorage.removeItem('adminstatus')
            }}>Log Out</Button> : null } 
     </Navbar>
     

@@ -2,7 +2,7 @@ import React from 'react'
 import '../../pages/AddBR/AddBR.css'
 
 const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, caption }) =>
-    <form action="/action_page.php">
+    <form action="/action_page.php" id="addbrform">
         <style>
             @import url('https://fonts.googleapis.com/css?family=Cantarell:400i&display=swap');
         </style>

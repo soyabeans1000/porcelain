@@ -5,6 +5,7 @@ import BRAroundMe from './pages/BRaround'
 import Loginpage from './pages/login'
 import Home from './components/Home/Home.js'
 import Profile from './pages/Profile'
+import Requests from './pages/requests'
 import './App.css'
 
 
@@ -14,13 +15,13 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      isLoggedIn: null,
+      isLoggedIn: null
     }
 
     this.toggleLogin = this.toggleLogin.bind(this);
 
   }
-  componentDidMount () {
+  componentWillMount () {
     if (localStorage.getItem('userId') === null) {
       this.setState({
         isLoggedIn: false
@@ -40,19 +41,36 @@ class App extends Component {
 
   loggedin = () => {
     if (localStorage.getItem('userId')) {
-      return (
-        <div>
-        <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
-         <Switch>
-            <Route exact path="/" component={ () => <Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
-            <Route path="/AroundMe" component={BRAroundMe} />
-            <Route path="/AddBR" component={AddBR} />
-            <Route path="/Profile" component={Profile} />
-            <Redirect to="/" />
-          </Switch>
-        <NavBar />
-      </div>
-      )
+      if (localStorage.getItem('adminstatus') === 'true') {
+        return (
+          <div>
+          <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
+           <Switch>
+              <Route exact path="/" component={ () => <Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
+              <Route path="/AroundMe" component={BRAroundMe} />
+              <Route path="/AddBR" component={AddBR} />
+              <Route path="/Profile" component={Profile} />
+              <Route path="/request" component={Requests} />
+              <Redirect to="/" />
+            </Switch>
+          <NavBar />
+        </div>
+        )
+      } else {
+        return (
+          <div>
+          <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
+           <Switch>
+              <Route exact path="/" component={ () => <Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
+              <Route path="/AroundMe" component={BRAroundMe} />
+              <Route path="/AddBR" component={AddBR} />
+              <Route path="/Profile" component={Profile} />
+              <Redirect to="/" />
+            </Switch>
+          <NavBar />
+        </div>
+        )
+      }
     } else {
       return (
         <div>
