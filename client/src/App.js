@@ -15,10 +15,12 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      isLoggedIn: null
+      isLoggedIn: null,
+      isAdmin: null
     }
 
     this.toggleLogin = this.toggleLogin.bind(this);
+    this.toggleAdmin = this.toggleAdmin.bind(this);
 
   }
   componentWillMount () {
@@ -39,16 +41,21 @@ class App extends Component {
     })
   }
 
+  toggleAdmin () {
+    this.setState({
+      isAdmin: !this.state.isAdmin
+    })
+  }
   loggedin = () => {
-    if (localStorage.getItem('userId')) {
-      if (localStorage.getItem('adminstatus') === 'true') {
+    if (this.state.isLoggedIn) {
+      if (this.state.isAdmin) {
         return (
           <div>
-          <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
+          <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} isAdmin={this.state.isAdmin} updateAdmin={this.toggleAdmin}/>
            <Switch>
               <Route exact path="/" component={ () => <Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
               <Route path="/AroundMe" component={BRAroundMe} />
-              <Route path="/AddBR" component={AddBR} />
+              <Route path="/AddBR" component={() => <AddBR isAdmin={this.state.isAdmin}/>} />
               <Route path="/Profile" component={Profile} />
               <Route path="/request" component={Requests} />
               <Redirect to="/" />
@@ -59,11 +66,11 @@ class App extends Component {
       } else {
         return (
           <div>
-          <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
+          <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} isAdmin={this.state.isAdmin} updateAdmin={this.toggleAdmin}/>
            <Switch>
               <Route exact path="/" component={ () => <Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
               <Route path="/AroundMe" component={BRAroundMe} />
-              <Route path="/AddBR" component={AddBR} />
+              <Route path="/AddBR" component={() => <AddBR isAdmin={this.state.isAdmin}/>} />
               <Route path="/Profile" component={Profile} />
               <Redirect to="/" />
             </Switch>
@@ -74,9 +81,9 @@ class App extends Component {
     } else {
       return (
         <div>
-        <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
+        <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} isAdmin={this.state.isAdmin} updateAdmin={this.toggleAdmin}/>
          <Switch>
-            <Route exact path="/login" component={ () => <Loginpage isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
+            <Route exact path="/login" component={ () => <Loginpage isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} isAdmin={this.state.isAdmin} updateAdmin={this.toggleAdmin}/> }/>
             <Redirect to="/login" />
           </Switch>
       </div>

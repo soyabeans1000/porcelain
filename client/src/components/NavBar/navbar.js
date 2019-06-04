@@ -2,6 +2,9 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { FaToilet, FaPlus, FaCheckSquare } from "react-icons/fa";
+import { GoPerson } from "react-icons/go";
+
 
 
 class NavBar extends Component {
@@ -17,10 +20,10 @@ class NavBar extends Component {
                             <Container>
                                 <Row>
                                     {/* NavBar links  */}
-                                    <Nav.Link> <Link to="/AroundMe">Around Me</Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/AddBR">Add Bathroom</Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/Profile">Profile</Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/request">Request</Link> </Nav.Link>
+                                    <Nav.Link> <Link to="/AroundMe"><FaToilet /></Link> </Nav.Link>
+                                    <Nav.Link> <Link to="/AddBR"><FaPlus /></Link> </Nav.Link>
+                                    <Nav.Link> <Link to="/Profile"><GoPerson /></Link> </Nav.Link>
+                                    <Nav.Link> <Link to="/request"><FaCheckSquare /></Link> </Nav.Link>
                                 </Row>
                             </Container>
                         </Nav>
@@ -40,9 +43,9 @@ class NavBar extends Component {
                             <Container>
                                 <Row>
                                     {/* NavBar links  */}
-                                    <Nav.Link> <Link to="/AroundMe">Around Me</Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/AddBR">Add Bathroom</Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/Profile">Profile</Link> </Nav.Link>
+                                    <Nav.Link> <Link to="/AroundMe"><FaToilet /></Link> </Nav.Link>
+                                    <Nav.Link> <Link to="/AddBR"><FaPlus /></Link> </Nav.Link>
+                                    <Nav.Link> <Link to="/Profile"><GoPerson /></Link> </Nav.Link>
                                 </Row>
                             </Container>
                         </Nav>

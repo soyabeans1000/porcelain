@@ -1,6 +1,8 @@
 import React from 'react'
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 
-const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, comments}) => 
+
+const Bathroomform = ({isliked, bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, comments}) => 
     <div>
         {bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
             <div>
@@ -12,7 +14,8 @@ const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handle
                 <span>cleanliness: {cleanliness}</span>
                 <p>{caption}  </p> 
                 <div>
-                    <button onClick={handleLikebutton}>like this</button>
+                    {isliked ? <button onClick={handleLikebutton}><IoIosHeart /></button> : <button onClick={handleLikebutton}><IoIosHeartEmpty /></button>}
+                    {/* <button onClick={handleLikebutton}></button> */}
                     {likecount}
                 </div>
                 <div>

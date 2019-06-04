@@ -4,6 +4,7 @@ import Likes from '../../utils/likes'
 import Bathroomform from '../../components/bathroom'
 import Comments from '../../utils/comment'
 import User from '../../utils/user'
+
 // Need to create a add icon
 
 class BRAroundMe extends Component {
@@ -11,12 +12,13 @@ class BRAroundMe extends Component {
         likecount: null,
         newcomment: '',
         comments: [],
-        bathroom: []
+        bathroom: [],
+        isliked: null
     }
     handleOnClick= _ => {
         this.setState({bathroom: []})
         let likecount = 0
-        Bathrooms.getOne(1)
+        Bathrooms.getOne(2)
         .then(({data}) => {
             likecount = data.likecount
             let commentsarr = this.state.comments
@@ -43,6 +45,14 @@ class BRAroundMe extends Component {
                 caption: data.caption,
                 bathroomId: data.id,
             })
+            Likes.getOne(localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)
+            .then(({data}) => {
+                if (data === null) {
+                    this.setState({isliked: false})
+                } else {
+                    this.setState({isliked: true})
+                }
+            })
             this.setState({
                 likecount,
                 bathroom
@@ -61,13 +71,19 @@ class BRAroundMe extends Component {
                 Likes.postOne(like)
                 .catch(e => console.log(e))
                 let likes = this.state.likecount
-                this.setState({likecount: likes +=1})
+                this.setState({
+                    likecount: likes +=1,
+                    isliked: true
+                })
                 Bathrooms.putOneIncrease(this.state.bathroom[0].bathroomId)
             } else {
                 Likes.deleteOne(data.id)
                 .catch(e => console.log(e))
                 let likes = this.state.likecount
-                this.setState({likecount: likes -=1})
+                this.setState({
+                    likecount: likes -=1,
+                    isliked: false
+                })
                 Bathrooms.putOneDecrease(this.state.bathroom[0].bathroomId)
             }
         })
@@ -119,7 +135,7 @@ class BRAroundMe extends Component {
             <div>
                 <h1>Bathroom Around Me</h1>
                 <button onClick={this.handleOnClick}>get bathroom</button>
-                <Bathroomform bathroom={this.state.bathroom} comments={this.state.comments} likecount={this.state.likecount} handleLikebutton={this.handleLikebutton} handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange} />
+                <Bathroomform bathroom={this.state.bathroom} comments={this.state.comments} likecount={this.state.likecount} handleLikebutton={this.handleLikebutton} handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange} isliked={this.state.isliked}/>
             </div>
         )
     }

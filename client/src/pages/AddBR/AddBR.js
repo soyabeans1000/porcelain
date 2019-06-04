@@ -8,30 +8,35 @@ import Request from '../../utils/request.js'
 import axios from 'axios'
 
 class AddBR extends Component {
-    state = {
-        userstatus: null,
-        street: '',
-        city: '',
-        state: '',
-        zipcode: '',
-        gender: '',
-        stalls: '',
-        level:  '',
-        cleanliness: '',
-        caption: '', 
-        file: null,
-        image: '',
-        bathroom: []
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            userstatus: this.props.isAdmin,
+            street: '',
+            city: '',
+            state: '',
+            zipcode: '',
+            gender: '',
+            stalls: '',
+            level:  '',
+            cleanliness: '',
+            caption: '', 
+            file: null,
+            image: '',
+            bathroom: []
+        }
     }
-    componentWillMount() {
-        let id = localStorage.getItem('userId')
-        User.getOne(id)
-        .then(({data}) => {
-            console.log(data)
-            this.setState({userstatus: data})
-        })
-        .catch(e => console.log(e))
-    }
+    // componentWillMount() {
+    //     let id = localStorage.getItem('userId')
+    //     User.getOne(id)
+    //     .then(({data}) => {
+    //         console.log(data)
+    //         this.setState({userstatus: data})
+    //     })
+    //     .catch(e => console.log(e))
+    // }
+
     handleInputChange = event => {
         if (event.target.id === "image") {
             this.setState({ file: event.target.files })
@@ -92,7 +97,7 @@ class AddBR extends Component {
                 image: this.state.image,
                 userId: localStorage.getItem('userId')
             }
-            if (this.state.userstatus.adminstatus === true) {
+            if (this.state.userstatus === true) {
                 Bathrooms.postOne(newbathroom)
             } else {
                 Request.postOne(newbathroom)
@@ -147,7 +152,8 @@ class AddBR extends Component {
                     stalls={state.stalls}
                     level={state.level}
                     cleanliness={state.cleanliness}
-                    caption={state.caption} 
+                    caption={state.caption}
+                    userstatus={state.userstatus} 
                 />
                 </div>
                 <Dispbathroom bathroom={state.bathroom} />

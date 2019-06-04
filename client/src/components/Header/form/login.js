@@ -20,7 +20,8 @@ class Login extends Component {
             isAdmin: false,
             showLoginModal: true,
             loggedIn: this.props.updateLoginStatus,
-            validation: ''
+            validation: '', 
+            admin: this.props.updateAdmin
         };
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.toggleShowModal = this.toggleShowModal.bind(this);
@@ -63,8 +64,8 @@ class Login extends Component {
                 this.setState({validation: 'Invalid credentials'})
             } else {
                 localStorage.setItem('userId',data.id)
-                localStorage.setItem('adminstatus',data.adminstatus)
                 this.props.updateLoginStatus(true)
+                this.props.updateAdmin(true)
             }
         })
         .catch(e => console.log(e))
@@ -110,8 +111,8 @@ class Login extends Component {
                     User.postOne(signUpObj)
                     .then(({data})=> {
                         localStorage.setItem('userId', data.id)
-                        localStorage.setItem('adminstatus',data.adminstatus)
                         this.props.updateLoginStatus(true)
+                        this.props.updateAdmin(true)
                     })
                     .catch(e => console.log(e))
                     this.setState({
