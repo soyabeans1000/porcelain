@@ -74,6 +74,7 @@ class AddBR extends Component {
         const fd = new FormData()
         let image = ''
         fd.append('image', this.state.file[0])
+        console.log(fd)
         Image.postOne(fd)
         .then(({data}) => {
             image = data.imageUrl
