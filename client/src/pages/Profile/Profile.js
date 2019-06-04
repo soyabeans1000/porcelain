@@ -3,6 +3,9 @@ import SubMenu from '../../components/Profile_Menu/sub-menu.js'
 import User from '../../utils/user.js'
 import Testing from '../../components/testing/testing.js'
 import Image from '../../utils/image.js'
+import './styles.css'
+import { FaCamera } from "react-icons/fa";
+
 
 // Need to create a add icon
 
@@ -62,10 +65,12 @@ class Profile extends Component {
         } else {
             return (
                 <div>
-                <h1 className="username">{this.state.username}</h1>
-                <img src={this.state.userimage} />
-                <button onClick={this.handlechangepicture}>change picute</button>
-                <input class="file-upload" type="file" accept="image/*" ref={input => this.inputElement = input} onChange={this.handlepictureinput}/>
+                <div>
+                    <h3 className="username">{this.state.username}</h3>
+                    <img src={this.state.userimage} className="profileimg"/>
+                    <button onClick={this.handlechangepicture} className="picture"><FaCamera /></button>
+                </div>
+                <input class="file-upload" type="file" accept="image/*" className="profileinput" ref={input => this.inputElement = input} onChange={this.handlepictureinput}/>
                 <SubMenu toggleredirect={this.toggleredirect}/>                
             </div>
             )
@@ -73,11 +78,7 @@ class Profile extends Component {
     }
     render() {
         return (
-            // <div>
-            //     <h1 className="username">{this.state.username}</h1>
-            //     <SubMenu toggleredirect={this.toggleredirect}/>                
-            // </div>
-            <div>
+            <div className="profile">
                 {this.handlepath()}
             </div>
         )

@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react'
-import { Navbar, Nav, Container, Row } from 'react-bootstrap'
+import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { FaToilet, FaPlus, FaCheckSquare } from "react-icons/fa";
-import { GoPerson } from "react-icons/go";
+import { FaToilet, FaPlus, FaCheckSquare } from "react-icons/fa"
+import { GoPerson } from "react-icons/go"
+import './NavBar.css'
 
 
 
@@ -13,21 +14,16 @@ class NavBar extends Component {
             return (
                 <div className="App-intro">
                 <Navbar bg="light" expand="lg" fixed="bottom">
-                    {/* <Navbar.Brand href="#home">{props.name}</Navbar.Brand> */}
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Container>
                                 <Row>
-                                    {/* NavBar links  */}
-                                    <Nav.Link> <Link to="/AroundMe"><FaToilet /></Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/AddBR"><FaPlus /></Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/Profile"><GoPerson /></Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/request"><FaCheckSquare /></Link> </Nav.Link>
+                                    <Col><Nav.Link> <Link to="/AroundMe"><FaToilet className="navicon"/></Link> </Nav.Link></Col>
+                                    <Col><Nav.Link> <Link to="/AddBR"><FaPlus className="navicon"/></Link> </Nav.Link></Col>
+                                    <Col><Nav.Link> <Link to="/Profile"><GoPerson className="navicon"/></Link> </Nav.Link></Col>
+                                    <Col><Nav.Link> <Link to="/request"><FaCheckSquare className="navicon"/></Link> </Nav.Link></Col>
                                 </Row>
                             </Container>
                         </Nav>
-                    </Navbar.Collapse>
                 </Navbar>
 
             </div>
@@ -36,20 +32,15 @@ class NavBar extends Component {
             return (
                 <div className="App-intro">
                 <Navbar bg="light" expand="lg" fixed="bottom">
-                    {/* <Navbar.Brand href="#home">{props.name}</Navbar.Brand> */}
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Container>
+                            <Container className="container">
                                 <Row>
-                                    {/* NavBar links  */}
-                                    <Nav.Link> <Link to="/AroundMe"><FaToilet /></Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/AddBR"><FaPlus /></Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/Profile"><GoPerson /></Link> </Nav.Link>
+                                    <Col><Nav.Link> <Link to="/AroundMe"><FaToilet className="navicon"/></Link> </Nav.Link></Col>
+                                    <Col><Nav.Link> <Link to="/AddBR"><FaPlus className="navicon"/></Link> </Nav.Link></Col>
+                                    <Col><Nav.Link> <Link to="/Profile"><GoPerson className="navicon"/></Link> </Nav.Link></Col>
                                 </Row>
                             </Container>
                         </Nav>
-                    </Navbar.Collapse>
                 </Navbar>
             </div>
             )
@@ -59,21 +50,6 @@ class NavBar extends Component {
     render() {
         return (
             <div className="App-intro">
-                {/* <Navbar bg="light" expand="lg" fixed="bottom">
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-                            <Container>
-                                <Row>
-                                    <Nav.Link> <Link to="/AroundMe">Around Me</Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/AddBR">Add Bathroom</Link> </Nav.Link>
-                                    <Nav.Link> <Link to="/Profile">Profile</Link> </Nav.Link>
-
-                                </Row>
-                            </Container>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar> */}
                 {this.handlestatus()}
             </div>
         )

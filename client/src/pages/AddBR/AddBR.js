@@ -8,34 +8,29 @@ import Request from '../../utils/request.js'
 import axios from 'axios'
 
 class AddBR extends Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            userstatus: this.props.isAdmin,
-            street: '',
-            city: '',
-            state: '',
-            zipcode: '',
-            gender: '',
-            stalls: '',
-            level:  '',
-            cleanliness: '',
-            caption: '', 
-            file: null,
-            image: '',
-            bathroom: []
-        }
+    state = {
+        userstatus: null,
+        street: '',
+        city: '',
+        state: '',
+        zipcode: '',
+        gender: '',
+        stalls: '',
+        level:  '',
+        cleanliness: '',
+        caption: '', 
+        file: null,
+        image: '',
+        bathroom: []
     }
-    // componentWillMount() {
-    //     let id = localStorage.getItem('userId')
-    //     User.getOne(id)
-    //     .then(({data}) => {
-    //         console.log(data)
-    //         this.setState({userstatus: data})
-    //     })
-    //     .catch(e => console.log(e))
-    // }
+    componentWillMount() {
+        let id = localStorage.getItem('userId')
+        User.getOne(id)
+        .then(({data}) => {
+            this.setState({userstatus: data})
+        })
+        .catch(e => console.log(e))
+    }
 
     handleInputChange = event => {
         if (event.target.id === "image") {
@@ -97,7 +92,7 @@ class AddBR extends Component {
                 image: this.state.image,
                 userId: localStorage.getItem('userId')
             }
-            if (this.state.userstatus === true) {
+            if (this.state.userstatus.adminstatus === true) {
                 Bathrooms.postOne(newbathroom)
             } else {
                 Request.postOne(newbathroom)
@@ -138,7 +133,7 @@ class AddBR extends Component {
         let state = this.state
         return (
             <>
-                <h1>Add a Bathroom</h1> 
+                <h4>Add a Bathroom</h4> 
                 <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
                 <div class = 'container' id = 'addForm'>
                 <Form handleInputChange={this.handleInputChange}
@@ -152,7 +147,7 @@ class AddBR extends Component {
                     stalls={state.stalls}
                     level={state.level}
                     cleanliness={state.cleanliness}
-                    caption={state.caption}
+                    caption={state.caption} 
                     userstatus={state.userstatus} 
                 />
                 </div>

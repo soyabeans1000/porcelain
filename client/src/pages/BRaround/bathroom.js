@@ -18,7 +18,7 @@ class BRAroundMe extends Component {
     handleOnClick= _ => {
         this.setState({bathroom: []})
         let likecount = 0
-        Bathrooms.getOne(2)
+        Bathrooms.getOne(1)
         .then(({data}) => {
             likecount = data.likecount
             let commentsarr = this.state.comments

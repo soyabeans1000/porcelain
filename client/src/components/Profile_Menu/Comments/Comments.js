@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import User from '../../../utils/user.js'
 import Comments from '../../../utils/comment'
 import Bathroom from '../../../utils/bathroom'
-import Likes from '../../../utils/likes'
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col } from 'reactstrap';
 import '../../../pages/Profile/styles.css'
-import { Switch, Route, Link, Redirect } from 'react-router-dom'
-
+import { FaCommentDots } from "react-icons/fa";
+import '../style.css'
 
 class ProfileComments extends Component {
     constructor(props) {
@@ -80,14 +79,14 @@ class ProfileComments extends Component {
             <div>
                 <Container>
                     <Row>
-                        <Col>
+                        <Col className="container">
                             {this.state.posts.map(item => (
                                 <div>
                                     <Card id={item.bathroomId} className="bathroomCard" onClick={this.handlebathroomId}>
                                         <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
                                         <CardBody>
                                             <CardTitle>{item.location}</CardTitle>
-                                            <CardSubtitle>{item.comment}</CardSubtitle>
+                                            <CardSubtitle><FaCommentDots /> {item.comment}</CardSubtitle>
                                         </CardBody>
                                     </Card>
                                 </div>

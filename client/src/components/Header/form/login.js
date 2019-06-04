@@ -5,7 +5,6 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import User from '../../../utils/user'
 import * as EmailValidator from 'email-validator';
 
-import HeaderBar from '../header'
 //parent component
 //keeps track of state, defines functionality to be passed into child component
 
@@ -20,8 +19,7 @@ class Login extends Component {
             isAdmin: false,
             showLoginModal: true,
             loggedIn: this.props.updateLoginStatus,
-            validation: '', 
-            admin: this.props.updateAdmin
+            validation: ''
         };
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.toggleShowModal = this.toggleShowModal.bind(this);
@@ -64,8 +62,8 @@ class Login extends Component {
                 this.setState({validation: 'Invalid credentials'})
             } else {
                 localStorage.setItem('userId',data.id)
+                localStorage.setItem('adminstatus',data.adminstatus)
                 this.props.updateLoginStatus(true)
-                this.props.updateAdmin(true)
             }
         })
         .catch(e => console.log(e))
@@ -111,8 +109,8 @@ class Login extends Component {
                     User.postOne(signUpObj)
                     .then(({data})=> {
                         localStorage.setItem('userId', data.id)
+                        localStorage.setItem('adminstatus',data.adminstatus)
                         this.props.updateLoginStatus(true)
-                        this.props.updateAdmin(true)
                     })
                     .catch(e => console.log(e))
                     this.setState({
