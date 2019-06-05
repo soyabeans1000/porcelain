@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 const Request = {
-    postOne: bathroom => axios.post('/request', bathroom)
-
+    getAll: _ => axios.get('/request'),
+    postOne: bathroom => axios.post('/request', bathroom),
+    deleteOne: id => axios.delete(`/request/${id}`)
 }
 
 export default Request

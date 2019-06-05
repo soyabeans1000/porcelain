@@ -27,11 +27,11 @@ class AddBR extends Component {
         let id = localStorage.getItem('userId')
         User.getOne(id)
         .then(({data}) => {
-            console.log(data)
             this.setState({userstatus: data})
         })
         .catch(e => console.log(e))
     }
+
     handleInputChange = event => {
         if (event.target.id === "image") {
             this.setState({ file: event.target.files })
@@ -66,7 +66,6 @@ class AddBR extends Component {
     }
     handleFormSubmit = event => {
         event.preventDefault()
-        console.log(this.state.userstatus.adminstatus)
         let state = this.state
         if (state.file === null || state.street === '' || state.city === '' || state.state === '' || state.zipcode === '' || state.gender === '' || state.stalls === '' || state.level === '' || state.caption === ''){
             alert('Please fill out form')
@@ -75,6 +74,7 @@ class AddBR extends Component {
         const fd = new FormData()
         let image = ''
         fd.append('image', this.state.file[0])
+        console.log(fd)
         Image.postOne(fd)
         .then(({data}) => {
             image = data.imageUrl
@@ -111,6 +111,7 @@ class AddBR extends Component {
                 image: this.state.image,
             })
             this.setState({bathroom})
+            document.getElementById("addbrform").reset()
             this.setState({
                 street: '',
                 city: '',
@@ -132,7 +133,7 @@ class AddBR extends Component {
         let state = this.state
         return (
             <>
-                <h1>Add a Bathroom</h1> 
+                <h4>Add a Bathroom</h4> 
                 <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
                 <div class = 'container' id = 'addForm'>
                 <Form handleInputChange={this.handleInputChange}
@@ -145,8 +146,9 @@ class AddBR extends Component {
                     gender={state.gender}
                     stalls={state.stalls}
                     level={state.level}
-                    cleanliness={state.level}
+                    cleanliness={state.cleanliness}
                     caption={state.caption} 
+                    userstatus={state.userstatus} 
                 />
                 </div>
                 <Dispbathroom bathroom={state.bathroom} />

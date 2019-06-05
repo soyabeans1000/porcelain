@@ -2,18 +2,27 @@ import React, { Component } from 'react'
 import User from '../../../utils/user.js'
 import Comments from '../../../utils/comment'
 import Bathroom from '../../../utils/bathroom'
-import Likes from '../../../utils/likes'
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col } from 'reactstrap';
 import '../../../pages/Profile/styles.css'
+import { FaCommentDots } from "react-icons/fa";
+import '../style.css'
 
 class ProfileComments extends Component {
-
-    state = {
-        posts: [],
-        likedbr: [],
-        adminstatus: false,
-        username: ''
+    constructor(props) {
+        super(props)
+        this.state = {
+            posts: [],
+            adminstatus: false,
+            username: '',
+            redirect: this.props.toggleredirect
+        }
+        this.handlebathroomId = this.handlebathroomId.bind(this);
     }
+    // state = {
+    //     posts: [],
+    //     adminstatus: false,
+    //     username: ''
+    // }
     componentWillMount() {
         let userId = localStorage.getItem('userId')
         User.getOne(userId)
@@ -35,6 +44,7 @@ class ProfileComments extends Component {
                         return bathroomid.indexOf(id) >= index
                     })
                 });
+                console.log(newarr)
                 newarr.forEach(num => {
                     let username
                     let commentstr
@@ -59,20 +69,24 @@ class ProfileComments extends Component {
             })
             .catch(e => console.log(e))
     }
+    handlebathroomId = e => {
+        const id = e.currentTarget.id
+        this.props.toggleredirect(id)
+    }
 
     render() {
         return (
             <div>
                 <Container>
                     <Row>
-                        <Col>
+                        <Col className="container">
                             {this.state.posts.map(item => (
                                 <div>
-                                    <Card className="bathroomCard">
+                                    <Card id={item.bathroomId} className="bathroomCard" onClick={this.handlebathroomId}>
                                         <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
                                         <CardBody>
                                             <CardTitle>{item.location}</CardTitle>
-                                            <CardSubtitle>{item.comment}</CardSubtitle>
+                                            <CardSubtitle><FaCommentDots /> {item.comment}</CardSubtitle>
                                         </CardBody>
                                     </Card>
                                 </div>

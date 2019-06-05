@@ -1,16 +1,18 @@
 import React from 'react'
 import '../../pages/AddBR/AddBR.css'
+import { FaLocationArrow } from "react-icons/fa";
+import './form.css'
 
-const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, caption }) =>
-    <form action="/action_page.php">
-        <style>
+const Form = ({userstatus, handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, caption }) =>
+    <form action="/action_page.php" id="addbrform">
+        {/* <style>
             @import url('https://fonts.googleapis.com/css?family=Cantarell:400i&display=swap');
-        </style>
+        </style> */}
         
         <div class='row'>
             <label htmlFor="street">Street </label>
+            <button onClick={handleLocation} className="locationicon"><FaLocationArrow /></button>
             <input id="street" type="text" value={street} onChange={handleInputChange} />
-            <button onClick={handleLocation}>location</button>
         </div>
 
         <div class='row'>
@@ -119,9 +121,9 @@ const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, cit
         </div>
         <div class='row'>
             <label htmlFor="image">Image </label>
-            <input id="image" type="file" onChange={handleInputChange} />
+            <input id="image" className="imageinput" type="file" onChange={handleInputChange} />
         </div>
-        <button onClick={handleFormSubmit}> Add </button>
+        {userstatus ? <button onClick={handleFormSubmit} className="addbr"> Add Bathroom</button> : <button onClick={handleFormSubmit} className="addbr"> Submit Request </button>}
     </form>
 
 export default Form

@@ -24,6 +24,11 @@ Users.init ({
         type: Sequelize.BOOLEAN,
         notNull: true,
         defaultValue: false
+    },
+    userimage: {
+        type: Sequelize.STRING,
+        notNull: true,
+        defaultValue: 'https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png'
     }
 },{
     sequelize: connection, 

@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
-import User from '../../../utils/user.js'
-import Comments from '../../../utils/comment'
-import Bathroom from '../../../utils/bathroom'
 import Likes from '../../../utils/likes'
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col } from 'reactstrap';
 import '../../../pages/Profile/styles.css'
+import '../style.css'
 
 class ProfileLikes extends React.Component {
-   state = {
-    likedbr: [],
-    adminstatus: false,
-    username: ''
-}
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            likedbr: [],
+            adminstatus: false,
+            username: '',
+            redirect: this.props.toggleredirect
+        }
+        this.handlebathroomId = this.handlebathroomId.bind(this);
+    }
 
 componentWillMount() {
         let userId = localStorage.getItem('userId')
@@ -22,7 +24,8 @@ componentWillMount() {
             data.forEach(({bathroom}) => {
                 likedbr.push({
                     location: `${bathroom.street} ${bathroom.city}, ${bathroom.state} ${bathroom.zipcode}`,
-                    image: bathroom.image
+                    image: bathroom.image,
+                    id: bathroom.id
                 })
             })
             this.setState({likedbr: likedbr})
@@ -32,16 +35,20 @@ componentWillMount() {
 
       }
 
+handlebathroomId = e => {
+    const id = e.currentTarget.id
+    this.props.toggleredirect(id)
+}
 
 render() {
     return (
         <div>
             <Container>
                 <Row>
-                    <Col>
+                    <Col className="container">
                         {this.state.likedbr.map(item => (
                             <div>
-                                <Card className="bathroomCard">
+                                <Card id={item.id} className="bathroomCard" onClick={this.handlebathroomId}>
                                     <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
                                     <CardBody>
                                         <CardTitle>{item.location}</CardTitle>
