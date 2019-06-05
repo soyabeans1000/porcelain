@@ -1,5 +1,5 @@
 <img src="https://sheltered-cliffs-91931.herokuapp.com/static/media/Porcelain.38f4369f.png" height="150">
-***
+
 PORCELAIN - When you gotto go, you gotto know!
 ***
 
@@ -25,7 +25,7 @@ https://sheltered-cliffs-91931.herokuapp.com/
 
 ## Contributors:
 
-### Larry 
+### Larry - https://github.com/LTo28
 ### Annie K Pham - https://github.com/anniekpham
 ### Jonathan Lui - https://github.com/fliptosideb
 ### Kayla San Filippo - https://github.com/kaylasf
