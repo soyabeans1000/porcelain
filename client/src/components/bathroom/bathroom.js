@@ -1,7 +1,8 @@
 import React from 'react'
 
-const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, comments}) => 
-    <div>
+const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, handledelete, comments}) => {
+    const loggedInUser = parseInt(localStorage.getItem('userId'))
+    return <div>
         {bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
             <div>
                 <h5>{location}</h5>
@@ -16,10 +17,23 @@ const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handle
                     {likecount}
                 </div>
                 <div>
-                    {comments.map(({username, comment}) => (
+                    {comments.sort(function(a, b){
+                        var keyA = new Date(a.createdAt),
+                            keyB = new Date(b.createdAt);
+                        // Compare the 2 dates
+                        if(keyA < keyB) return -1;
+                        if(keyA > keyB) return 1;
+                        return 0;
+                    }).map(({username, comment, userId, id}, index) => (
                         <div>
                             <span>{username}: </span>
                             <span>{comment}</span>
+                            {/* access to the logged in username/id */}
+                    
+                           { loggedInUser === userId ? <button id={id} value={index} onClick={handledelete}>X</button> : null }
+
+                    
+                            {/* <button type="submit" onClick={handledelete}>Delete</button> */}
                         </div>
                     ))}
                 </div>
@@ -38,6 +52,6 @@ const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handle
             </div>
         ))}
     </div>
-
+}
 
 export default Bathroomform;
