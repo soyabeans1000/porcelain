@@ -45,6 +45,14 @@ class BRAroundMe extends Component {
                     caption: data.caption,
                     bathroomId: data.id,
                 })
+                Likes.getOne(localStorage.getItem('userId'), this.state.bathroomId)
+                .then(({data}) => {
+                    if (data === null) {
+                        this.setState({isliked: false})
+                    } else {
+                        this.setState({isliked: true})
+                    }
+                })
                 this.setState({
                     likecount,
                     bathroom
@@ -64,13 +72,19 @@ class BRAroundMe extends Component {
                     Likes.postOne(like)
                         .catch(e => console.log(e))
                     let likes = this.state.likecount
-                    this.setState({ likecount: likes += 1 })
+                    this.setState({ 
+                        likecount: likes += 1,
+                        isliked: true 
+                    })
                     Bathrooms.putOneIncrease(this.state.bathroom[0].bathroomId)
                 } else {
                     Likes.deleteOne(data.id)
                         .catch(e => console.log(e))
                     let likes = this.state.likecount
-                    this.setState({ likecount: likes -= 1 })
+                    this.setState({ 
+                        likecount: likes -= 1,
+                        isliked: false 
+                    })
                     Bathrooms.putOneDecrease(this.state.bathroom[0].bathroomId)
                 }
             })
@@ -141,6 +155,7 @@ class BRAroundMe extends Component {
                     handleSubmit={this.handleSubmit} 
                     handleInputChange={this.handleInputChange} 
                     newcomment={this.state.newcomment}
+                    isliked={this.state.isliked}
                 />
             </div>
         )

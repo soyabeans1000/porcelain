@@ -15,8 +15,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      isLoggedIn: null,
-      isAdmin: null
+      isLoggedIn: null
     }
 
     this.toggleLogin = this.toggleLogin.bind(this);
@@ -34,10 +33,9 @@ class App extends Component {
     }
   }
 
-  toggleLogin(data){
+  toggleLogin(){
     this.setState({
-      isLoggedIn: !this.state.isLoggedIn,
-      isAdmin: data
+      isLoggedIn: !this.state.isLoggedIn
     })
   }
   componentDidMount() {
