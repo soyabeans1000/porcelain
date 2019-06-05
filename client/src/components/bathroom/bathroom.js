@@ -23,13 +23,15 @@ const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handle
                         if(keyA < keyB) return -1;
                         if(keyA > keyB) return 1;
                         return 0;
-                    }).map(({username, comment, userId, id}, index) => (
+                    }).map(({username, comment, userId, id}, index) => {
+                        console.log('here is the lastest id::::::: ', id)
+                        return (
                         <div>
                             <span>{username}: </span>
                             <span>{comment}</span>
-                           { loggedInUser === userId ? <button id={id} value={index} onClick={handledelete}>X</button> : null }
+                           { loggedInUser === userId ? <button id={id} value={id} onClick={handledelete}>X</button> : null }
                         </div>
-                    ))}
+                    )})}
                 </div>
                 <div>
                     <form className="comment-form" id="commentform">

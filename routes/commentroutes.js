@@ -15,7 +15,7 @@ module.exports = app => {
     // adding comment to bathroom post
     app.post('/comment', (req, res) => {
         Comments.create(req.body)
-            .then(_ => res.sendStatus(200))
+            .then(comment => res.status(200).json(comment))
             .catch(e => console.log(e))
     })
     // delete comment from bathroom post
