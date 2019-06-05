@@ -118,7 +118,7 @@ const Form = ({ handleFormSubmit, handleInputChange, handleLocation, street, cit
             <input id="caption" type="text" value={caption} onChange={handleInputChange} />
         </div>
         <div class='row'>
-            <label htmlFor="image">Image </label>
+            <label id="imageLabel" htmlFor="image">Image </label>
             <input id="image" type="file" onChange={handleInputChange} />
         </div>
         <button onClick={handleFormSubmit}> Add </button>

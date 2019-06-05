@@ -39,14 +39,36 @@ select {
 
 button {
   display:inline-block;
-  padding:0.2em 1.45em;
-  margin:0.1em;
+  background-color: #7bcfeb;
+  padding:0.5em 3em;
+  border:0.16em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
   box-sizing: border-box;
   text-decoration:none;
-  font-family:'Segoe UI','Roboto',sans-serif;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
   font-weight:400;
+  color:#FFFFFF;
   text-align:center;
-  position:relative;
+  transition: all 0.15s;
+  opacity: 100%;
+}
+
+button:hover {
+  background-color: blue;
+  display:inline-block;
+  padding:0.5em 3em;
+  border:0.16em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:400;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.15s;
+  cursor: pointer;
 }
 
 h1{
@@ -54,3 +76,39 @@ h1{
   padding-top: 2%
 }  
 
+input[type="file"] {
+display: none
+}
+
+#imageLabel {
+  display:inline-block;
+  padding:0.5em 3em;
+  border:0.16em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:400;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+#imageLabel:hover {
+  background-color: blue;
+  display:inline-block;
+  padding:0.5em 3em;
+  border:0.16em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:400;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.15s;
+  cursor: pointer;
+}
