@@ -15,7 +15,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      isLoggedIn: null
+      isLoggedIn: null,
+      isAdmin: null
     }
 
     this.toggleLogin = this.toggleLogin.bind(this);
@@ -33,12 +34,15 @@ class App extends Component {
     }
   }
 
-  toggleLogin(){
+  toggleLogin(data){
     this.setState({
-      isLoggedIn: !this.state.isLoggedIn
+      isLoggedIn: !this.state.isLoggedIn,
+      isAdmin: data
     })
   }
-
+  componentDidMount() {
+    console.log(this.state)
+  }
   loggedin = () => {
     if (localStorage.getItem('userId')) {
       if (localStorage.getItem('adminstatus') === 'true') {
@@ -74,7 +78,7 @@ class App extends Component {
     } else {
       return (
         <div>
-        <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
+        {/* <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/> */}
          <Switch>
             <Route exact path="/login" component={ () => <Loginpage isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
             <Redirect to="/login" />

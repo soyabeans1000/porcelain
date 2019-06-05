@@ -1,21 +1,29 @@
 import React from 'react'
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col, CardText } from 'reactstrap';
+import './style.css'
 
 const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, handledelete, comments}) => {
     const loggedInUser = parseInt(localStorage.getItem('userId'))
     return <div>
-        {bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
-            <div>
-                <h5>{location}</h5>
-                <img src={image} />
-                <span>Gender: {gender}</span>
-                <span>Stall(s): {stalls}</span>
-                <span>On level: {level}</span>
-                <span>cleanliness: {cleanliness}</span>
-                <p>{caption}  </p> 
-                <div>
-                    <button onClick={handleLikebutton}>like this</button>
+
+{bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
+
+<Card className="card_size">
+<CardImg src={image}/>
+<CardBody>
+<CardTitle className="Ctitle"> {location}<br/> {caption} </CardTitle>
+  {/* <CardSubtitle>{caption} </CardSubtitle> */}
+  <CardText>  <span>  {gender}  &#9679; {stalls} Stall(s) &#9679;Level {level} <br>
+  </br> cleanliness: {cleanliness}
+              
+  <div>
+                    {isliked ? <button onClick={handleLikebutton} className="like_button"><IoIosHeart /></button> : <button onClick={handleLikebutton}  className="like_button"><IoIosHeartEmpty /></button>}
+                   
                     {likecount}
                 </div>
+                </span>
+              
                 <div>
                     {comments.sort(function(a, b){
                         var keyA = new Date(a.createdAt),
@@ -33,6 +41,16 @@ const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handle
                         </div>
                     )})}
                 </div>
+
+
+
+
+
+
+
+
+                
+                  
                 <div>
                     <form className="comment-form" id="commentform">
                         <div className="comment-form-fields">
@@ -43,7 +61,21 @@ const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handle
                         </div>
                     </form>
                 </div>
-            </div>
+                
+                </CardText>
+ 
+</CardBody>
+</Card>
+
+
+
+
+
+
+
+
+
+// <!-- dont touch here -->
         ))}
     </div>
 }

@@ -4,6 +4,7 @@ import Likes from '../../utils/likes'
 import Bathroomform from '../../components/bathroom'
 import Comments from '../../utils/comment'
 import User from '../../utils/user'
+
 // Need to create a add icon
 
 class BRAroundMe extends Component {
@@ -11,7 +12,8 @@ class BRAroundMe extends Component {
         likecount: null,
         newcomment: '',
         comments: [],
-        bathroom: []
+        bathroom: [],
+        isliked: null
     }
     handleOnClick = _ => {
         this.setState({ bathroom: [], comments: [], newcomment: '' })
@@ -49,6 +51,7 @@ class BRAroundMe extends Component {
                 })
             })
             .catch(e => console.log(e))
+
     }
     handleLikebutton = _ => {
         Likes.getOne(localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)

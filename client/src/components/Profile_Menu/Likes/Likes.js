@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import User from '../../../utils/user.js'
-import Comments from '../../../utils/comment'
-import Bathroom from '../../../utils/bathroom'
 import Likes from '../../../utils/likes'
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col } from 'reactstrap';
 import '../../../pages/Profile/styles.css'
+import '../style.css'
 
 class ProfileLikes extends React.Component {
     constructor(props) {
@@ -47,7 +45,7 @@ render() {
         <div>
             <Container>
                 <Row>
-                    <Col>
+                    <Col className="container">
                         {this.state.likedbr.map(item => (
                             <div>
                                 <Card id={item.id} className="bathroomCard" onClick={this.handlebathroomId}>

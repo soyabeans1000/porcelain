@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom'
-
+import './style.css'
 import ProfileLikes from './Likes'
 import ProfileComments from './Comments'
-
+import { IoIosHeart } from "react-icons/io";
+import { FaCommentDots } from "react-icons/fa";
 
 
 class ProfileSubMenu extends React.Component {
@@ -14,7 +15,6 @@ class ProfileSubMenu extends React.Component {
 
   handlelikes = _ => {
     this.setState({likes: true})
-    console.log(this.state)
   }
 
   handlelikestate = _ => {
@@ -34,15 +34,15 @@ class ProfileSubMenu extends React.Component {
 
   render() {
   return (
-    <>
+    <div className="container">
       <BrowserRouter>  
-            <nav>
-              <Link to='/Likes' onClick={this.handlelikes} > Likes </Link>
-              <Link to='/Comments' onClick={this.handlelikes}> Comments </Link>
+            <nav className="submenu">
+              <Link to='/Likes' onClick={this.handlelikes} > <IoIosHeart className="icons"/> </Link>
+              <Link to='/Comments' onClick={this.handlelikes}> <FaCommentDots className="icons"/> </Link>
             </nav>
           {this.handlelikestate()}
       </BrowserRouter> 
-    </>
+    </div>
   )}
 }
 

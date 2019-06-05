@@ -1,8 +1,31 @@
-.bathroomCard
-{
-    width:50%;
+.bathroomCard {
+    width:95%;
     height:auto;  
     align-content: center;
-   margin:10px;
-   margin-bottom:75px;
+    margin:10px;
+    margin-bottom:5%;
+    display: flex;
+}
+.profileimg {
+    width: 150px;
+    float: right;
+    margin-right: 4%;
+    border-radius: 100%;
+    margin-top: 85px
+}
+.profileinput {
+    display: none;
+}
+.picture {
+    border: none;
+    font-size: 20px;
+    color: #010740;
+    bottom: 1.5em;
+    padding: 0;
+    left: 12.2em;
+}
+.username{
+    margin-top: 189px;
+    width: 54%;
+    float: left;
 }

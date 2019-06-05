@@ -1,0 +1,17 @@
+.headericon {
+    font-size: 30px;
+    color: #010740;
+}
+.btn {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+.navbarb {
+    width: 30%;
+    margin: auto;
+    padding: 0;
+}
+.logo {
+    width: 130%;
+}

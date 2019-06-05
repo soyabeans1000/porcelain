@@ -5,7 +5,6 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import User from '../../../utils/user'
 import * as EmailValidator from 'email-validator';
 
-import HeaderBar from '../header'
 //parent component
 //keeps track of state, defines functionality to be passed into child component
 
@@ -41,14 +40,14 @@ class Login extends Component {
         if (this.state.userEmail === '') {
             //change placeholder
             //change style border to red
-            alert('stoopid')
+            alert('Invalid email')
             return false
         }
 
         if (this.state.userPassword === '') {
             //change placeholder
             //change style border to red
-            alert('stoopidPassword')
+            alert('Invalid Password')
             return false
         }
 
@@ -63,8 +62,8 @@ class Login extends Component {
                 this.setState({validation: 'Invalid credentials'})
             } else {
                 localStorage.setItem('userId',data.id)
-                localStorage.setItem('adminstatus',data.adminstatus)
-                this.props.updateLoginStatus(true)
+                // localStorage.setItem('adminstatus',data.adminstatus)
+                this.props.updateLoginStatus(data.adminstatus)
             }
         })
         .catch(e => console.log(e))
@@ -87,13 +86,13 @@ class Login extends Component {
 
         if (this.state.userName == '') {
             //placeholder change and border style
-            alert('need username')
+            alert('Invalid Username')
             return false
         }
         
         if (this.state.userPassword == '') {
             //placeholder change and border style
-            alert('need password')
+            alert('Invalid Password')
             return false
         }
         let validate = EmailValidator.validate(`${this.state.userEmail}`)

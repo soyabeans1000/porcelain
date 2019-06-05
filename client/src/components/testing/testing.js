@@ -3,6 +3,8 @@ import Bathrooms from '../../utils/bathroom.js'
 import Comments from '../../utils/comment'
 import User from '../../utils/user'
 import Likes from '../../utils/likes'
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+
 
 
 class Testing extends Component {
@@ -20,7 +22,8 @@ class Testing extends Component {
             caption: '',
             likecount: null,
             comments: [],
-            newcomment: ''
+            newcomment: '',
+            isliked: null
         }
     }
     componentDidMount () {
@@ -47,6 +50,14 @@ class Testing extends Component {
             })
         })
         .catch(e => console.log(e))
+        Likes.getOne(localStorage.getItem('userId'), this.state.bathroomId)
+        .then(({data}) => {
+            if (data === null) {
+                this.setState({isliked: false})
+            } else {
+                this.setState({isliked: true})
+            }
+        })
     }
     handleLikebutton = _ => {
         Likes.getOne(localStorage.getItem('userId'), this.state.bathroomId)
@@ -59,13 +70,19 @@ class Testing extends Component {
                 Likes.postOne(like)
                 .catch(e => console.log(e))
                 let likes = this.state.likecount
-                this.setState({likecount: likes +=1})
+                this.setState({
+                    likecount: likes +=1,
+                    isliked: true
+                })
                 Bathrooms.putOneIncrease(this.state.bathroomId)
             } else {
                 Likes.deleteOne(data.id)
                 .catch(e => console.log(e))
                 let likes = this.state.likecount
-                this.setState({likecount: likes -=1})
+                this.setState({
+                    likecount: likes -=1,
+                    isliked: false
+                })
                 Bathrooms.putOneDecrease(this.state.bathroomId)
             }
         })
@@ -111,7 +128,8 @@ class Testing extends Component {
                 <span>cleanliness: {this.state.cleanliness}</span>
                 <p>{this.state.caption}  </p> 
                 <div>
-                    <button onClick={this.handleLikebutton}>like this</button>
+                    {this.state.isliked ? <button onClick={this.handleLikebutton}><IoIosHeart /></button> : <button onClick={this.handleLikebutton}><IoIosHeartEmpty /></button>}    
+                    {/* <button onClick={this.handleLikebutton}>like this</button> */}
                     {this.state.likecount}
                 </div>
                 <div>

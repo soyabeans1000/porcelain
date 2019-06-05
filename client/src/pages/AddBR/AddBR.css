@@ -1,16 +1,10 @@
-body {
-  background-image: url("https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjkw-X_0rfiAhXE5p8KHQgFDn8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F825566175414664412%2F&psig=AOvVaw0jCi7EtumtG20d87ds2Rjx&ust=1558906636011656")
-}
-  
-Form {
+/* Form {
   max-width: 700px;
 	padding: 10px 20px;
-	background: #7bcfeb;
 	margin: 10px auto;
 	padding: 50px;
 	border-radius: 8px;
   font-family: 'Cantarell', sans-serif;
-  border: black, dotted, 5px;
   margin-bottom: 10px;
   text-shadow: grey;
   opacity: 50%;
@@ -52,5 +46,5 @@ button {
 h1{
   font-family: 'Satisfy', cursive;
   padding-top: 2%
-}  
+}   */
 

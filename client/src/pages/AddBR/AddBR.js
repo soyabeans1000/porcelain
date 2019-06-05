@@ -27,11 +27,11 @@ class AddBR extends Component {
         let id = localStorage.getItem('userId')
         User.getOne(id)
         .then(({data}) => {
-            console.log(data)
             this.setState({userstatus: data})
         })
         .catch(e => console.log(e))
     }
+
     handleInputChange = event => {
         if (event.target.id === "image") {
             this.setState({ file: event.target.files })
@@ -74,6 +74,7 @@ class AddBR extends Component {
         const fd = new FormData()
         let image = ''
         fd.append('image', this.state.file[0])
+        console.log(fd)
         Image.postOne(fd)
         .then(({data}) => {
             image = data.imageUrl
@@ -132,7 +133,7 @@ class AddBR extends Component {
         let state = this.state
         return (
             <>
-                <h1>Add a Bathroom</h1> 
+                <h4>Add a Bathroom</h4> 
                 <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
                 <div class = 'container' id = 'addForm'>
                 <Form handleInputChange={this.handleInputChange}
@@ -147,6 +148,7 @@ class AddBR extends Component {
                     level={state.level}
                     cleanliness={state.cleanliness}
                     caption={state.caption} 
+                    userstatus={state.userstatus} 
                 />
                 </div>
                 <Dispbathroom bathroom={state.bathroom} />

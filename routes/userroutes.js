@@ -25,16 +25,20 @@ module.exports = app => {
         .then(({email}) => res.json(email))
         .catch(e => res.sendStatus(200))
     })
-    // get user adminstatus
     app.get('/user/:id', (req, res) => {
         Users.findOne({where: {id: req.params.id}})
         .then(user => res.json({
             username: user.username, 
-            adminstatus: user.adminstatus
+            adminstatus: user.adminstatus,
+            userimage: user.userimage
         }))
         .catch(e => console.log(e))
     })
-    // create user
+    app.put('/user/:id', (req, res) => {
+        Users.update(req.body, {where: {id: req.params.id}})
+        .then(_ => res.sendStatus(200))
+        .catch(e => console.log(e))    
+    })
     app.post('/user', (req, res) =>{
         Users.create(req.body)
         .then(r => res.json(r))
