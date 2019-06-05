@@ -108,10 +108,6 @@ class BRAroundMe extends Component {
                         commentobj
                     ]
                 })
-                //the nested state is not being updated correctly when calling setState
-                //have to drill into state object and update correctly
-                // this.setState({ 
-                //  ...this.state.comments, ...comments }, () => console.log(this.state))
                 document.getElementById("commentform").reset()
             })
             .catch(e => console.log(e))
