@@ -62,8 +62,8 @@ class Login extends Component {
                 this.setState({validation: 'Invalid credentials'})
             } else {
                 localStorage.setItem('userId',data.id)
-                // localStorage.setItem('adminstatus',data.adminstatus)
-                this.props.updateLoginStatus(data.adminstatus)
+                localStorage.setItem('adminstatus',data.adminstatus)
+                this.props.updateLoginStatus(true)
             }
         })
         .catch(e => console.log(e))

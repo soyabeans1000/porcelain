@@ -1,9 +1,9 @@
 import React from 'react'
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col, CardText } from 'reactstrap';
-import './style.css'
+// import './style.css'
 
-const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, handledelete, comments}) => {
+const Bathroomform = ({isliked, bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, handledelete, comments}) => {
     const loggedInUser = parseInt(localStorage.getItem('userId'))
     return <div>
 
