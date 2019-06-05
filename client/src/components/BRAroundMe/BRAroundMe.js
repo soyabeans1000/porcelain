@@ -3,6 +3,7 @@ import Bathrooms from '../../utils/bathroom'
 import Likes from '../../utils/likes'
 // Need to create a add icon
 
+import Map from '../GoogleMap/Map'
 class BRAroundMe extends Component {
     state = {
         location: '',
@@ -106,6 +107,7 @@ class BRAroundMe extends Component {
                         ))}
                     </div>
                 </div>
+                <Map />
             </div>
         )
     }

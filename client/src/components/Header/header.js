@@ -18,17 +18,9 @@ const element = <FontAwesomeIcon icon={faSignOutAlt} />
 
 const HeaderBar = (props) => (
     <>
-   
-
-   
-   <Navbar fixed="top" className="border-bottom bg-light">
-   <Navbar.Brand href="#home"> <img src={Logo} style={style.logo} /> </Navbar.Brand>
-  <Navbar.Toggle />
-  <Navbar.Collapse className="justify-content-end">
-
-
-    
-    {props.loggedIn ? <Button outline color="secondary" onClick={_=>{
+    <Navbar bg="light" expand="lg" fixed="top">
+        <Navbar.Brand href="#home">Porcelain</Navbar.Brand>
+       {props.loggedIn ? <Button className="ml-auto" outline color="secondary" onClick={_=>{
            props.updateLoginStatus()
            localStorage.removeItem('userId')
            }}>{element}</Button> : null } 
