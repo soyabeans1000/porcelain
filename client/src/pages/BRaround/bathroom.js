@@ -4,7 +4,7 @@ import Likes from '../../utils/likes'
 import Bathroomform from '../../components/bathroom'
 import Comments from '../../utils/comment'
 import User from '../../utils/user'
-
+import Map from '../../components/GoogleMap/Map'
 // Need to create a add icon
 
 class BRAroundMe extends Component {
@@ -136,6 +136,7 @@ class BRAroundMe extends Component {
                 <h1>Bathroom Around Me</h1>
                 <button onClick={this.handleOnClick}>get bathroom</button>
                 <Bathroomform bathroom={this.state.bathroom} comments={this.state.comments} likecount={this.state.likecount} handleLikebutton={this.handleLikebutton} handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange} isliked={this.state.isliked}/>
+                <Map />
             </div>
         )
     }

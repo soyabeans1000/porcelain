@@ -1,7 +1,6 @@
 import React from 'react'
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 
-
 const Bathroomform = ({isliked, bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, comments}) => 
     <div>
         {bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
