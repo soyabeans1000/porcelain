@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Likes from '../../../utils/likes'
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, Container, Row, Col } from 'reactstrap';
 import '../../../pages/Profile/styles.css'
-import '../style.css'
 
 class ProfileLikes extends React.Component {
     constructor(props) {
@@ -49,7 +48,7 @@ render() {
                         {this.state.likedbr.map(item => (
                             <div>
                                 <Card id={item.id} className="bathroomCard" onClick={this.handlebathroomId}>
-                                    <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
+                                    <CardImg className="cardimg" top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
                                     <CardBody>
                                         <CardTitle>{item.location}</CardTitle>
                                     </CardBody>

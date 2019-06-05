@@ -3,8 +3,8 @@ import Bathrooms from '../../utils/bathroom.js'
 import Comments from '../../utils/comment'
 import User from '../../utils/user'
 import Likes from '../../utils/likes'
-import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-
+import { IoIosHeart, IoIosHeartEmpty, IoIosArrowBack } from "react-icons/io";
+import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
 
 class Testing extends Component {
@@ -30,11 +30,13 @@ class Testing extends Component {
         Bathrooms.getOne(this.state.bathroomId)
         .then(({data}) => {
             let commentsarr = this.state.comments
-            data.comments.forEach(({comments, user, userId}) => {
+            data.comments.forEach(({comments, user, userId, id, createdAt}) => {
                 commentsarr.push({
                     username: user.username,
                     comment: comments,
-                    userId: userId
+                    userId: userId,
+                    id: id,
+                    createdAt
                 })
             })
             this.setState({
@@ -58,6 +60,7 @@ class Testing extends Component {
                 this.setState({isliked: true})
             }
         })
+        .catch(e => console.log(e))
     }
     handleLikebutton = _ => {
         Likes.getOne(localStorage.getItem('userId'), this.state.bathroomId)
@@ -100,59 +103,79 @@ class Testing extends Component {
             userId: localStorage.getItem('userId')
         }
         Comments.postOne(adComments)
-        User.getOne(localStorage.getItem('userId'))
-        .then(({data}) => {
-            let commentobj = {
-                username: data.username,
-                comment: this.state.newcomment,
-                userId: localStorage.getItem('userId')
-            }
-            let comments = this.state.comments
-            comments.push(commentobj)
-            this.setState({comments})
-            document.getElementById("commentform").reset()
+        .then(({ data: comment }) => {
+            User.getOne(localStorage.getItem('userId'))
+        
+            .then(({ data }) => {
+                let commentobj = {
+                    username: data.username,
+                    comment: this.state.newcomment,
+                    userId: parseInt(localStorage.getItem('userId')),
+                    id: comment.id
+                }
+                this.setState({
+                    ...this.state,
+                    newcomment: '',
+                    comments: [
+                        ...this.state.comments,
+                        commentobj
+                    ]
+                })
+                document.getElementById("commentform").reset()
+            })
+            .catch(e => console.log(e))
         })
+    }
+    handledelete = (e) => {
+        let value = e.target.value
+        Comments.deleteOne(e.target.id)
+        .then(_ => this.setState({comments: this.state.comments.filter(comment => Number(comment.id) !== Number(value))}))
         .catch(e => console.log(e))
     }
 
     render () {
         return (
-            <div>
-                <h1>hello world</h1>
-                <button onClick={_ => {this.props.toggleredirect()}}>back</button>
-                <h5>{this.state.location}</h5>
-                <img src={this.state.image} />
-                <span>Gender: {this.state.gender}</span>
-                <span>Stall(s): {this.state.stalls}</span>
-                <span>On level: {this.state.level}</span>
-                <span>cleanliness: {this.state.cleanliness}</span>
-                <p>{this.state.caption}  </p> 
-                <div>
-                    {this.state.isliked ? <button onClick={this.handleLikebutton}><IoIosHeart /></button> : <button onClick={this.handleLikebutton}><IoIosHeartEmpty /></button>}    
-                    {/* <button onClick={this.handleLikebutton}>like this</button> */}
-                    {this.state.likecount}
-                </div>
-                <div>
-                    {this.state.comments.map(({username, comment}) => (
+            <div className="container1">
+                <button onClick={_ => {this.props.toggleredirect()}} className="buttonicons"><IoIosArrowBack /></button>
+                <Card className="card_size">
+                    <CardImg className="cardimg" src={this.state.image} />
+                    <CardBody>
+                        <CardTitle className="Ctitle"> {this.state.location}<br/> {this.state.caption} </CardTitle>
+                        <CardText>  <span>  cleanliness: {this.state.cleanliness}  &#9679; Stall: {this.state.stalls} &#9679; Level: {this.state.level} <br>
+                        </br> {this.state.gender}
+                        
                         <div>
-                            <span>{username}: </span>
-                            <span>{comment}</span>
+                            {this.state.isliked ? <button onClick={this.handleLikebutton} className="likeicon"><IoIosHeart /></button> : <button onClick={this.handleLikebutton} className="likeicon"><IoIosHeartEmpty /></button>}
+                            {this.state.likecount}
                         </div>
-                    ))}
-                </div>
-                <div>
-                    <form className="comment-form" id="commentform">
-                        <div className="comment-form-fields">
-                                {/* need to pull in username from sign-in */}
-                                {/* <input placeholder="Name" required ref={(input) => this._author = input}></input><br /> */}
-                            <textarea placeholder="Comment" rows="2" id="newcomment" onChange={this.handleInputChange}></textarea>
+                        </span>
+                        <div className="commentcontainer">
+                            {this.state.comments.sort(function(a, b){
+                                var keyA = new Date(a.createdAt),
+                                    keyB = new Date(b.createdAt);
+                                if(keyA < keyB) return -1;
+                                if(keyA > keyB) return 1;
+                                return 0;
+                                }).map(({username, comment, userId, id}, index) => {
+                                    return (
+                                        <div className="comment">
+                                            <span className="commentname">{username}: </span>
+                                            <span>{comment}</span>
+                                        { parseInt(localStorage.getItem('userId')) === userId ? <button id={id} value={id} onClick={this.handledelete} className="deleteicon">x</button> : null }
+                                        </div>
+                                    )})}
                         </div>
-                        <div className="comment-form-actions">
-                            <button type="submit" onClick={this.handleSubmit}>Post</button>
+                        <div>
+                            <form className="comment-form" id="commentform">
+                                <div className="comment-form-fields">
+                                    <textarea placeholder="Comment" className="commenttext" rows="2" id="newcomment" onChange={this.handleInputChange}></textarea>
+                                    <button type="submit" className="commentsubmit" onClick={this.handleSubmit}>Post</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-                
+                        </CardText>
+                    </CardBody>
+                </Card>
             </div>
         )
     }

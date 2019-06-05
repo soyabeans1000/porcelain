@@ -7,6 +7,7 @@ import './styles.css'
 import { FaCamera } from "react-icons/fa";
 
 
+
 // Need to create a add icon
 
 class Profile extends Component {
@@ -65,14 +66,14 @@ class Profile extends Component {
         } else {
             return (
                 <div>
-                <div>
-                    <h3 className="username">{this.state.username}</h3>
-                    <img src={this.state.userimage} className="profileimg"/>
-                    <button onClick={this.handlechangepicture} className="picture"><FaCamera /></button>
+                    <div>
+                        <h3 className="username">{this.state.username}</h3>
+                        <img src={this.state.userimage} className="profileimg"/>
+                        <button onClick={this.handlechangepicture} className="picture"><FaCamera /></button>
+                    </div>
+                    <input class="file-upload" type="file" accept="image/*" className="profileinput" ref={input => this.inputElement = input} onChange={this.handlepictureinput}/>
+                    <SubMenu toggleredirect={this.toggleredirect}/>                
                 </div>
-                <input class="file-upload" type="file" accept="image/*" className="profileinput" ref={input => this.inputElement = input} onChange={this.handlepictureinput}/>
-                <SubMenu toggleredirect={this.toggleredirect}/>                
-            </div>
             )
         }
     }

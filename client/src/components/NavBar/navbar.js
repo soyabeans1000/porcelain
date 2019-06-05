@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FaToilet, FaPlus, FaCheckSquare } from "react-icons/fa"
 import { GoPerson } from "react-icons/go"
@@ -13,36 +13,55 @@ class NavBar extends Component {
         if (localStorage.getItem('adminstatus') === 'true') {
             return (
                 <div className="App-intro">
-                <Navbar bg="light" expand="lg" fixed="bottom">
-                        <Nav className="mr-auto">
-                            <Container>
-                                <Row>
-                                    <Col><Nav.Link> <Link to="/AroundMe"><FaToilet className="navicon"/></Link> </Nav.Link></Col>
-                                    <Col><Nav.Link> <Link to="/AddBR"><FaPlus className="navicon"/></Link> </Nav.Link></Col>
-                                    <Col><Nav.Link> <Link to="/Profile"><GoPerson className="navicon"/></Link> </Nav.Link></Col>
-                                    <Col><Nav.Link> <Link to="/request"><FaCheckSquare className="navicon"/></Link> </Nav.Link></Col>
-                                </Row>
-                            </Container>
-                        </Nav>
+                <Navbar fixed="bottom">
+                    <Nav className="justify-content-center" className="navbar">
+                        <Nav.Item>
+                            <Nav.Link className="navlink">
+                                <Link to="/AroundMe"><FaToilet className="navicon"/></Link> 
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="navlink"> 
+                                <Link to="/AddBR"><FaPlus className="navicon"/></Link> 
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="navlink"> 
+                                <Link to="/Profile"><GoPerson className="navicon"/></Link> 
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="navlink">  
+                                <Link to="/request"><FaCheckSquare className="navicon"/></Link> 
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Nav>
                 </Navbar>
-
-            </div>
+                </div>
             )
         } else {
             return (
                 <div className="App-intro">
-                <Navbar bg="light" expand="lg" fixed="bottom">
-                        <Nav className="mr-auto">
-                            <Container className="container">
-                                <Row>
-                                    <Col><Nav.Link> <Link to="/AroundMe"><FaToilet className="navicon"/></Link> </Nav.Link></Col>
-                                    <Col><Nav.Link> <Link to="/AddBR"><FaPlus className="navicon"/></Link> </Nav.Link></Col>
-                                    <Col><Nav.Link> <Link to="/Profile"><GoPerson className="navicon"/></Link> </Nav.Link></Col>
-                                </Row>
-                            </Container>
-                        </Nav>
+                <Navbar fixed="bottom">
+                    <Nav className="justify-content-center" className="navbar">
+                        <Nav.Item>
+                            <Nav.Link className="navlink2">
+                                <Link to="/AroundMe"><FaToilet className="navicon"/></Link> 
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="navlink2"> 
+                                <Link to="/AddBR"><FaPlus className="navicon"/></Link> 
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="navlink2"> 
+                                <Link to="/Profile"><GoPerson className="navicon"/></Link> 
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Nav>
                 </Navbar>
-            </div>
+                </div>
             )
         }
     }

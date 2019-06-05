@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Request from '../../utils/request'
 import Bathrooms from '../../utils/bathroom'
+import { MdClose, MdCheck } from "react-icons/md";
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col, CardText } from 'reactstrap';
 
 class Requests extends Component {
     state = {
@@ -67,22 +69,25 @@ class Requests extends Component {
 
     render () {
         return (
-            <> 
-                <h1>Bathroom Submission</h1>
+            <div className="requestcontainer"> 
+                <h3>Restroom Submission</h3>
                 {this.state.requests.map((request, index) => (
-                    <div>
-                        <h4>{request.street} {request.city}, {request.state} {request.zipcode}</h4>
-                        <img src={request.image} />
-                        <span>Gender: {request.gender}</span>
-                        <span>Stall(s): {request.stalls}</span>
-                        <span>On level: {request.level}</span>
-                        <span>cleanliness: {request.cleanliness}</span>
-                        <p>{request.caption}</p> 
-                        <button id={request.id} value={index} onClick={this.handleapproval}>approve</button>
-                        <button id={request.id} value={index} onClick={this.handledeny}>deny</button>
-                    </div>
+                    <Card className="card_size">
+                        <CardImg className="cardimg" src={request.image}/>
+                        <CardBody>
+                            <CardTitle className="Ctitle"> {request.street} {request.city}, {request.state} {request.zipcode} <br/> {request.caption} </CardTitle>
+                            <CardText>  <span>  cleanliness: {request.cleanliness}  &#9679; Stall: {request.stalls} &#9679; Level: {request.level} <br>
+                                </br> {request.gender}
+                                </span>
+                                <div>
+                                    <button id={request.id} value={index} onClick={this.handleapproval} className="submission"><MdCheck /></button>
+                                    <button id={request.id} value={index} onClick={this.handledeny} className="submission"><MdClose /></button>
+                                </div>
+                            </CardText>
+                        </CardBody>
+                    </Card>
                 ))}
-            </>
+            </div>
         )
     }
 }

@@ -5,7 +5,6 @@ import Bathroom from '../../../utils/bathroom'
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col } from 'reactstrap';
 import '../../../pages/Profile/styles.css'
 import { FaCommentDots } from "react-icons/fa";
-import '../style.css'
 
 class ProfileComments extends Component {
     constructor(props) {
@@ -83,7 +82,7 @@ class ProfileComments extends Component {
                             {this.state.posts.map(item => (
                                 <div>
                                     <Card id={item.bathroomId} className="bathroomCard" onClick={this.handlebathroomId}>
-                                        <CardImg top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
+                                        <CardImg className="cardimg" top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
                                         <CardBody>
                                             <CardTitle>{item.location}</CardTitle>
                                             <CardSubtitle><FaCommentDots /> {item.comment}</CardSubtitle>
