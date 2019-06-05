@@ -40,7 +40,8 @@ export class MapContainer extends Component {
 
   reverseGeocode() {
     setTimeout(() => {
-      Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLocation.lat}, ${this.state.userLocation.lng}&key=AIzaSyDQmN0cdYuf8wmdq1kj1mdeD-0bsbQ8ED0`)
+      Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLocation.lat}, ${this.state.userLocation.lng}&key=process.env.map_key
+`)
         .then(res => res.data)
         .then(({ results }) => {
           //let {results[4].}
@@ -69,7 +70,7 @@ export class MapContainer extends Component {
           //   //console.log(this.state.id)
           // })
           this.state.dbArr.forEach(i => {
-            Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${i.street}+${i.city}+${i.state}&key=AIzaSyDQmN0cdYuf8wmdq1kj1mdeD-0bsbQ8ED0`)
+            Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${i.street}+${i.city}+${i.state}&key=process.env.map_key`)
               .then(res => res.data.results.map(i => {
                 this.setState({ geoArr: this.state.geoArr.concat(i.geometry) })
                 //console.log(this.state.geoArr)
@@ -148,5 +149,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDQmN0cdYuf8wmdq1kj1mdeD-0bsbQ8ED0" //process.env.map_key
+  apiKey: process.env.map_key
 })(MapContainer);
