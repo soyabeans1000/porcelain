@@ -5,9 +5,9 @@ import './form.css'
 
 const Form = ({userstatus, handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, caption }) =>
     <form action="/action_page.php" id="addbrform">
-        {/* <style>
+        <style>
             @import url('https://fonts.googleapis.com/css?family=Cantarell:400i&display=swap');
-        </style> */}
+        </style>
         
         <div class='row'>
             <label htmlFor="street">Street </label>
@@ -120,10 +120,10 @@ const Form = ({userstatus, handleFormSubmit, handleInputChange, handleLocation, 
             <input id="caption" type="text" value={caption} onChange={handleInputChange} />
         </div>
         <div class='row'>
-            <label htmlFor="image">Image </label>
+            <label id='imageLabel' htmlFor="image">Upload Image </label>
             <input id="image" className="imageinput" type="file" onChange={handleInputChange} />
         </div>
-        {userstatus ? <button onClick={handleFormSubmit} className="addbr"> Add Bathroom</button> : <button onClick={handleFormSubmit} className="addbr"> Submit Request </button>}
+        {userstatus ? <button id='submit' onClick={handleFormSubmit} className="addbr"> Add Bathroom </button> : <button onClick={handleFormSubmit} className="addbr"> Submit Request </button>}
     </form>
 
 export default Form

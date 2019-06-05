@@ -1,10 +1,16 @@
-/* Form {
+body {
+  background-image: url("https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjkw-X_0rfiAhXE5p8KHQgFDn8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F825566175414664412%2F&psig=AOvVaw0jCi7EtumtG20d87ds2Rjx&ust=1558906636011656")
+}
+  
+Form {
   max-width: 700px;
-	padding: 10px 20px;
+	padding: 20px;
+	background: #7bcfeb;
 	margin: 10px auto;
 	padding: 50px;
 	border-radius: 8px;
   font-family: 'Cantarell', sans-serif;
+  border: black, dotted, 5px;
   margin-bottom: 10px;
   text-shadow: grey;
   opacity: 50%;
@@ -31,20 +37,52 @@ select {
   cursor: pointer;
 }
 
-button {
-  display:inline-block;
-  padding:0.2em 1.45em;
-  margin:0.1em;
-  box-sizing: border-box;
-  text-decoration:none;
-  font-family:'Segoe UI','Roboto',sans-serif;
-  font-weight:400;
-  text-align:center;
-  position:relative;
-}
-
 h1{
   font-family: 'Satisfy', cursive;
   padding-top: 2%
-}   */
+}  
 
+input[type="file"] {
+display: none
+}
+
+#imageLabel {
+  display:inline-block;
+  padding:0.5em 3em;
+  border:0.16em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:400;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.15s;
+  cursor: pointer;
+  background-color: rgb(0, 24, 54);
+}
+
+#imageLabel:hover {
+  background-color: rgb(0, 24, 54);;
+  display:inline-block;
+  padding:0.5em 3em;
+  border:0.16em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-weight:400;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+#submit {
+  background-color:rgb(0, 24, 54);
+  transition: all 0.15s;
+  cursor: pointer;
+  color: white
+}
