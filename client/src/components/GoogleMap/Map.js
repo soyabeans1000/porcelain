@@ -25,54 +25,58 @@ export class MapContainer extends Component {
     this.init()
   }
 
-  async init() {
-    await navigator.geolocation.getCurrentPosition(position => {
+  init() {
+    navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords
       this.setState({
         userLocation: { lat: latitude, lng: longitude },
         loading: false
       })
+      this.reverseGeocode()
+      this.getBathrooms()
     })
     //this.reverseGeocode()
-    this.getBathrooms()
-    //this.compareFunc()
-    //this.renderMarkers()
   }
 
   reverseGeocode() {
     setTimeout(() => {
-      Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLocation.lat}, ${this.state.userLocation.lng}&key=${process.env.map_key}`)
-        .then(res => res.data.results.map(i => {
-          // console.log(i.address_components[2].short_name)
-          console.log(i.address_components)
-          this.setState({ reverseGeo: { cityGeo: i.address_components[2].short_name } })
-          console.log(this.state.reverseGeo.cityGeo)
-        }))
-    }, 3500)
-    setTimeout(() => {
-      this.getBathrooms()
-    }, 5500)
-
+      Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLocation.lat}, ${this.state.userLocation.lng}&key=AIzaSyDQmN0cdYuf8wmdq1kj1mdeD-0bsbQ8ED0`)
+        .then(res => res.data)
+        .then(({ results }) => {
+          //let {results[4].}
+          let i = results[4].address_components
+          this.setState({ reverseGeo: { city: i[0].short_name, state: i[2].short_name }})
+          console.log(this.state.reverseGeo)
+        })
+          //.forEach(i => {
+          //console.log(i)
+          //console.log(i.address_components[2].short_name)
+          // this.setState({ reverseGeo: { cityGeo: i.address_components[0].short_name, stateGeo: i.address_components[2].short_name } })
+          // console.log(this.state.reverseGeo)
+        //}))
+    }, 1500)
   }
 
   //get request from db
   getBathrooms() {
-    BathroomGet.getAll('Irvine', 'Ca')
-      .then(({ data }) => {
-        this.setState({ dbArr: data })
-        // this.setState({ idArr: data })
-        // this.state.idArr.forEach(i => {
-        //   this.setState({ id: i.id })
-        //   //console.log(this.state.id)
-        // })
-        this.state.dbArr.forEach(i => {
-          Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${i.street}+${i.city}+${i.state}&key=${process.env.map_key}`)
-            .then(res => res.data.results.map(i => {
-              this.setState({ geoArr: this.state.geoArr.concat(i.geometry) })
-              console.log(this.state.geoArr)
-            }))
+    setTimeout(() => {
+      BathroomGet.getAll(this.state.reverseGeo.city, this.state.reverseGeo.state)
+        .then(({ data }) => {
+          this.setState({ dbArr: data })
+          // this.setState({ idArr: data })
+          // this.state.idArr.forEach(i => {
+          //   this.setState({ id: i.id })
+          //   //console.log(this.state.id)
+          // })
+          this.state.dbArr.forEach(i => {
+            Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${i.street}+${i.city}+${i.state}&key=AIzaSyDQmN0cdYuf8wmdq1kj1mdeD-0bsbQ8ED0`)
+              .then(res => res.data.results.map(i => {
+                this.setState({ geoArr: this.state.geoArr.concat(i.geometry) })
+                //console.log(this.state.geoArr)
+              }))
+          })
         })
-      })
+    }, 2300)
   }
 
   //markers to display name
@@ -87,7 +91,7 @@ export class MapContainer extends Component {
         position={location.location}
         // desc={location.desc}
         // animation={this.state.animation[i]}
-        name={location.name}
+        //name={location.name}
       />
     })
   }
@@ -144,5 +148,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: process.env.map_key
+  apiKey: "AIzaSyDQmN0cdYuf8wmdq1kj1mdeD-0bsbQ8ED0" //process.env.map_key
 })(MapContainer);
