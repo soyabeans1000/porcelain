@@ -1,13 +1,12 @@
 import React from 'react'
-import { IoIosHeart, IoIosHeartEmpty, IoIosArrowBack } from "react-icons/io";
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
-const Bathroomform = ({togglegetBR, isliked, bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, handledelete, comments}) => {
+const Bathroomform = ({ isliked, bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, handledelete, comments}) => {
     const loggedInUser = parseInt(localStorage.getItem('userId'))
     return <div>
-    <button onClick={togglegetBR} className="buttonicons2"><IoIosArrowBack /></button>
     {bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
-        <Card className="card_size">
+        <Card className="card_size cardsize">
             <CardImg className="cardimg" src={image}/>
             <CardBody>
                 <CardTitle className="Ctitle"> {location}<br/> {caption} </CardTitle>

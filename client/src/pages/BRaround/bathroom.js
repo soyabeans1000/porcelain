@@ -4,6 +4,7 @@ import Likes from '../../utils/likes'
 import Bathroomform from '../../components/bathroom'
 import Comments from '../../utils/comment'
 import User from '../../utils/user'
+import Map from '../../components/GoogleMap/Map'
 
 // Need to create a add icon
 
@@ -13,14 +14,12 @@ class BRAroundMe extends Component {
         newcomment: '',
         comments: [],
         bathroom: [],
-        isliked: null,
-        getBR: false
-    }
-    handleOnClick = _ => {
-        this.setState({ bathroom: [], comments: [], newcomment: '', isliked: null, likecount: null, getBR: true }, _ => {
+        isliked: null    }
+    handleOnClick = num => {
+        this.setState({ bathroom: [], comments: [], newcomment: '', isliked: null, likecount: null }, _ => {
 
             let likecount = 0
-            Bathrooms.getOne(10)
+            Bathrooms.getOne(num)
                 .then(({ data }) => {
                     likecount = data.likecount
                     let commentsarr = this.state.comments
@@ -47,7 +46,7 @@ class BRAroundMe extends Component {
                         caption: data.caption,
                         bathroomId: data.id,
                     })
-                    Likes.getOne(localStorage.getItem('userId'), this.state.bathroomId)
+                    Likes.getOne(localStorage.getItem('userId'), num)
                     .then(({data}) => {
                         if (data === null) {
                             this.setState({isliked: false})
@@ -143,23 +142,18 @@ class BRAroundMe extends Component {
             .catch(e => console.log(e))
 
     }
-    togglegetBR = _ => {
-        this.setState({getBR: false})
-    }
 
-    handlegetBR = () => {
-        if (this.state.getBR === false) {
-            return (
+
+    render() {
+
+        return (
+            <div>
+                <h5 className="subtitle">When ya gotta go, ya gotta know!</h5>
                 <div>
-                    <h5 className="subtitle">When ya gotta go, ya gotta know!</h5>
-                    <button onClick={this.handleOnClick}>get bathroom</button>
+                    <Map handleOnClick={this.handleOnClick}/>
                 </div>
-            )
-        } else {
-            return (
                 <div>
                     <Bathroomform 
-                        togglegetBR={this.togglegetBR}
                         bathroom={this.state.bathroom} 
                         comments={this.state.comments} 
                         handledelete={this.handledelete} 
@@ -171,28 +165,6 @@ class BRAroundMe extends Component {
                         isliked={this.state.isliked}
                     />
                 </div>
-            )
-        }
-    }
-
-    render() {
-
-        return (
-            <div>
-                {this.handlegetBR()}
-                {/* <h5 className="subtitle">When ya gotta go, ya gotta know!</h5>
-                <button onClick={this.handleOnClick}>get bathroom</button>
-                <Bathroomform 
-                    bathroom={this.state.bathroom} 
-                    comments={this.state.comments} 
-                    handledelete={this.handledelete} 
-                    likecount={this.state.likecount} 
-                    handleLikebutton={this.handleLikebutton} 
-                    handleSubmit={this.handleSubmit} 
-                    handleInputChange={this.handleInputChange} 
-                    newcomment={this.state.newcomment}
-                    isliked={this.state.isliked}
-                /> */}
             </div>
         )
     }
