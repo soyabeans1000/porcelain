@@ -3,9 +3,11 @@ import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col, CardText } from 'reactstrap';
 import './style.css'
 
-const Bathroomform = ({isliked, bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, comments}) => 
-    <div>
-        {bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
+const Bathroomform = ({bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, handledelete, comments}) => {
+    const loggedInUser = parseInt(localStorage.getItem('userId'))
+    return <div>
+
+{bathroom.map(({location, image, gender, stalls, level, cleanliness, caption}) => (
 
 <Card className="card_size">
 <CardImg src={image}/>
@@ -23,12 +25,21 @@ const Bathroomform = ({isliked, bathroom, handleLikebutton, likecount, newcommen
                 </span>
               
                 <div>
-                    {comments.map(({username, comment}) => (
+                    {comments.sort(function(a, b){
+                        var keyA = new Date(a.createdAt),
+                            keyB = new Date(b.createdAt);
+                        if(keyA < keyB) return -1;
+                        if(keyA > keyB) return 1;
+                        return 0;
+                    }).map(({username, comment, userId, id}, index) => {
+                        console.log('here is the lastest id::::::: ', id)
+                        return (
                         <div>
                             <span>{username}: </span>
                             <span>{comment}</span>
+                           { loggedInUser === userId ? <button id={id} value={id} onClick={handledelete}>X</button> : null }
                         </div>
-                    ))}
+                    )})}
                 </div>
 
 
@@ -43,8 +54,6 @@ const Bathroomform = ({isliked, bathroom, handleLikebutton, likecount, newcommen
                 <div>
                     <form className="comment-form" id="commentform">
                         <div className="comment-form-fields">
-                                {/* need to pull in username from sign-in */}
-                                {/* <input placeholder="Name" required ref={(input) => this._author = input}></input><br /> */}
                             <textarea placeholder="Comment" rows="2" id="newcomment" value={newcomment} onChange={handleInputChange}></textarea>
                         </div>
                         <div className="comment-form-actions">
@@ -69,6 +78,6 @@ const Bathroomform = ({isliked, bathroom, handleLikebutton, likecount, newcommen
 // <!-- dont touch here -->
         ))}
     </div>
-
+}
 
 export default Bathroomform;

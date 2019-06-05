@@ -15,79 +15,66 @@ class BRAroundMe extends Component {
         bathroom: [],
         isliked: null
     }
-    handleOnClick= _ => {
-        this.setState({bathroom: []})
+    handleOnClick = _ => {
+        this.setState({ bathroom: [], comments: [], newcomment: '' })
         let likecount = 0
         Bathrooms.getOne(1)
-        .then(({data}) => {
-            likecount = data.likecount
-            let commentsarr = this.state.comments
-            console.log(data)
-            data.comments.forEach(({comments, user, userId}) => {
-                commentsarr.push({
-                    username: user.username,
-                    comment: comments,
-                    userId: userId
+            .then(({ data }) => {
+                likecount = data.likecount
+                let commentsarr = this.state.comments
+                data.comments.forEach(({ comments, user, userId, id, createdAt }) => {
+                    commentsarr.push({
+                        username: user.username,
+                        comment: comments,
+                        userId: userId,
+                        id: id,
+                        createdAt
+                    })
+                })
+
+                let i = data.comments.length
+                this.setState({ comments: commentsarr })
+                let bathroom = this.state.bathroom
+                bathroom.push({
+                    location: `${data.street} ${data.city}, ${data.state} ${data.zipcode}`,
+                    image: data.image,
+                    gender: data.gender,
+                    stalls: data.stalls,
+                    level: data.level,
+                    cleanliness: data.cleanliness,
+                    caption: data.caption,
+                    bathroomId: data.id,
+                })
+                this.setState({
+                    likecount,
+                    bathroom
                 })
             })
-            // i will be the amount of comments for each post
-            let i = data.comments.length 
-            console.log(i)
-            this.setState({comments: commentsarr})
-            let bathroom = this.state.bathroom
-            bathroom.push({
-                location:`${data.street} ${data.city}, ${data.state} ${data.zipcode}`,
-                image: data.image,
-                gender: data.gender,
-                stalls: data.stalls,
-                level: data.level,
-                cleanliness: data.cleanliness,
-                caption: data.caption,
-                bathroomId: data.id,
-            })
-            Likes.getOne(localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)
-            .then(({data}) => {
-                if (data === null) {
-                    this.setState({isliked: false})
-                } else {
-                    this.setState({isliked: true})
-                }
-            })
-            this.setState({
-                likecount,
-                bathroom
-            })
-        })
-        .catch(e => console.log(e))
+            .catch(e => console.log(e))
+
     }
     handleLikebutton = _ => {
         Likes.getOne(localStorage.getItem('userId'), this.state.bathroom[0].bathroomId)
-        .then(({data}) => {
-            if (data === null) {
-                let like = {
-                    bathroomId: this.state.bathroom[0].bathroomId,
-                    userId: parseInt(localStorage.getItem('userId'))
+            .then(({ data }) => {
+                if (data === null) {
+                    let like = {
+                        bathroomId: this.state.bathroom[0].bathroomId,
+                        userId: parseInt(localStorage.getItem('userId'))
+                    }
+                    Likes.postOne(like)
+                        .catch(e => console.log(e))
+                    let likes = this.state.likecount
+                    this.setState({ likecount: likes += 1 })
+                    Bathrooms.putOneIncrease(this.state.bathroom[0].bathroomId)
+                } else {
+                    Likes.deleteOne(data.id)
+                        .catch(e => console.log(e))
+                    let likes = this.state.likecount
+                    this.setState({ likecount: likes -= 1 })
+                    Bathrooms.putOneDecrease(this.state.bathroom[0].bathroomId)
                 }
-                Likes.postOne(like)
-                .catch(e => console.log(e))
-                let likes = this.state.likecount
-                this.setState({
-                    likecount: likes +=1,
-                    isliked: true
-                })
-                Bathrooms.putOneIncrease(this.state.bathroom[0].bathroomId)
-            } else {
-                Likes.deleteOne(data.id)
-                .catch(e => console.log(e))
-                let likes = this.state.likecount
-                this.setState({
-                    likecount: likes -=1,
-                    isliked: false
-                })
-                Bathrooms.putOneDecrease(this.state.bathroom[0].bathroomId)
-            }
-        })
-        .catch(e => console.log(e))
+            })
+            .catch(e => console.log(e))
 
     }
 
@@ -97,45 +84,64 @@ class BRAroundMe extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
+
         let adComments = {
             comments: this.state.newcomment,
             bathroomId: this.state.bathroom[0].bathroomId,
-            userId: localStorage.getItem('userId')
+            userId: localStorage.getItem('userId'),
+        
         }
-        Comments.postOne(adComments)
-        User.getOne(localStorage.getItem('userId'))
-        .then(({data}) => {
-            let commentobj = {
-                username: data.username,
-                comment: this.state.newcomment,
-                userId: localStorage.getItem('userId')
-            }
-            let comments = this.state.comments
-            comments.push(commentobj)
-            this.setState({comments})
-            document.getElementById("commentform").reset()
+        Comments.postOne(adComments).then(({ data: comment }) => {
+            User.getOne(localStorage.getItem('userId'))
+        
+            .then(({ data }) => {
+                let commentobj = {
+                    username: data.username,
+                    comment: this.state.newcomment,
+                    userId: parseInt(localStorage.getItem('userId')),
+                    id: comment.id
+                }
+                this.setState({
+                    ...this.state,
+                    newcomment: '',
+                    comments: [
+                        ...this.state.comments,
+                        commentobj
+                    ]
+                })
+                document.getElementById("commentform").reset()
+            })
+            .catch(e => console.log(e))
         })
-        .catch(e => console.log(e))
+
+        
     }
 
-    // handledelete = () => {
-    //     let commentsarr = this.state.comments
-    //     commentsarr.forEach(({userId}) => {
-    //         if (userId === parseInt(localStorage.getItem('userId'))) {
-    //             // if userId of comment match local storage id then make delete button
-    //             // run the comment delete request
-    //         } else {
+    handledelete = (e) => {
+        let value = e.target.value
+        Comments.deleteOne(e.target.id)
+            .then(_ => this.setState({comments: this.state.comments.filter(comment => Number(comment.id) !== Number(value))}))
+            .catch(e => console.log(e))
 
-    //         }
-    //     })
-    // }
+    }
+
 
     render() {
+
         return (
             <div>
                 <h1>Bathroom Around Me</h1>
                 <button onClick={this.handleOnClick}>get bathroom</button>
-                <Bathroomform bathroom={this.state.bathroom} comments={this.state.comments} likecount={this.state.likecount} handleLikebutton={this.handleLikebutton} handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange} isliked={this.state.isliked}/>
+                <Bathroomform 
+                    bathroom={this.state.bathroom} 
+                    comments={this.state.comments} 
+                    handledelete={this.handledelete} 
+                    likecount={this.state.likecount} 
+                    handleLikebutton={this.handleLikebutton} 
+                    handleSubmit={this.handleSubmit} 
+                    handleInputChange={this.handleInputChange} 
+                    newcomment={this.state.newcomment}
+                />
             </div>
         )
     }
