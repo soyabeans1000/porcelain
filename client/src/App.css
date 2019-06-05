@@ -1,9 +1,10 @@
 .App {
   text-align: center;
+  margin-bottom: 10%;
 }
 
-h1 {
-  margin-top:50px;
+h4 {
+  margin-top:85px;
 }
 
 form {
@@ -39,4 +40,7 @@ form {
   to {
     transform: rotate(360deg);
   }
+}
+img {
+  width: 170px;
 }

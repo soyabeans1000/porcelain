@@ -5,7 +5,6 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import User from '../../../utils/user'
 import * as EmailValidator from 'email-validator';
 
-import HeaderBar from '../header'
 //parent component
 //keeps track of state, defines functionality to be passed into child component
 
@@ -31,6 +30,7 @@ class Login extends Component {
     }
     componentDidMount(){
      this.setState({modal: true})
+     console.log(this.state)
     }
 
     // LOGIN FUNCTIONS
@@ -58,10 +58,11 @@ class Login extends Component {
         //make axios call to api-- 
         User.findOne(loginObj)
         .then(({data}) => {
-            if (data === 'Invalid credentials') {
-                this.setState({validation: data})
+            if (data === null) {
+                this.setState({validation: 'Invalid credentials'})
             } else {
-                localStorage.setItem('userId',data)
+                localStorage.setItem('userId',data.id)
+                localStorage.setItem('adminstatus',data.adminstatus)
                 this.props.updateLoginStatus(true)
             }
         })
@@ -105,11 +106,14 @@ class Login extends Component {
                         email: this.state.userEmail,
                         password: this.state.userPassword
                     }
-                    console.log(signUpObj)
                     User.postOne(signUpObj)
+                    .then(({data})=> {
+                        localStorage.setItem('userId', data.id)
+                        localStorage.setItem('adminstatus',data.adminstatus)
+                        this.props.updateLoginStatus(true)
+                    })
                     .catch(e => console.log(e))
                     this.setState({
-                        showLoginModal: !this.state.showLoginModal,
                         validation: ''
                     })
                 } else {
@@ -135,6 +139,7 @@ class Login extends Component {
             showLoginModal: !this.state.showLoginModal,
             validation: ''
         })
+        document.getElementById("loginform").reset()
     }
     //initial log in button handler
     handleLoginClick() {
@@ -149,7 +154,7 @@ class Login extends Component {
                 //Login Form
                 return (
                     <div>
-                        <Form>
+                        <Form id="loginform">
                             {/* name */}
                             <FormGroup>
                                 <Label htmlFor='userEmail'>Email</Label>
@@ -173,7 +178,7 @@ class Login extends Component {
                 //show sign up form
                 return (
                     <div>
-                        <Form>
+                        <Form id="loginform">
                             <FormGroup>
                                 <Label htmlFor='userName'>Name</Label>
                                 <Input type="text" name="userName" id="userName" onChange={this.handleSignInput} placeholder="Name" />

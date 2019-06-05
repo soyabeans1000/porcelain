@@ -38,6 +38,11 @@ Bathrooms.init ({
         isNumeric: true, 
         notNull: true
     },
+    cleanliness: {
+        type: Sequelize.INTEGER,
+        isNumeric: true, 
+        notNull: true
+    },
     caption: {
         type: Sequelize.STRING,
         allowNull: true,
