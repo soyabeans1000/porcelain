@@ -21,7 +21,8 @@ class AddBR extends Component {
         caption: '', 
         file: null,
         image: '',
-        bathroom: []
+        bathroom: [],
+        bathroomAdded: false
     }
     componentWillMount() {
         let id = localStorage.getItem('userId')
@@ -110,9 +111,10 @@ class AddBR extends Component {
                 caption: this.state.caption, 
                 image: this.state.image,
             })
-            this.setState({bathroom})
             document.getElementById("addbrform").reset()
             this.setState({
+                bathroom, 
+                bathroomAdded:true,
                 street: '',
                 city: '',
                 state: '',
@@ -129,11 +131,46 @@ class AddBR extends Component {
         .catch(e => console.log(e))
     }
     }
-    render() {
+    togglebackbtn = _ => {
+        this.setState({bathroomAdded: false})
+    }
+
+    handleAdded = _ => {
         let state = this.state
+        if (this.state.bathroomAdded === false) {
+            return (
+                <div>
+                    <h4 className="subtitle">Add a Bathroom</h4> 
+                    <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
+                    <div class = 'container' id = 'addForm'>
+                        <Form handleInputChange={this.handleInputChange}
+                            handleFormSubmit={this.handleFormSubmit} 
+                            handleLocation={this.handleLocation}
+                            street={state.street}
+                            city={state.city}
+                            state={state.state}
+                            zipcode={state.zipcode}
+                            gender={state.gender}
+                            stalls={state.stalls}
+                            level={state.level}
+                            cleanliness={state.cleanliness}
+                            caption={state.caption} 
+                        />
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <Dispbathroom bathroom={state.bathroom} togglebackbtn={this.togglebackbtn} />
+            )
+        }
+    }
+
+    render() {
         return (
             <>
-                <h4>Add a Bathroom</h4> 
+                {this.handleAdded()}
+                {/* <h4 className="subtitle">Add a Bathroom</h4> 
                 <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
                 <div class = 'container' id = 'addForm'>
                 <Form handleInputChange={this.handleInputChange}
@@ -148,10 +185,9 @@ class AddBR extends Component {
                     level={state.level}
                     cleanliness={state.cleanliness}
                     caption={state.caption} 
-                    userstatus={state.userstatus} 
                 />
                 </div>
-                <Dispbathroom bathroom={state.bathroom} />
+                <Dispbathroom bathroom={state.bathroom} /> */}
             </>
         )
     }

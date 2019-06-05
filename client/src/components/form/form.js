@@ -3,8 +3,8 @@ import '../../pages/AddBR/AddBR.css'
 import { FaLocationArrow } from "react-icons/fa";
 import './form.css'
 
-const Form = ({userstatus, handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, caption }) =>
-    <form action="/action_page.php" id="addbrform">
+const Form = ({handleFormSubmit, handleInputChange, handleLocation, street, city, state, zipcode, gender, stalls, level, cleanliness, caption }) =>
+    <form className="form" action="/action_page.php" id="addbrform">
         {/* <style>
             @import url('https://fonts.googleapis.com/css?family=Cantarell:400i&display=swap');
         </style> */}
@@ -120,10 +120,10 @@ const Form = ({userstatus, handleFormSubmit, handleInputChange, handleLocation, 
             <input id="caption" type="text" value={caption} onChange={handleInputChange} />
         </div>
         <div class='row'>
-            <label htmlFor="image">Image </label>
+            <label id='imageLabel' htmlFor="image">Upload Image </label>
             <input id="image" className="imageinput" type="file" onChange={handleInputChange} />
         </div>
-        {userstatus ? <button onClick={handleFormSubmit} className="addbr"> Add Bathroom</button> : <button onClick={handleFormSubmit} className="addbr"> Submit Request </button>}
+        <button id='submit' onClick={handleFormSubmit} className="addbr"> Add Restroom</button>
     </form>
 
 export default Form

@@ -13,52 +13,56 @@ class BRAroundMe extends Component {
         newcomment: '',
         comments: [],
         bathroom: [],
-        isliked: null
+        isliked: null,
+        getBR: false
     }
     handleOnClick = _ => {
-        this.setState({ bathroom: [], comments: [], newcomment: '' })
-        let likecount = 0
-        Bathrooms.getOne(1)
-            .then(({ data }) => {
-                likecount = data.likecount
-                let commentsarr = this.state.comments
-                data.comments.forEach(({ comments, user, userId, id, createdAt }) => {
-                    commentsarr.push({
-                        username: user.username,
-                        comment: comments,
-                        userId: userId,
-                        id: id,
-                        createdAt
+        this.setState({ bathroom: [], comments: [], newcomment: '', isliked: null, likecount: null, getBR: true }, _ => {
+
+            let likecount = 0
+            Bathrooms.getOne(10)
+                .then(({ data }) => {
+                    likecount = data.likecount
+                    let commentsarr = this.state.comments
+                    data.comments.forEach(({ comments, user, userId, id, createdAt }) => {
+                        commentsarr.push({
+                            username: user.username,
+                            comment: comments,
+                            userId: userId,
+                            id: id,
+                            createdAt
+                        })
+                    })
+    
+                    let i = data.comments.length
+                    this.setState({ comments: commentsarr })
+                    let bathroom = this.state.bathroom
+                    bathroom.push({
+                        location: `${data.street} ${data.city}, ${data.state} ${data.zipcode}`,
+                        image: data.image,
+                        gender: data.gender,
+                        stalls: data.stalls,
+                        level: data.level,
+                        cleanliness: data.cleanliness,
+                        caption: data.caption,
+                        bathroomId: data.id,
+                    })
+                    Likes.getOne(localStorage.getItem('userId'), this.state.bathroomId)
+                    .then(({data}) => {
+                        if (data === null) {
+                            this.setState({isliked: false})
+                        } else {
+                            this.setState({isliked: true})
+                        }
+                    })
+                    .catch(e => console.log(e))
+                    this.setState({
+                        likecount,
+                        bathroom
                     })
                 })
-
-                let i = data.comments.length
-                this.setState({ comments: commentsarr })
-                let bathroom = this.state.bathroom
-                bathroom.push({
-                    location: `${data.street} ${data.city}, ${data.state} ${data.zipcode}`,
-                    image: data.image,
-                    gender: data.gender,
-                    stalls: data.stalls,
-                    level: data.level,
-                    cleanliness: data.cleanliness,
-                    caption: data.caption,
-                    bathroomId: data.id,
-                })
-                Likes.getOne(localStorage.getItem('userId'), this.state.bathroomId)
-                .then(({data}) => {
-                    if (data === null) {
-                        this.setState({isliked: false})
-                    } else {
-                        this.setState({isliked: true})
-                    }
-                })
-                this.setState({
-                    likecount,
-                    bathroom
-                })
-            })
-            .catch(e => console.log(e))
+                .catch(e => console.log(e))
+        })
 
     }
     handleLikebutton = _ => {
@@ -105,7 +109,8 @@ class BRAroundMe extends Component {
             userId: localStorage.getItem('userId'),
         
         }
-        Comments.postOne(adComments).then(({ data: comment }) => {
+        Comments.postOne(adComments)
+        .then(({ data: comment }) => {
             User.getOne(localStorage.getItem('userId'))
         
             .then(({ data }) => {
@@ -138,13 +143,44 @@ class BRAroundMe extends Component {
             .catch(e => console.log(e))
 
     }
+    togglegetBR = _ => {
+        this.setState({getBR: false})
+    }
 
+    handlegetBR = () => {
+        if (this.state.getBR === false) {
+            return (
+                <div>
+                    <h5 className="subtitle">When ya gotta go, ya gotta know!</h5>
+                    <button onClick={this.handleOnClick}>get bathroom</button>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <Bathroomform 
+                        togglegetBR={this.togglegetBR}
+                        bathroom={this.state.bathroom} 
+                        comments={this.state.comments} 
+                        handledelete={this.handledelete} 
+                        likecount={this.state.likecount} 
+                        handleLikebutton={this.handleLikebutton} 
+                        handleSubmit={this.handleSubmit} 
+                        handleInputChange={this.handleInputChange} 
+                        newcomment={this.state.newcomment}
+                        isliked={this.state.isliked}
+                    />
+                </div>
+            )
+        }
+    }
 
     render() {
 
         return (
             <div>
-                <h1>Bathroom Around Me</h1>
+                {this.handlegetBR()}
+                {/* <h5 className="subtitle">When ya gotta go, ya gotta know!</h5>
                 <button onClick={this.handleOnClick}>get bathroom</button>
                 <Bathroomform 
                     bathroom={this.state.bathroom} 
@@ -156,7 +192,7 @@ class BRAroundMe extends Component {
                     handleInputChange={this.handleInputChange} 
                     newcomment={this.state.newcomment}
                     isliked={this.state.isliked}
-                />
+                /> */}
             </div>
         )
     }

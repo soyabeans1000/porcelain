@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom'
-import './style.css'
 import ProfileLikes from './Likes'
 import ProfileComments from './Comments'
 import { IoIosHeart } from "react-icons/io";
@@ -34,7 +33,7 @@ class ProfileSubMenu extends React.Component {
 
   render() {
   return (
-    <div className="container">
+    <div className="profilecontainer">
       <BrowserRouter>  
             <nav className="submenu">
               <Link to='/Likes' onClick={this.handlelikes} > <IoIosHeart className="icons"/> </Link>

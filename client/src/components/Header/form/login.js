@@ -171,7 +171,7 @@ class Login extends Component {
                         <small>Not a member?</small>
                         <br />
                         {/* SIGN UP BUTTON b4 the login bc modal*/}
-                        <Button outline color="success" onClick={this.toggleForm}>Sign Up</Button>
+                        <Button outline color="success" className="loginbtn" onClick={this.toggleForm}>Sign Up</Button>
                     </div>
                 )
             } else {
@@ -195,7 +195,7 @@ class Login extends Component {
                         <br />
                         <small>Have an acount?</small>
                         <br />
-                        <Button outline color="success" onClick={this.toggleForm}>Log In</Button>
+                        <Button outline color="success" className="loginbtn" onClick={this.toggleForm}>Log In</Button>
                     </div>
                 )
             }
@@ -212,8 +212,8 @@ class Login extends Component {
                         {this.showTheModal()}
                     </ModalBody>
                     <ModalFooter>
-                        <Button outline color="secondary" onClick={this.state.showLoginModal ? this.handleLogin : this.handleSignUp}>{this.state.showLoginModal ? "Log In" : "Submit"}</Button>{' '}
-                        <Button color="secondary" onClick={this.toggleShowModal}>Cancel</Button>
+                        <Button outline color="success" className="loginbtn" onClick={this.state.showLoginModal ? this.handleLogin : this.handleSignUp}>{this.state.showLoginModal ? "Log In" : "Submit"}</Button>{' '}
+                        <Button outline color="dark" className="loginbtn" onClick={this.toggleShowModal}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
