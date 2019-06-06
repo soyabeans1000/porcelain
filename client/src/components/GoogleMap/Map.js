@@ -32,7 +32,7 @@ export class MapContainer extends Component {
   }
 
   reverseGeocode() {
-      Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLocation.lat}, ${this.state.userLocation.lng}&key=${process.env.map_key}`)
+      Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.userLocation.lat}, ${this.state.userLocation.lng}&key=${process.env.REACT_APP_MAP_KEY}`)
         .then(res => res.data)
         .then(({ results }) => {
           let i = results[0].address_components
@@ -47,7 +47,7 @@ export class MapContainer extends Component {
         .then(({ data }) => {
           data.map(({ street, city, state, id }) => {
             id = id
-            Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${street}+${city}+${state}&key=${process.env.map_key}`)
+            Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${street}+${city}+${state}&key=${process.env.REACT_APP_MAP_KEY}`)
               .then(({ data }) => {
                 let newArr = { location: data.results[0].geometry.location, id: id }
                 this.setState({ geoArr: this.state.geoArr.concat(newArr) }, () => this.renderMarkers())
@@ -112,5 +112,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: process.env.map_key
+  apiKey: process.env.REACT_APP_MAP_KEY
 })(MapContainer);
