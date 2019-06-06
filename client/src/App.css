@@ -1,3 +1,6 @@
+* {
+  font-family: 'Raleway', sans-serif !important;
+}
 .App {
   text-align: center;
   margin-bottom: 10%;
@@ -92,6 +95,9 @@ img {
 .card_size {
   margin: 4% 3% 28% 3%;
 }
+.cardsize {
+  margin: 154% 3% 28% 3%;
+}
 .requestcontainer {
   margin-top: 20%;
   margin-bottom: 26%
@@ -115,7 +121,7 @@ img {
   height: 32px;
   border-top: none;
 }
-.commenttext:focus, .commentsubmit:focus, .likeicon:focus {
+.commenttext:focus, .commentsubmit:focus, .likeicon:focus, .deleteicon:focus {
   outline: none;
 }
 .commenttext {
@@ -140,4 +146,10 @@ img {
 }
 .img-fluid {
   height: 260px;
+}
+.Ctitle {
+  font-family: 'Poppins', sans-serif !important;
+}
+.map {
+  margin-top: 5%;
 }

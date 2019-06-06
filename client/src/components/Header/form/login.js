@@ -1,16 +1,15 @@
-
-import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import React, { Component } from 'react'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Form, FormGroup, Label, Input } from 'reactstrap'
 import User from '../../../utils/user'
-import * as EmailValidator from 'email-validator';
+import * as EmailValidator from 'email-validator'
 
 //parent component
 //keeps track of state, defines functionality to be passed into child component
 
 class Login extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         //initializing components
         this.state = {
             userName: '',
@@ -21,9 +20,9 @@ class Login extends Component {
             loggedIn: this.props.updateLoginStatus,
             validation: ''
         };
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-        this.toggleShowModal = this.toggleShowModal.bind(this);
-        this.toggleForm = this.toggleForm.bind(this);
+        this.handleLoginClick = this.handleLoginClick.bind(this)
+        this.toggleShowModal = this.toggleShowModal.bind(this)
+        this.toggleForm = this.toggleForm.bind(this)
     }
     componentWillReceiveProps(){
      this.setState({modal: true})
@@ -221,8 +220,4 @@ class Login extends Component {
     }
 }
 
-
 export default Login
-
-
-//this.state.showLoginModal ? this.handleLogin : this.handleSignUp}>{this.state.showLoginModal ? "Log In" : "Submit"

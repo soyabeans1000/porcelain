@@ -13,6 +13,4 @@ if(process.env.JAWSDB_URL && process.env.NODE_ENV === 'production') {
     connection = new Sequelize(`mysql://${user}:${password}@localhost:${port}/${db}`)
 }
 
-
-// module.exports = new Sequelize(`mysql://${user}:${password}@localhost:${port}/${db}`)
 module.exports = connection

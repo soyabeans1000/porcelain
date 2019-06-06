@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, Link, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import AddBR from './pages/AddBR/AddBR'
 import BRAroundMe from './pages/BRaround'
 import Loginpage from './pages/login'
@@ -13,12 +13,12 @@ import NavBar from './components/NavBar/navbar'
 import HeaderBar from './components/Header/header'
 class App extends Component {
   constructor(props){
-    super(props);
+    super(props)
     this.state={
       isLoggedIn: null
     }
 
-    this.toggleLogin = this.toggleLogin.bind(this);
+    this.toggleLogin = this.toggleLogin.bind(this)
 
   }
   componentWillMount () {
@@ -48,8 +48,7 @@ class App extends Component {
           <div>
           <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
            <Switch>
-              <Route exact path="/" component={ () => <Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
-              <Route path="/AroundMe" component={BRAroundMe} />
+              <Route exact path="/" component={ () => <BRAroundMe isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
               <Route path="/AddBR" component={AddBR} />
               <Route path="/Profile" component={Profile} />
               <Route path="/request" component={Requests} />
@@ -63,8 +62,7 @@ class App extends Component {
           <div>
           <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/>
            <Switch>
-              <Route exact path="/" component={ () => <Home isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
-              <Route path="/AroundMe" component={BRAroundMe} />
+              <Route exact path="/" component={ () => <BRAroundMe isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
               <Route path="/AddBR" component={AddBR} />
               <Route path="/Profile" component={Profile} />
               <Redirect to="/" />
@@ -76,7 +74,6 @@ class App extends Component {
     } else {
       return (
         <div>
-        {/* <HeaderBar loggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin}/> */}
          <Switch>
             <Route exact path="/login" component={ () => <Loginpage isLoggedIn={this.state.isLoggedIn} updateLoginStatus={this.toggleLogin} /> }/>
             <Redirect to="/login" />
@@ -94,6 +91,5 @@ class App extends Component {
     )
   }
 }
-
 
 export default App

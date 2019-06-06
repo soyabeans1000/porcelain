@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom'
 import ProfileLikes from './Likes'
 import ProfileComments from './Comments'
-import { IoIosHeart } from "react-icons/io";
-import { FaCommentDots } from "react-icons/fa";
+import { IoIosHeart } from "react-icons/io"
+import { FaCommentDots } from "react-icons/fa"
 
 
 class ProfileSubMenu extends React.Component {
@@ -45,4 +45,4 @@ class ProfileSubMenu extends React.Component {
   )}
 }
 
-export default ProfileSubMenu;
+export default ProfileSubMenu

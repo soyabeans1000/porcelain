@@ -1,27 +1,22 @@
 import React, { Component } from 'react'
 import SubMenu from '../../components/Profile_Menu/sub-menu.js'
 import User from '../../utils/user.js'
-import Testing from '../../components/testing/testing.js'
+import Selectedbr from '../../components/selectedbr/selectedbr.js'
 import Image from '../../utils/image.js'
 import './styles.css'
-import { FaCamera } from "react-icons/fa";
+import { FaCamera } from "react-icons/fa"
 
-
-
-// Need to create a add icon
 
 class Profile extends Component {
-    // state = {
-    // }
     constructor(props){
-        super(props);
+        super(props)
         this.state={
             username: '',
             userimage: '',
             redirect: false,
             bathroomId: null
         }
-        this.toggleredirect = this.toggleredirect.bind(this);
+        this.toggleredirect = this.toggleredirect.bind(this)
       }
 
     toggleredirect(num){
@@ -61,7 +56,7 @@ class Profile extends Component {
     handlepath = _ => {
         if (this.state.redirect) {
             return (
-                <Testing toggleredirect={this.toggleredirect} bathroomId={this.state.bathroomId}/>
+                <Selectedbr toggleredirect={this.toggleredirect} bathroomId={this.state.bathroomId}/>
             )
         } else {
             return (
@@ -86,4 +81,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default Profile
