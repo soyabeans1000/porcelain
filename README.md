@@ -1,4 +1,4 @@
-##PORCELAIN - When you gotto go, you gotto know!
+## PORCELAIN - When you gotto go, you gotto know!
 ***
 
 Porcelain is review app for restrooms. You get a list of restrooms in the location you are at, you get to pick which Restroom you would like to use for your business...
