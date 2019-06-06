@@ -24,12 +24,12 @@ https://sheltered-cliffs-91931.herokuapp.com/
 
 
 ## Contributors:
-
-### Larry - https://github.com/LTo28
-### Annie K Pham - https://github.com/anniekpham
-### Jonathan Lui - https://github.com/fliptosideb
-### Kayla San Filippo - https://github.com/kaylasf
-### Summer Basehart - https://github.com/summerbasehart
-### Mike Anderson - https://github.com/mjanders6
-### Sarika Goyal - https://github.com/soyabeans1000
-
+<ul>
+<li> Larry - https://github.com/LTo28
+<li> Annie K Pham - https://github.com/anniekpham
+<li> Jonathan Lui - https://github.com/fliptosideb
+<li> Kayla San Filippo - https://github.com/kaylasf
+<li> Summer Basehart - https://github.com/summerbasehart
+<li> Mike Anderson - https://github.com/mjanders6
+<li> Sarika Goyal - https://github.com/soyabeans1000
+</ul>
