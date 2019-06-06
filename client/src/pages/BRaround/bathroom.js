@@ -4,6 +4,7 @@ import Likes from '../../utils/likes'
 import Bathroomform from '../../components/bathroom'
 import Comments from '../../utils/comment'
 import User from '../../utils/user'
+import Map from '../../components/GoogleMap/Map'
 
 // Need to create a add icon
 
