@@ -12,7 +12,7 @@ View your Profile
 
 ## Technologies used:
 
-React, Express, Node.js, Sequelize, SQL Database and ReactBootstap 
+React, Express, Node.js, Sequelize, SQL Database, Google Maps and ReactBootstap 
 
 ## Deployment:
 
@@ -27,4 +27,4 @@ https://sheltered-cliffs-91931.herokuapp.com/
 ### Summer Basehart - https://github.com/summerbasehart
 ### Mike Anderson - https://github.com/mjanders6
 ### Sarika Goyal - https://github.com/soyabeans1000
-
+### Larry To - https://github.com/lto28
