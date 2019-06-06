@@ -14,12 +14,14 @@ class BRAroundMe extends Component {
         newcomment: '',
         comments: [],
         bathroom: [],
-        isliked: null    }
-    handleOnClick = num => {
+        isliked: null    
+    }
+
+    handleOnClick = id => {
         this.setState({ bathroom: [], comments: [], newcomment: '', isliked: null, likecount: null }, _ => {
 
             let likecount = 0
-            Bathrooms.getOne(num)
+            Bathrooms.getOne(id)
                 .then(({ data }) => {
                     likecount = data.likecount
                     let commentsarr = this.state.comments
@@ -46,7 +48,7 @@ class BRAroundMe extends Component {
                         caption: data.caption,
                         bathroomId: data.id,
                     })
-                    Likes.getOne(localStorage.getItem('userId'), num)
+                    Likes.getOne(localStorage.getItem('userId'), id)
                     .then(({data}) => {
                         if (data === null) {
                             this.setState({isliked: false})
@@ -145,11 +147,10 @@ class BRAroundMe extends Component {
 
 
     render() {
-
         return (
             <div>
-                <h5 className="subtitle">When ya gotta go, ya gotta know!</h5>
-                <div>
+                <h5 className="subtitle">When Ya Gotta Go, Ya Gotta Know!</h5>
+                <div className="map">
                     <Map handleOnClick={this.handleOnClick}/>
                 </div>
                 <div>
@@ -170,4 +171,4 @@ class BRAroundMe extends Component {
     }
 }
 
-export default BRAroundMe;
+export default BRAroundMe

@@ -140,7 +140,7 @@ class AddBR extends Component {
         if (this.state.bathroomAdded === false) {
             return (
                 <div>
-                    <h4 className="subtitle">Add a Bathroom</h4> 
+                    <h4 className="subtitle">Add a Restroom</h4> 
                     <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
                     <div class = 'container' id = 'addForm'>
                         <Form handleInputChange={this.handleInputChange}
@@ -170,27 +170,9 @@ class AddBR extends Component {
         return (
             <>
                 {this.handleAdded()}
-                {/* <h4 className="subtitle">Add a Bathroom</h4> 
-                <style>@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');</style>
-                <div class = 'container' id = 'addForm'>
-                <Form handleInputChange={this.handleInputChange}
-                    handleFormSubmit={this.handleFormSubmit} 
-                    handleLocation={this.handleLocation}
-                    street={state.street}
-                    city={state.city}
-                    state={state.state}
-                    zipcode={state.zipcode}
-                    gender={state.gender}
-                    stalls={state.stalls}
-                    level={state.level}
-                    cleanliness={state.cleanliness}
-                    caption={state.caption} 
-                />
-                </div>
-                <Dispbathroom bathroom={state.bathroom} /> */}
             </>
         )
     }
 }
 
-export default AddBR; 
+export default AddBR

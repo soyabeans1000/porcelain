@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Request from '../../utils/request'
 import Bathrooms from '../../utils/bathroom'
-import { MdClose, MdCheck } from "react-icons/md";
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col, CardText } from 'reactstrap';
+import { MdClose, MdCheck } from "react-icons/md"
+import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap'
 
 class Requests extends Component {
     state = {
@@ -76,7 +76,7 @@ class Requests extends Component {
                         <CardImg className="cardimg" src={request.image}/>
                         <CardBody>
                             <CardTitle className="Ctitle"> {request.street} {request.city}, {request.state} {request.zipcode} <br/> {request.caption} </CardTitle>
-                            <CardText>  <span>  cleanliness: {request.cleanliness}  &#9679; Stall: {request.stalls} &#9679; Level: {request.level} <br>
+                            <CardText>  <span>  Cleanliness: {request.cleanliness}  &#9679; Stall: {request.stalls} &#9679; Level: {request.level} <br>
                                 </br> {request.gender}
                                 </span>
                                 <div>

@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import User from '../../../utils/user.js'
 import Comments from '../../../utils/comment'
 import Bathroom from '../../../utils/bathroom'
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Container, Row, Col } from 'reactstrap'
 import '../../../pages/Profile/styles.css'
-import { FaCommentDots } from "react-icons/fa";
+import { FaCommentDots } from "react-icons/fa"
 
 class ProfileComments extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class ProfileComments extends Component {
             username: '',
             redirect: this.props.toggleredirect
         }
-        this.handlebathroomId = this.handlebathroomId.bind(this);
+        this.handlebathroomId = this.handlebathroomId.bind(this)
     }
     // state = {
     //     posts: [],
@@ -84,7 +84,7 @@ class ProfileComments extends Component {
                                     <Card id={item.bathroomId} className="bathroomCard" onClick={this.handlebathroomId}>
                                         <CardImg className="cardimg" top width="50%" src={item.image} alt="Card image cap" className="img-fluid" />
                                         <CardBody>
-                                            <CardTitle>{item.location}</CardTitle>
+                                            <CardTitle className="Ctitle">{item.location}</CardTitle>
                                             <CardSubtitle><FaCommentDots /> {item.comment}</CardSubtitle>
                                         </CardBody>
                                     </Card>
@@ -94,22 +94,8 @@ class ProfileComments extends Component {
                     </Row>
                 </Container>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
         )
     }
-
-
 }
 
 export default ProfileComments

@@ -22,4 +22,4 @@ const HeaderBar = (props) => (
     </>
         )
 
-export default HeaderBar;   
+export default HeaderBar

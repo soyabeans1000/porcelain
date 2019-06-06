@@ -17,7 +17,7 @@ class NavBar extends Component {
                     <Nav className="justify-content-center" className="navbar">
                         <Nav.Item>
                             <Nav.Link className="navlink">
-                                <Link to="/AroundMe"><FaToilet className="navicon"/></Link> 
+                                <Link to="/"><FaToilet className="navicon"/></Link> 
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
@@ -46,7 +46,7 @@ class NavBar extends Component {
                     <Nav className="justify-content-center" className="navbar">
                         <Nav.Item>
                             <Nav.Link className="navlink2">
-                                <Link to="/AroundMe"><FaToilet className="navicon"/></Link> 
+                                <Link to="/"><FaToilet className="navicon"/></Link> 
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
@@ -75,4 +75,4 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+export default NavBar

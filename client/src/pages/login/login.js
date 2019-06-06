@@ -3,11 +3,10 @@ import Login from '../../components/Header/form/login.js'
 import {Button} from 'reactstrap'
 import logo from '../../assets/Porcelain.png'
 import './style.css'
-// Need to create a add icon
 
 class Loginpage extends Component {
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
             loggedIn: this.props.isLoggedIn, 
             loginSelected: false
@@ -30,5 +29,4 @@ class Loginpage extends Component {
 
 }
     
-
-export default Loginpage;
+export default Loginpage

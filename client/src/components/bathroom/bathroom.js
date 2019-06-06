@@ -1,6 +1,6 @@
 import React from 'react'
-import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io"
+import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap'
 
 const Bathroomform = ({ isliked, bathroom, handleLikebutton, likecount, newcomment, handleInputChange, handleSubmit, handledelete, comments}) => {
     const loggedInUser = parseInt(localStorage.getItem('userId'))
@@ -10,7 +10,7 @@ const Bathroomform = ({ isliked, bathroom, handleLikebutton, likecount, newcomme
             <CardImg className="cardimg" src={image}/>
             <CardBody>
                 <CardTitle className="Ctitle"> {location}<br/> {caption} </CardTitle>
-                <CardText>  <span>  cleanliness: {cleanliness}  &#9679; Stall: {stalls} &#9679; Level: {level} <br>
+                <CardText>  <span>  Cleanliness: {cleanliness}  &#9679; Stall: {stalls} &#9679; Level: {level} <br>
                 </br> {gender}
                     
                 <div>
@@ -21,11 +21,11 @@ const Bathroomform = ({ isliked, bathroom, handleLikebutton, likecount, newcomme
                 <div className="commentcontainer">
                     {comments.sort(function(a, b){
                         var keyA = new Date(a.createdAt),
-                            keyB = new Date(b.createdAt);
-                        if(keyA < keyB) return -1;
-                        if(keyA > keyB) return 1;
+                            keyB = new Date(b.createdAt)
+                        if(keyA < keyB) return -1
+                        if(keyA > keyB) return 1
                         return 0;
-                        }).map(({username, comment, userId, id}, index) => {
+                        }).map(({username, comment, userId, id}) => {
                             return (
                                 <div className="comment">
                                     <span className="commentname">{username}: </span>

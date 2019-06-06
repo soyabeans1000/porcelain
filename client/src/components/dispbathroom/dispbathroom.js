@@ -1,6 +1,6 @@
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io"
 import React from 'react'
-import { Card, CardImg, CardBody, CardTitle, CardText, Container, Row, Col } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Container, Row, Col } from 'reactstrap'
 
 const Dispbathroom = ({togglebackbtn, bathroom}) => 
     <div>
@@ -14,8 +14,8 @@ const Dispbathroom = ({togglebackbtn, bathroom}) =>
                                 <Card className="bathroomCard">
                                     <CardImg className="cardimg" top width="50%" src={image} alt="Card image cap" className="img-fluid" />
                                     <CardBody>
-                                        <CardTitle>{street} {city}, {state} {zipcode}<br/> {caption}</CardTitle>
-                                        <CardText>  <span>  cleanliness: {cleanliness}  &#9679; Stall: {stalls} &#9679; Level: {level} <br>
+                                        <CardTitle className="Ctitle">{street} {city}, {state} {zipcode}<br/> {caption}</CardTitle>
+                                        <CardText>  <span>  Cleanliness: {cleanliness}  &#9679; Stall: {stalls} &#9679; Level: {level} <br>
                                         </br> {gender}
                                         </span>
                                         </CardText> 

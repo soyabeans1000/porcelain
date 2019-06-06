@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Bathrooms from '../../utils/bathroom.js'
 import Comments from '../../utils/comment'
 import User from '../../utils/user'
 import Likes from '../../utils/likes'
-import { IoIosHeart, IoIosHeartEmpty, IoIosArrowBack } from "react-icons/io";
-import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
+import { IoIosHeart, IoIosHeartEmpty, IoIosArrowBack } from "react-icons/io"
+import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap'
 
 
-class Testing extends Component {
+class Selectedbr extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -141,7 +141,7 @@ class Testing extends Component {
                     <CardImg className="cardimg" src={this.state.image} />
                     <CardBody>
                         <CardTitle className="Ctitle"> {this.state.location}<br/> {this.state.caption} </CardTitle>
-                        <CardText>  <span>  cleanliness: {this.state.cleanliness}  &#9679; Stall: {this.state.stalls} &#9679; Level: {this.state.level} <br>
+                        <CardText>  <span>  Cleanliness: {this.state.cleanliness}  &#9679; Stall: {this.state.stalls} &#9679; Level: {this.state.level} <br>
                         </br> {this.state.gender}
                         
                         <div>
@@ -152,11 +152,11 @@ class Testing extends Component {
                         <div className="commentcontainer">
                             {this.state.comments.sort(function(a, b){
                                 var keyA = new Date(a.createdAt),
-                                    keyB = new Date(b.createdAt);
-                                if(keyA < keyB) return -1;
-                                if(keyA > keyB) return 1;
-                                return 0;
-                                }).map(({username, comment, userId, id}, index) => {
+                                    keyB = new Date(b.createdAt)
+                                if(keyA < keyB) return -1
+                                if(keyA > keyB) return 1
+                                return 0
+                                }).map(({username, comment, userId, id}) => {
                                     return (
                                         <div className="comment">
                                             <span className="commentname">{username}: </span>
@@ -179,7 +179,6 @@ class Testing extends Component {
             </div>
         )
     }
-
 }
 
-export default Testing
+export default Selectedbr
