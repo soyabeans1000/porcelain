@@ -123,7 +123,7 @@ const Form = ({userstatus, handleFormSubmit, handleInputChange, handleLocation, 
             <label id='imageLabel' htmlFor="image">Upload Image </label>
             <input id="image" className="imageinput" type="file" onChange={handleInputChange} />
         </div>
-        {userstatus ? <button id='submit' onClick={handleFormSubmit} className="addbr"> Add Bathroom </button> : <button onClick={handleFormSubmit} className="addbr"> Submit Request </button>}
+        {userstatus ? <button id='submit' class='trigger' onClick={handleFormSubmit} className="addbr"> Add Bathroom </button> : <button onClick={handleFormSubmit} className="addbr"> Submit Request </button>}
     </form>
 
 export default Form
