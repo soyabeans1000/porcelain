@@ -3,7 +3,7 @@ import { Navbar } from 'react-bootstrap'
 import {Button} from 'reactstrap'
 import { IoIosExit } from "react-icons/io"
 import './header.css'
-import logo from '../../assets/Porcelain369.png'
+import logo from '../../assets/Porcelain.png'
 
 
 const HeaderBar = (props) => (
