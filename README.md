@@ -1,3 +1,5 @@
+<img src = "https://sheltered-cliffs-91931.herokuapp.com/static/media/Porcelain.38f4369f.png" width="150">
+
 PORCELAIN - When you gotto go, you gotto know!
 ***
 
@@ -14,7 +16,17 @@ Porcelain is review app for restrooms. You get a list of restrooms in the locati
 
 ## Technologies used:
 
-React, Express, Node.js, Sequelize, SQL Database and ReactBootstap 
+<ul>
+ <li> Google Maps API
+<li>React
+<li>Express
+<li>Node.js
+<li>Sequelize
+<li>SQL Database
+<li> ReactBootStrap
+ <li> Amazon Web Serves (AWS)
+
+ </ul>
 
 ## Deployment:
 
