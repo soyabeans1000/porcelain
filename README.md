@@ -24,7 +24,7 @@ Porcelain is review app for restrooms. You get a list of restrooms in the locati
 <li>Sequelize
 <li>SQL Database
 <li> ReactBootStrap
- <li> Amazon Web Serves (AWS)
+ <li> Amazon Web Services (AWS)
 
  </ul>
 
