@@ -84,7 +84,7 @@ class App extends Component {
 
   render() {
     return (
-   <div class="container d-flex align-items-start justify-content-center">
+   <div class="container d-flex align-items-start">
       <div className="App">
         {this.loggedin()}
       </div>
