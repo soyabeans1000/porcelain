@@ -74,10 +74,13 @@ class Profile extends Component {
     }
     render() {
         return (
+            <div className="profile_container"> 
             <div className="profile">
                 {this.handlepath()}
             </div>
+            </div>
         )
+
     }
 }
 
