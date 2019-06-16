@@ -6,10 +6,12 @@ import Loginpage from './pages/login'
 import Profile from './pages/Profile'
 import Requests from './pages/requests'
 import './App.css'
-
-
 import NavBar from './components/NavBar/navbar'
 import HeaderBar from './components/Header/header'
+
+
+
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -84,7 +86,7 @@ class App extends Component {
 
   render() {
     return (
-   <div class="container d-flex align-items-start">
+   <div class="container_width d-flex align-items-start">
       <div className="App">
         {this.loggedin()}
       </div>

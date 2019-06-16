@@ -52,9 +52,7 @@ img {
 .buttonicons2 {
   margin-top: 18%
 }
-.container1 {
-  margin-top: 20%
-}
+
 .likeicon {
   border: none;
   font-size: 25px;
@@ -153,3 +151,10 @@ img {
 .map {
   margin-top: 5%;
 }
+
+.container_width
+{
+  
+  border: 10px solid red;
+}
+
